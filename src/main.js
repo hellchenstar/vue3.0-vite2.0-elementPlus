@@ -9,7 +9,14 @@ import {
   ElRow,
   ElButton,
   ElSlider,
+  ElRadio,
+  ElRadioButton,
+  ElRadioGroup,
   ElInfiniteScroll,
+  ElMenu,
+  ElMenuItem,
+  ElMenuItemGroup,
+  ElSubmenu,
   ElLoading,
   ElMessage,
   ElMessageBox,
@@ -19,6 +26,13 @@ import {
 
 
 const components = [
+  ElRadio,
+  ElRadioButton,
+  ElRadioGroup,
+  ElMenu,
+  ElMenuItem,
+  ElMenuItemGroup,
+  ElSubmenu,
   ElCol,
   ElRow,
   ElButton,
