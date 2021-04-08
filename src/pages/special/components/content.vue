@@ -1,11 +1,13 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-07 21:16:48
+ * @LastEditTime: 2021-04-08 17:31:54
  * @Description: file content
 -->
 <template>
-	<div class="content">内容区</div>
+	<div class="content">
+		<router-view></router-view>
+	</div>
 </template>
 <script>
 export default {}

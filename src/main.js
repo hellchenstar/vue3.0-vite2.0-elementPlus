@@ -3,7 +3,7 @@ import router from './router'
 import App from './App.vue'
 import 'element-plus/packages/theme-chalk/src/base.scss'
 const app = createApp(App)
-
+app.config.globalProperties.$ELEMENT = { size: 'small' }
 import {
   ElCol,
   ElRow,
@@ -21,11 +21,17 @@ import {
   ElMessage,
   ElMessageBox,
   ElNotification,
+  ElDropdown,
+  ElDropdownItem,
+  ElDropdownMenu,
 } from 'element-plus';
 
 
 
 const components = [
+  ElDropdown,
+  ElDropdownItem,
+  ElDropdownMenu,
   ElRadio,
   ElRadioButton,
   ElRadioGroup,
@@ -40,6 +46,7 @@ const components = [
 
 ]
 const plugins = [
+
   ElInfiniteScroll,
   ElLoading,
   ElMessage,
@@ -47,7 +54,6 @@ const plugins = [
   ElNotification,
 ]
 components.forEach(component => {
-  console.log(component)
   app.component(component.name, component)
 })
 

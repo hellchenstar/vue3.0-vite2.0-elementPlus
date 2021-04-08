@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-07 21:15:04
+ * @LastEditTime: 2021-04-08 17:09:56
  * @Description: file content
 -->
 <template>
@@ -21,7 +21,9 @@
 import Header from "./components/header.vue"
 import Content from "./components/content.vue"
 import Menu from "./components/menu.vue"
+import { reactive } from "vue"
 export default {
+	setup() {},
 	components: {
 		Header,
 		Content,

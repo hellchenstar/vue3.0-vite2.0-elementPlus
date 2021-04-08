@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-07 18:33:40
+ * @LastEditTime: 2021-04-08 17:30:47
  * @Description: file content
  */
 import { createRouter, createWebHistory } from 'vue-router'
@@ -18,8 +18,21 @@ const router = createRouter({
       redirect: '/home'
     },
     {
+      path: '/login',
+      name: 'login',
+      component: () => import('@/pages/special/login.vue')
+    },
+    {
       path: '/home',
-      component: () => import('@/pages/special/home.vue')
+      name: 'home',
+      component: () => import('@/pages/special/home.vue'),
+      children: [
+        {
+          path: '/userInfo',
+          name: 'userInfo',
+          component: () => import('@/pages/user/userInfo.vue')
+        },
+      ]
     },
   ]
 })
