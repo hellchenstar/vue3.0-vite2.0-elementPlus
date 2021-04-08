@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-08 17:28:22
+ * @LastEditTime: 2021-04-08 18:21:56
  * @Description: file content
 -->
 <template>
@@ -28,10 +28,11 @@
 </template>
 <script>
 import { onMounted, reactive, toRefs } from "vue"
-import { useRouter } from "vue-router"
+import { useRouter, useRoute } from "vue-router"
 export default {
 	setup() {
 		const router = useRouter()
+		const route = useRoute()
 		// reactive将数据变为响应式
 		const userInfo = reactive({
 			userName: "",
@@ -47,7 +48,7 @@ export default {
 			}
 		}
 		onMounted(() => {
-			console.log(router)
+			console.log(route)
 			getUserInfo()
 		})
 		return {

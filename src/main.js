@@ -17,6 +17,8 @@ import {
   ElMenuItem,
   ElMenuItemGroup,
   ElSubmenu,
+  ElForm,
+  ElFormItem,
   ElLoading,
   ElMessage,
   ElMessageBox,
@@ -43,6 +45,8 @@ const components = [
   ElRow,
   ElButton,
   ElSlider,
+  ElForm,
+  ElFormItem,
 
 ]
 const plugins = [
