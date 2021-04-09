@@ -17,6 +17,7 @@ import {
   ElMenuItem,
   ElMenuItemGroup,
   ElSubmenu,
+  ElInput,
   ElForm,
   ElFormItem,
   ElLoading,
@@ -31,9 +32,10 @@ import {
 
 
 const components = [
-  ElDropdown,
-  ElDropdownItem,
-  ElDropdownMenu,
+  ElCol,
+  ElRow,
+  ElButton,
+  ElSlider,
   ElRadio,
   ElRadioButton,
   ElRadioGroup,
@@ -41,12 +43,12 @@ const components = [
   ElMenuItem,
   ElMenuItemGroup,
   ElSubmenu,
-  ElCol,
-  ElRow,
-  ElButton,
-  ElSlider,
+  ElInput,
   ElForm,
   ElFormItem,
+  ElDropdown,
+  ElDropdownItem,
+  ElDropdownMenu,
 
 ]
 const plugins = [

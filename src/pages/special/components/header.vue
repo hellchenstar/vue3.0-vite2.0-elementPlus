@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-08 18:21:56
+ * @LastEditTime: 2021-04-09 11:57:30
  * @Description: file content
 -->
 <template>
@@ -28,27 +28,31 @@
 </template>
 <script>
 import { onMounted, reactive, toRefs } from "vue"
-import { useRouter, useRoute } from "vue-router"
+import { useRouter } from "vue-router"
 export default {
 	setup() {
 		const router = useRouter()
-		const route = useRoute()
 		// reactive将数据变为响应式
 		const userInfo = reactive({
 			userName: "",
 		})
 		const getUserInfo = () => {
-			userInfo.userName = "管理员"
+			let user = JSON.parse(localStorage.getItem("userInfo"))
+			if (user) {
+				userInfo.userName = user.name
+			} else {
+				router.push("login")
+			}
 		}
 		const handleCommand = (command) => {
 			if (command === "userInfo") {
 				router.push(command)
 			} else {
+				localStorage.clear()
 				router.push("login")
 			}
 		}
 		onMounted(() => {
-			console.log(route)
 			getUserInfo()
 		})
 		return {
@@ -68,5 +72,8 @@ export default {
 	justify-content: space-between;
 	align-items: center;
 	background: #fff;
+	.el-dropdown-link {
+		cursor: pointer;
+	}
 }
 </style>

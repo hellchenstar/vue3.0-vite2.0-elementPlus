@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-08 18:38:33
+ * @LastEditTime: 2021-04-09 11:55:08
  * @Description: 登录
 -->
 <template>
@@ -11,17 +11,17 @@
 				:model="loginInfo"
 				:rules="rules"
 				ref="loginForm"
-				label-width="100px"
+				label-width="60px"
 				class="demo-ruleForm"
 			>
 				<el-form-item label="账号" prop="account">
 					<el-input v-model="loginInfo.account"></el-input>
 				</el-form-item>
 				<el-form-item label="密码" prop="password">
-					<el-input v-model="loginInfo.password"></el-input>
+					<el-input v-model="loginInfo.password" show-password></el-input>
 				</el-form-item>
 				<el-form-item>
-					<el-button type="primary" @click="login('loginForm')">
+					<el-button type="primary" @click="login" style="width: 100%">
 						登录
 					</el-button>
 				</el-form-item>
@@ -30,48 +30,48 @@
 	</div>
 </template>
 <script>
-import { onMounted, reactive, toRefs } from 'vue'
-import { useRouter, useRoute } from "vue-router"
+import { reactive, toRefs, onMounted, ref, unref } from "vue"
+import { useRouter } from "vue-router"
 export default {
-  name:'login',
+	name: "login",
 	setup() {
 		const router = useRouter()
-		const route = useRoute()
-    const state = reactive({
-      loginInfo = {
-        account:'',
-        password:'',
-        name:''
-      },
-      rules:{
-        account: [
-          { required: true, message: '请输入账号', trigger: 'blur' },
-        ],
-        password: [
-          { required: true, message: '请输入密码', trigger: 'blur' },
-          { min:6,max: 16, message: '长度在 6 到 16 个字符', trigger: 'blur' }
+		// ref等同于vue2.0中的this.$refs，获取 ref 对象
+		const loginForm = ref(null)
+		const state = reactive({
+			loginInfo: {
+				account: "admin",
+				password: "123456",
+				name: "",
+			},
+			rules: {
+				account: [{ required: true, message: "请输入账号", trigger: "blur" }],
+				password: [
+					{ required: true, message: "请输入密码", trigger: "blur" },
+					{ max: 16, min: 6, message: "密码长度为6-16之间", trigger: "blur" },
+				],
+			},
+		})
 
-        ],
-      }
-    })
-
-		const login = (formName) => {
-			this.$refs[formName].validate((valid) => {
+		const login = () => {
+			// unref
+			// 如果参数是一个 ref，则返回内部值，否则返回参数本身。这是 val = isRef(val) ? val.value : val 的语法糖函数。
+			const form = unref(loginForm)
+			form.validate((valid) => {
 				if (valid) {
-          router.push(home)
-          loginInfo.name = '管理员'
-          localStorage.setItem('userInfo',loginInfo)
+					state.loginInfo.name = "超级管理员"
+					localStorage.setItem("userInfo", JSON.stringify(state.loginInfo))
+					router.push("home")
 				} else {
 					console.log("error submit!!")
 					return false
 				}
 			})
 		}
-    onMounted(() => {
-			console.log(route)
-		})
+		onMounted(() => {})
 		return {
-      ...toRefs(state),
+			...toRefs(state),
+			loginForm,
 			login,
 		}
 	},
@@ -84,12 +84,17 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: #fff;
+	background: #ecf5ff;
 }
 .loginContent {
 	width: 500px;
 	height: 300px;
+	background: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	border: 1px solid #eee;
 	border-radius: 10px;
+	box-shadow: 5px 5px 5px rgba(238, 238, 238, 0.5);
 }
 </style>
