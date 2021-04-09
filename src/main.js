@@ -2,7 +2,10 @@ import { createApp } from 'vue'
 import router from './router'
 import App from './App.vue'
 import 'element-plus/packages/theme-chalk/src/base.scss'
+import store from '@/vuex/index.js'
 const app = createApp(App)
+app.use(store)
+app.use(router)
 app.config.globalProperties.$ELEMENT = { size: 'small' }
 import {
   ElCol,
@@ -27,6 +30,10 @@ import {
   ElDropdown,
   ElDropdownItem,
   ElDropdownMenu,
+  ElContainer,
+  ElAside,
+  ElMain,
+  ElHeader
 } from 'element-plus';
 
 
@@ -49,7 +56,10 @@ const components = [
   ElDropdown,
   ElDropdownItem,
   ElDropdownMenu,
-
+  ElContainer,
+  ElAside,
+  ElMain,
+  ElHeader
 ]
 const plugins = [
 
@@ -66,5 +76,5 @@ components.forEach(component => {
 plugins.forEach(plugin => {
   app.use(plugin)
 })
-app.use(router)
+
 app.mount('#app')

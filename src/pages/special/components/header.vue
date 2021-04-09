@@ -1,14 +1,16 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-09 11:57:30
+ * @LastEditTime: 2021-04-09 16:20:51
  * @Description: file content
 -->
 <template>
 	<div class="header">
 		<div>
-			<i class="el-icon-s-fold"></i>
-			<i class="el-icon-s-unfold"></i>
+			<i
+				:class="isCollapse ? `el-icon-s-unfold` : 'el-icon-s-fold'"
+				@click="setMenuStatus"
+			></i>
 		</div>
 		<div>
 			<el-dropdown @command="handleCommand">
@@ -27,15 +29,23 @@
 	</div>
 </template>
 <script>
-import { onMounted, reactive, toRefs } from "vue"
+import { computed, onMounted, reactive, toRefs } from "vue"
 import { useRouter } from "vue-router"
+import { useStore } from "vuex"
 export default {
 	setup() {
 		const router = useRouter()
+		const vuex = useStore()
 		// reactive将数据变为响应式
 		const userInfo = reactive({
 			userName: "",
+			isCollapse: computed(() => {
+				return vuex.state.isCollapse
+			}),
 		})
+		const setMenuStatus = () => {
+			vuex.commit("setIsCollapse", !userInfo.isCollapse)
+		}
 		const getUserInfo = () => {
 			let user = JSON.parse(localStorage.getItem("userInfo"))
 			if (user) {
@@ -59,6 +69,7 @@ export default {
 			...toRefs(userInfo),
 			getUserInfo,
 			handleCommand,
+			setMenuStatus,
 		}
 	},
 }
