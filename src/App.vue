@@ -12,6 +12,8 @@
 * {
 	box-sizing: border-box;
 	font-size: 16px;
+	padding: 0;
+	margin: 0;
 }
 html,
 body {

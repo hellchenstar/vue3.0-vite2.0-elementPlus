@@ -1,18 +1,21 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-11 10:10:28
+ * @LastEditTime: 2021-04-11 11:25:23
  * @Description: file content
 -->
 <template>
 	<div class="header">
 		<div>
 			<i
-				:class="isCollapse ? `el-icon-s-unfold` : 'el-icon-s-fold'"
+				:class="`el-icon-s-${isCollapse ? 'un' : ''}fold`"
 				@click="setMenuStatus"
 			></i>
 		</div>
-		<div>
+		<div class="userCenter">
+			<el-avatar :size="35" class="avatar" :src="avatar">
+				<img :src="defaultAvatar" />
+			</el-avatar>
 			<el-dropdown @command="handleCommand">
 				<span class="el-dropdown-link">
 					{{ userName }}
@@ -32,6 +35,7 @@
 import { computed, onMounted, reactive, toRefs } from "vue"
 import { useRouter } from "vue-router"
 import { useStore } from "vuex"
+import defaultAvatar from "@/assets/img/header/defaultAvatar.png"
 export default {
 	setup() {
 		const router = useRouter()
@@ -39,6 +43,8 @@ export default {
 		// reactive将数据变为响应式
 		const userInfo = reactive({
 			userName: "",
+			avatar: "",
+			defaultAvatar,
 			isCollapse: computed(() => {
 				return vuex.state.special.isCollapse
 			}),
@@ -76,15 +82,24 @@ export default {
 </script>
 <style lang="scss" scoped>
 .header {
-	height: 60px;
-	border-bottom: 1px solid #eee;
+	height: 100%;
 	display: flex;
-	padding: 0 10px;
 	justify-content: space-between;
 	align-items: center;
-	background: #fff;
-	.el-dropdown-link {
+
+	.userCenter {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 0 20px;
 		cursor: pointer;
+
+		.avatar {
+			width: 30px;
+			height: 30px;
+			margin-right: 10px;
+			border-radius: 50%;
+		}
 	}
 }
 </style>

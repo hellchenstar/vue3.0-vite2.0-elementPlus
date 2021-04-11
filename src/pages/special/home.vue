@@ -1,29 +1,25 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-11 10:17:49
+ * @LastEditTime: 2021-04-11 11:53:08
  * @Description: file content
 -->
 <template>
-	<div class="home">
+	<div class="Content">
+		<Menu />
 		<el-container>
-			<el-aside>
-				<Menu></Menu>
-			</el-aside>
-			<el-container>
-				<el-header>
-					<Header></Header>
-				</el-header>
-				<el-main>
-					<Content></Content>
-				</el-main>
-			</el-container>
+			<el-header>
+				<Header />
+			</el-header>
+			<el-main>
+				<Container />
+			</el-main>
 		</el-container>
 	</div>
 </template>
 <script>
 import Header from "./components/header.vue"
-import Content from "./components/content.vue"
+import Container from "./components/Container.vue"
 import Menu from "./components/menu.vue"
 import { computed, reactive, toRefs } from "vue"
 import { useStore } from "vuex"
@@ -40,29 +36,31 @@ export default {
 		}
 	},
 	components: {
-		Header,
-		Content,
 		Menu,
+		Header,
+		Container,
 	},
 }
 </script>
 <style lang="scss" scoped>
-.home {
+.Content {
 	width: 100%;
 	height: 100%;
+	display: flex;
+
 	.el-container {
-		width: 100%;
+		width: calc(100% - 220px);
 		height: 100%;
-		.el-aside {
-			height: 100%;
-		}
 		.el-header {
-			padding: 0;
+			height: 50px !important;
+			background: #fff;
 		}
 		.el-main {
+			padding: 0;
 			margin: 5px;
-			padding: 5px;
-			background: #fff;
+			width: 100%;
+			background: #eee;
+			height: calc(100% - 50px);
 		}
 	}
 }

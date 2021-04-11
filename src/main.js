@@ -8,6 +8,7 @@ app.use(store)
 app.use(router)
 app.config.globalProperties.$ELEMENT = { size: 'small' }
 import {
+  ElAvatar,
   ElCol,
   ElRow,
   ElButton,
@@ -39,6 +40,7 @@ import {
 
 
 const components = [
+  ElAvatar,
   ElCol,
   ElRow,
   ElButton,
