@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-11 13:46:07
+ * @LastEditTime: 2021-04-11 17:14:36
  * @Description: element-ui按需加载分离（不写在main.js中）
  */
 import "dayjs/locale/zh-cn";
@@ -65,7 +65,6 @@ const components = [
   ElSwitch,
 ]
 const plugins = [
-
   ElInfiniteScroll,
   ElLoading,
   ElMessage,
@@ -74,8 +73,7 @@ const plugins = [
 ]
 
 export default (app) => {
-  // app.config.globalProperties.$ELEMENT = { locale };
-  // 可以查看文档
+
   locale.use(lang);
   components.forEach(component => {
     app.component(component.name, component);
