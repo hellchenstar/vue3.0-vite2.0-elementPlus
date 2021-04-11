@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-11 12:44:01
+ * @LastEditTime: 2021-04-11 13:46:07
  * @Description: element-ui按需加载分离（不写在main.js中）
  */
 import "dayjs/locale/zh-cn";
@@ -28,13 +28,15 @@ import {
   ElMessage,
   ElMessageBox,
   ElNotification,
+  ElDrawer,
   ElDropdown,
   ElDropdownItem,
   ElDropdownMenu,
   ElContainer,
   ElAside,
   ElMain,
-  ElHeader
+  ElHeader,
+  ElSwitch,
 } from 'element-plus';
 const components = [
   ElAvatar,
@@ -52,13 +54,15 @@ const components = [
   ElInput,
   ElForm,
   ElFormItem,
+  ElDrawer,
   ElDropdown,
   ElDropdownItem,
   ElDropdownMenu,
   ElContainer,
   ElAside,
   ElMain,
-  ElHeader
+  ElHeader,
+  ElSwitch,
 ]
 const plugins = [
 

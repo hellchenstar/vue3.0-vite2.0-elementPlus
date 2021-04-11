@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-11 11:25:23
+ * @LastEditTime: 2021-04-11 13:42:08
  * @Description: file content
 -->
 <template>
@@ -28,7 +28,16 @@
 					</el-dropdown-menu>
 				</template>
 			</el-dropdown>
+			<i class="el-icon-setting setting" @click="openSetting"></i>
 		</div>
+		<el-drawer
+			title="用户设置"
+			v-model="drawer"
+			:before-close="handleClose"
+			destroy-on-close
+		>
+			<UserSetting></UserSetting>
+		</el-drawer>
 	</div>
 </template>
 <script>
@@ -36,7 +45,11 @@ import { computed, onMounted, reactive, toRefs } from "vue"
 import { useRouter } from "vue-router"
 import { useStore } from "vuex"
 import defaultAvatar from "@/assets/img/header/defaultAvatar.png"
+import UserSetting from "./userSetting.vue"
 export default {
+	components: {
+		UserSetting,
+	},
 	setup() {
 		const router = useRouter()
 		const vuex = useStore()
@@ -45,6 +58,7 @@ export default {
 			userName: "",
 			avatar: "",
 			defaultAvatar,
+			drawer: false,
 			isCollapse: computed(() => {
 				return vuex.state.special.isCollapse
 			}),
@@ -68,6 +82,12 @@ export default {
 				router.push("login")
 			}
 		}
+		const openSetting = () => {
+			userInfo.drawer = true
+		}
+		const handleClose = () => {
+			userInfo.drawer = false
+		}
 		onMounted(() => {
 			getUserInfo()
 		})
@@ -76,6 +96,8 @@ export default {
 			getUserInfo,
 			handleCommand,
 			setMenuStatus,
+			openSetting,
+			handleClose,
 		}
 	},
 }
@@ -99,6 +121,9 @@ export default {
 			height: 30px;
 			margin-right: 10px;
 			border-radius: 50%;
+		}
+		.setting {
+			margin-left: 10px;
 		}
 	}
 }
