@@ -1,0 +1,18 @@
+/*
+ * @Author: chenx
+ * @CreatedDate: Do not edit
+ * @LastEditTime: 2021-04-11 12:45:36
+ * @Description: file content
+ */
+{
+	"presets": ["@vue/cli-plugin-babel/preset"],
+	"plugins": [
+		[
+			"component",
+			{
+				"libraryName": "element-plus",
+				"styleLibraryName": "theme-chalk"
+			}
+		]
+	]
+}

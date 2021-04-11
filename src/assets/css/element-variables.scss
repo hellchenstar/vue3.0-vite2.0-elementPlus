@@ -1,0 +1,12 @@
+/*
+ * @Author: chenx
+ * @CreatedDate: Do not edit
+ * @LastEditTime: 2021-04-11 12:38:42
+ * @Description: 自定义主题
+ */
+$--color-primary: red;
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: "node_modules/element-plus/lib/theme-chalk/fonts";
+
+@import "node_modules/element-plus/packages/theme-chalk/src/index";
