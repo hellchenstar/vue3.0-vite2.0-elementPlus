@@ -1,7 +1,19 @@
 node_modules
 .DS_Store
 dist
+.package-lock
 dist-ssr
 *.local
 
-.package-lock
+# local env files
+.env.local
+.env.*.local
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.zip

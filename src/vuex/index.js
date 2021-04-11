@@ -1,22 +1,16 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-09 16:05:05
+ * @LastEditTime: 2021-04-11 10:09:59
  * @Description: vuex 4.0
  */
 import { createStore } from 'vuex'
-
+import special from './modules/special.js'
 const store = createStore({
-  state() {
-    return {
-      isCollapse: false
-    }
-  },
-  mutations: {
-    setIsCollapse(state, status) {
-      state.isCollapse = status
-    }
+  modules: {
+    special
   }
+
 })
 
 export default store

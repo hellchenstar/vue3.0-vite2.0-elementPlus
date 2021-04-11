@@ -1,13 +1,13 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-09 18:55:29
+ * @LastEditTime: 2021-04-11 10:17:49
  * @Description: file content
 -->
 <template>
 	<div class="home">
 		<el-container>
-			<el-aside width="200px">
+			<el-aside>
 				<Menu></Menu>
 			</el-aside>
 			<el-container>
@@ -32,7 +32,7 @@ export default {
 		const vuex = useStore()
 		const state = reactive({
 			isCollapse: computed(() => {
-				return vuex.state.isCollapse
+				return vuex.state.special.isCollapse
 			}),
 		})
 		return {
@@ -50,5 +50,20 @@ export default {
 .home {
 	width: 100%;
 	height: 100%;
+	.el-container {
+		width: 100%;
+		height: 100%;
+		.el-aside {
+			height: 100%;
+		}
+		.el-header {
+			padding: 0;
+		}
+		.el-main {
+			margin: 5px;
+			padding: 5px;
+			background: #fff;
+		}
+	}
 }
 </style>

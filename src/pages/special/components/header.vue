@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-09 16:20:51
+ * @LastEditTime: 2021-04-11 10:10:28
  * @Description: file content
 -->
 <template>
@@ -40,7 +40,7 @@ export default {
 		const userInfo = reactive({
 			userName: "",
 			isCollapse: computed(() => {
-				return vuex.state.isCollapse
+				return vuex.state.special.isCollapse
 			}),
 		})
 		const setMenuStatus = () => {

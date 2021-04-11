@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-09 18:46:29
+ * @LastEditTime: 2021-04-11 10:10:46
  * @Description: 菜单
 -->
 <template>
@@ -48,7 +48,7 @@ export default {
 		const routerInfo = reactive({
 			routerList: [],
 			isCollapse: computed(() => {
-				return vuex.state.isCollapse
+				return vuex.state.special.isCollapse
 			}),
 		})
 		onMounted(() => {
@@ -72,6 +72,10 @@ export default {
 		justify-content: center;
 		align-items: center;
 		color: #fff;
+	}
+	.el-menu {
+		width: 100%;
+		height: calc(100% - 60px);
 	}
 }
 </style>
