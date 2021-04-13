@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-09 11:55:08
+ * @LastEditTime: 2021-04-13 21:40:03
  * @Description: 登录
 -->
 <template>
@@ -21,7 +21,7 @@
 					<el-input v-model="loginInfo.password" show-password></el-input>
 				</el-form-item>
 				<el-form-item>
-					<el-button type="primary" @click="login" style="width: 100%">
+					<el-button type="primary" @click="loginSubmit" style="width: 100%">
 						登录
 					</el-button>
 				</el-form-item>
@@ -32,6 +32,7 @@
 <script>
 import { reactive, toRefs, onMounted, ref, unref } from "vue"
 import { useRouter } from "vue-router"
+import login from "@/request/api/special/login.js"
 export default {
 	name: "login",
 	setup() {
@@ -43,6 +44,7 @@ export default {
 				account: "admin",
 				password: "123456",
 				name: "",
+				avatar: "",
 			},
 			rules: {
 				account: [{ required: true, message: "请输入账号", trigger: "blur" }],
@@ -53,15 +55,22 @@ export default {
 			},
 		})
 
-		const login = () => {
+		const loginSubmit = () => {
 			// unref
 			// 如果参数是一个 ref，则返回内部值，否则返回参数本身。这是 val = isRef(val) ? val.value : val 的语法糖函数。
 			const form = unref(loginForm)
 			form.validate((valid) => {
 				if (valid) {
-					state.loginInfo.name = "超级管理员"
-					localStorage.setItem("userInfo", JSON.stringify(state.loginInfo))
-					router.push("home")
+					login
+						.loginSub(state.loginInfo)
+						.then((res) => {
+							localStorage.setItem("userInfo", JSON.stringify(res.data))
+							router.push("home")
+						})
+						.catch((err) => {
+							console.log(err)
+						})
+					//
 				} else {
 					console.log("error submit!!")
 					return false
@@ -72,7 +81,7 @@ export default {
 		return {
 			...toRefs(state),
 			loginForm,
-			login,
+			loginSubmit,
 		}
 	},
 }

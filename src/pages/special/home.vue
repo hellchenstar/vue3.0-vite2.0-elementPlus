@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-11 11:53:08
+ * @LastEditTime: 2021-04-13 10:38:41
  * @Description: file content
 -->
 <template>
@@ -58,7 +58,6 @@ export default {
 		.el-main {
 			padding: 0;
 			margin: 5px;
-			width: 100%;
 			background: #eee;
 			height: calc(100% - 50px);
 		}

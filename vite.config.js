@@ -30,13 +30,12 @@ export default defineConfig({
     open: true,
     strictPort: false,//如果端口占用，是退出，还是尝试其他端口
     https: false,// 是否开启 https
-    // proxy: {
-    //   '/api': {
-    //     target: 'http://jsonplaceholder.typicode.com/',
-    //     changeOrigin: true,
-    //     rewrite: (path) => path.replace(/^\/api/, ''),
-    //   },
-    // },
+    proxy: {
+      '/api': {
+        target: 'http://192.168.3.173:5000',
+        changeOrigin: true,
+      },
+    },
   },
   build: {
     outDir: 'dist',//Specify the output directory (relative to project root).
