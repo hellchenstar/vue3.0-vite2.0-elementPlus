@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-14 18:35:32
+ * @LastEditTime: 2021-04-14 18:39:58
  * @Description: file content
  */
 import { ElMessage } from 'element-plus';
@@ -90,7 +90,7 @@ instance.interceptors.request.use(
   // 后台根据携带的token判断用户的登录情况，并返回给我们对应的状态码
   // 而后我们可以在响应拦截器中，根据状态码进行一些统一的操作。
   config => {
-    const token = JSON.parse(localStorage.getItem('userInfo')).token
+    const token = localStorage.getItem('token')
     if (token) {
       // debugger
       config.headers['X-token'] = token

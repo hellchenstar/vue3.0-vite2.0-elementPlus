@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-14 18:28:43
+ * @LastEditTime: 2021-04-14 18:42:18
  * @Description: 菜单
 -->
 <template>
@@ -50,16 +50,15 @@ export default {
 			}),
 		})
 
-		const getMenuData = () => {
-			menuApi.getMenuList(state.menuInfo).then((res) => {
+		const getMenuData = (id) => {
+			menuApi.getMenuList(id).then((res) => {
 				console.log(res)
 			})
 		}
 		onMounted(() => {
-			let obj = JSON.parse(localStorage.getItem("userInfo"))
-			if (obj) {
-				state.menuInfo.userId = obj.userId
-				getMenuData()
+			let userId = localStorage.getItem("userId")
+			if (userId) {
+				getMenuData(userId)
 			} else {
 				router.push("login")
 			}
