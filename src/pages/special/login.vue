@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-14 18:15:13
+ * @LastEditTime: 2021-04-14 18:31:48
  * @Description: 登录
 -->
 <template>
@@ -58,6 +58,7 @@ export default {
 					login
 						.loginSub(state.loginInfo)
 						.then((res) => {
+							console.log(res)
 							state.loginLoading = false
 							localStorage.setItem("userInfo", JSON.stringify(res.data))
 							router.push("home")

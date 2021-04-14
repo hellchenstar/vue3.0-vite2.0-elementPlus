@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-14 18:08:02
+ * @LastEditTime: 2021-04-14 18:28:43
  * @Description: 菜单
 -->
 <template>
@@ -34,8 +34,10 @@
 import { computed, onMounted, reactive, toRefs } from "vue"
 import { menuApi } from "@/request/api/index.js"
 import { useStore } from "vuex"
+import { useRoute } from "vue-router"
 export default {
 	setup() {
+		const router = useRoute()
 		const vuex = useStore()
 		const state = reactive({
 			menuInfo: {
@@ -57,8 +59,10 @@ export default {
 			let obj = JSON.parse(localStorage.getItem("userInfo"))
 			if (obj) {
 				state.menuInfo.userId = obj.userId
+				getMenuData()
+			} else {
+				router.push("login")
 			}
-			getMenuData()
 		})
 		return {
 			...toRefs(state),
