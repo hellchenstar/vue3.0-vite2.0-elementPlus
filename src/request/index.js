@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-13 21:38:44
+ * @LastEditTime: 2021-04-14 18:17:50
  * @Description: file content
  */
 import { ElMessage } from 'element-plus';
@@ -77,7 +77,7 @@ function subscribeTokenRefresh(cb) {
 
 // 创建axios实例，超时时间为10秒
 let instance = axios.create({
-  timeout: 1000 * 10
+  timeout: 1000 * 60
 })
 
 /**
@@ -180,10 +180,10 @@ instance.interceptors.response.use(
       }
       return Promise.resolve(res.data)
     }
-    // return res.status === 200 ? Promise.resolve(res.data) : Promise.reject(res)
   },
   // 请求失败
   error => {
+    console.log('失败了：', error)
     const { response } = error
     if (response) {
       // 请求已发出，但是不在2xx的范围

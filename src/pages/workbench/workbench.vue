@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-13 11:18:40
+ * @LastEditTime: 2021-04-14 16:49:36
  * @Description: 工作台
 -->
 <template>
@@ -28,9 +28,9 @@
 			</el-row>
 		</div>
 		<div class="center">center</div>
-		<div>
-			footer
+		<div class="footer">
 			<div>left</div>
+			<div>center</div>
 			<div>right</div>
 		</div>
 	</div>
@@ -47,8 +47,10 @@ export default {
 		})
 		onMounted(() => {
 			let userInfo = JSON.parse(localStorage.getItem("userInfo"))
-			state.userName = userInfo.name
-			state.avatar = userInfo.avatar
+			if (userInfo) {
+				state.userName = userInfo.name
+				state.avatar = userInfo.avatar
+			}
 		})
 		return { ...toRefs(state), defaultAvatar }
 	},
@@ -60,11 +62,13 @@ export default {
 	height: 100%;
 }
 .top,
-.center {
+.center,
+.footer {
 	width: 100%;
 	border-radius: 10px;
-	padding: 10px;
+	padding: 5px;
 	background: #fff;
+	margin-bottom: 5px;
 }
 .top {
 	height: 100px;
@@ -85,6 +89,10 @@ export default {
 }
 .center {
 	height: 200px;
-	margin-top: 10px;
+}
+.footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 </style>

@@ -1,29 +1,22 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-13 21:40:03
+ * @LastEditTime: 2021-04-14 18:15:13
  * @Description: 登录
 -->
 <template>
 	<div class="login">
 		<div class="loginContent">
-			<el-form
-				:model="loginInfo"
-				:rules="rules"
-				ref="loginForm"
-				label-width="60px"
-				class="demo-ruleForm"
-			>
-				<el-form-item label="账号" prop="account">
-					<el-input v-model="loginInfo.account"></el-input>
+			<el-form :model="loginInfo" :rules="rules" ref="loginForm" label-width="60px" class="demo-ruleForm">
+				<el-form-item label="账号" prop="userName">
+					<el-input v-model="loginInfo.userName"></el-input>
 				</el-form-item>
 				<el-form-item label="密码" prop="password">
 					<el-input v-model="loginInfo.password" show-password></el-input>
 				</el-form-item>
 				<el-form-item>
-					<el-button type="primary" @click="loginSubmit" style="width: 100%">
-						登录
-					</el-button>
+					<el-button type="primary" :loading="loginLoading" @click="goLogin" style="width: 45%"> 登录 </el-button>
+					<el-button type="primary" @click="goRegister" style="width: 45%"> 注册 </el-button>
 				</el-form-item>
 			</el-form>
 		</div>
@@ -32,30 +25,31 @@
 <script>
 import { reactive, toRefs, onMounted, ref, unref } from "vue"
 import { useRouter } from "vue-router"
-import login from "@/request/api/special/login.js"
+import { login } from "@/request/api/index.js"
 export default {
 	name: "login",
 	setup() {
 		const router = useRouter()
 		// ref等同于vue2.0中的this.$refs，获取 ref 对象
-		const loginForm = ref(null)
+
 		const state = reactive({
 			loginInfo: {
-				account: "admin",
-				password: "123456",
-				name: "",
-				avatar: "",
+				userName: "",
+				password: "",
 			},
+			loginLoading: false,
 			rules: {
-				account: [{ required: true, message: "请输入账号", trigger: "blur" }],
+				userName: [{ required: true, message: "请输入账号", trigger: "blur" }],
 				password: [
 					{ required: true, message: "请输入密码", trigger: "blur" },
 					{ max: 16, min: 6, message: "密码长度为6-16之间", trigger: "blur" },
 				],
 			},
 		})
-
-		const loginSubmit = () => {
+		// 登录逻辑
+		const loginForm = ref(null)
+		const goLogin = () => {
+			state.loginLoading = true
 			// unref
 			// 如果参数是一个 ref，则返回内部值，否则返回参数本身。这是 val = isRef(val) ? val.value : val 的语法糖函数。
 			const form = unref(loginForm)
@@ -64,6 +58,7 @@ export default {
 					login
 						.loginSub(state.loginInfo)
 						.then((res) => {
+							state.loginLoading = false
 							localStorage.setItem("userInfo", JSON.stringify(res.data))
 							router.push("home")
 						})
@@ -77,11 +72,15 @@ export default {
 				}
 			})
 		}
+		const goRegister = () => {
+			router.push("register")
+		}
 		onMounted(() => {})
 		return {
 			...toRefs(state),
 			loginForm,
-			loginSubmit,
+			goLogin,
+			goRegister,
 		}
 	},
 }

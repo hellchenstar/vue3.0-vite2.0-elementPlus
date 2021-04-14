@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-13 21:33:32
+ * @LastEditTime: 2021-04-14 16:58:42
  * @Description: file content
  */
 
@@ -11,12 +11,11 @@ import axios from '../../index' // 导入http中创建的axios实例
 const login = {
   // 登录,获取token
   loginSub(params) {
-    console.log(`${base.dev.user}/login`)
-    return axios.post(`${base.dev.user}/login`, params)
+    return axios.post(`${base.dev.root}/login`, params)
   },
-  // 获取登录用户信息
-  getUserInfo() {
-    return axios.get(`${base.dev.user}/userInfo`)
+  // 注册
+  register(params) {
+    return axios.post(`${base.dev.root}/register`, params)
   },
 
   // 其他接口…………

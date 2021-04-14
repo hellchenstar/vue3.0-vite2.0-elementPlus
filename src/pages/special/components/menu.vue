@@ -1,33 +1,24 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-13 21:44:19
+ * @LastEditTime: 2021-04-14 18:08:02
  * @Description: 菜单
 -->
 <template>
-	<el-menu
-		router
-		default-active="workbench"
-		class="el-menu-vertical"
-		:collapse="isCollapse"
-	>
+	<el-menu router default-active="workbench" class="el-menu-vertical" :collapse="isCollapse">
 		<div class="logo">
-			<img src="@/assets/img/header/logo.svg" alt="" />
+			<img src="@/assets/img/logo/logo.jpg" alt="" />
 			<span class="sysName" v-if="!isCollapse"> Vite2.0 + Vue3.0 </span>
 		</div>
 
-		<template v-for="(item, index) in routerList" :key="index">
+		<template v-for="(item, index) in menuList" :key="index">
 			<el-submenu :index="item.name" v-if="item.children.length">
 				<template #title>
 					<i :class="item.meta.icon"></i>
 					<span>{{ item.meta.title }}</span>
 				</template>
 
-				<el-menu-item
-					v-for="(el, i) in item.children"
-					:index="el.name"
-					:key="i"
-				>
+				<el-menu-item v-for="(el, i) in item.children" :index="el.name" :key="i">
 					{{ el.meta.title }}
 				</el-menu-item>
 			</el-submenu>
@@ -41,23 +32,37 @@
 </template>
 <script>
 import { computed, onMounted, reactive, toRefs } from "vue"
-import { useRouter } from "vue-router"
+import { menuApi } from "@/request/api/index.js"
 import { useStore } from "vuex"
 export default {
 	setup() {
-		const router = useRouter()
 		const vuex = useStore()
-		const routerInfo = reactive({
-			routerList: [],
+		const state = reactive({
+			menuInfo: {
+				userId: "",
+			},
+
+			menuList: [],
 			isCollapse: computed(() => {
 				return vuex.state.special.isCollapse
 			}),
 		})
+
+		const getMenuData = () => {
+			menuApi.getMenuList(state.menuInfo).then((res) => {
+				console.log(res)
+			})
+		}
 		onMounted(() => {
-			routerInfo.routerList = router.options.routes[2].children
+			let obj = JSON.parse(localStorage.getItem("userInfo"))
+			if (obj) {
+				state.menuInfo.userId = obj.userId
+			}
+			getMenuData()
 		})
 		return {
-			...toRefs(routerInfo),
+			...toRefs(state),
+			getMenuData,
 		}
 	},
 }
@@ -78,8 +83,8 @@ export default {
 	padding: 10px;
 	border-bottom: 1px solid #ccc;
 	img {
-		width: 24px;
-		height: 24px;
+		width: 40px;
+		height: 40px;
 	}
 	.sysName {
 		height: 30px;

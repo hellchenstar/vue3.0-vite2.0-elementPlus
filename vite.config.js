@@ -31,8 +31,10 @@ export default defineConfig({
     strictPort: false,//如果端口占用，是退出，还是尝试其他端口
     https: false,// 是否开启 https
     proxy: {
-      '/api': {
-        target: 'http://192.168.3.173:5000',
+      '/iframe': {
+        // 替换为本机IP
+        target: 'http://39.97.254.142:8082',
+
         changeOrigin: true,
       },
     },
