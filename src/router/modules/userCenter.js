@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-15 16:01:39
+ * @LastEditTime: 2021-04-15 18:34:26
  * @Description: file content
  */
 
@@ -19,7 +19,7 @@ const userCenter = [
   },
   // ======================================================================个人中心======================================================================
   {
-    path: '/userInfo',
+    path: '/userCenter',
     name: 'userCenter',
     meta: {
       icon: 'el-icon-user-solid',
