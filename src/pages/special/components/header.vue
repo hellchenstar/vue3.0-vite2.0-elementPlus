@@ -1,16 +1,13 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-11 13:42:08
+ * @LastEditTime: 2021-04-15 14:33:13
  * @Description: file content
 -->
 <template>
 	<div class="header">
 		<div>
-			<i
-				:class="`el-icon-s-${isCollapse ? 'un' : ''}fold`"
-				@click="setMenuStatus"
-			></i>
+			<i :class="`el-icon-s-${isCollapse ? 'un' : ''}fold`" @click="setMenuStatus"></i>
 		</div>
 		<div class="userCenter">
 			<el-avatar :size="35" class="avatar" :src="avatar">
@@ -30,12 +27,7 @@
 			</el-dropdown>
 			<i class="el-icon-setting setting" @click="openSetting"></i>
 		</div>
-		<el-drawer
-			title="用户设置"
-			v-model="drawer"
-			:before-close="handleClose"
-			destroy-on-close
-		>
+		<el-drawer title="用户设置" v-model="drawer" :before-close="handleClose" destroy-on-close>
 			<UserSetting></UserSetting>
 		</el-drawer>
 	</div>
@@ -67,9 +59,9 @@ export default {
 			vuex.commit("setIsCollapse", !userInfo.isCollapse)
 		}
 		const getUserInfo = () => {
-			let user = JSON.parse(localStorage.getItem("userInfo"))
+			let user = localStorage.getItem("name")
 			if (user) {
-				userInfo.userName = user.name
+				userInfo.userName = user
 			} else {
 				router.push("login")
 			}

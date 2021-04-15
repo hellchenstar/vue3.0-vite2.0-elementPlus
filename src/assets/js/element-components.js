@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-11 17:14:36
+ * @LastEditTime: 2021-04-15 16:46:43
  * @Description: element-ui按需加载分离（不写在main.js中）
  */
 import "dayjs/locale/zh-cn";
@@ -37,6 +37,11 @@ import {
   ElMain,
   ElHeader,
   ElSwitch,
+  ElTable,
+  ElTableColumn,
+  ElDialog,
+  ElSelect,
+  ElOption,
 } from 'element-plus';
 const components = [
   ElAvatar,
@@ -63,6 +68,11 @@ const components = [
   ElMain,
   ElHeader,
   ElSwitch,
+  ElTable,
+  ElTableColumn,
+  ElDialog,
+  ElSelect,
+  ElOption,
 ]
 const plugins = [
   ElInfiniteScroll,

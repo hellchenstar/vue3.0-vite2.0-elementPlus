@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-11 10:30:31
+ * @LastEditTime: 2021-04-15 16:01:39
  * @Description: file content
  */
 
@@ -25,6 +25,7 @@ const userCenter = [
       icon: 'el-icon-user-solid',
       title: '个人中心'
     },
+    component: () => import('@/pages/userCenter/userCenter.vue'),
     children: [
       {
         path: '/userInfo',
@@ -35,7 +36,6 @@ const userCenter = [
         component: () => import('@/pages/userCenter/userInfo/userInfo.vue')
       }
     ],
-    component: () => import('@/pages/userCenter/userCenter.vue')
   },
 ]
 

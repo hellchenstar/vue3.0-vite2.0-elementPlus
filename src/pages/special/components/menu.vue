@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-14 18:42:18
+ * @LastEditTime: 2021-04-15 17:21:44
  * @Description: 菜单
 -->
 <template>
@@ -12,20 +12,20 @@
 		</div>
 
 		<template v-for="(item, index) in menuList" :key="index">
-			<el-submenu :index="item.name" v-if="item.children.length">
+			<el-submenu :index="item.url" v-if="item.children.length">
 				<template #title>
-					<i :class="item.meta.icon"></i>
-					<span>{{ item.meta.title }}</span>
+					<i :class="`el-icon-${item.icon}`"></i>
+					<span>{{ item.name }}</span>
 				</template>
 
-				<el-menu-item v-for="(el, i) in item.children" :index="el.name" :key="i">
-					{{ el.meta.title }}
+				<el-menu-item v-for="(el, i) in item.children" :index="el.url" :key="i">
+					{{ el.name }}
 				</el-menu-item>
 			</el-submenu>
 
-			<el-menu-item :index="item.name" v-else>
-				<i :class="item.meta.icon"></i>
-				<template #title>{{ item.meta.title }}</template>
+			<el-menu-item :index="item.url" v-else>
+				<i :class="`el-icon-${item.icon}`"></i>
+				<template #title>{{ item.name }}</template>
 			</el-menu-item>
 		</template>
 	</el-menu>
@@ -50,15 +50,15 @@ export default {
 			}),
 		})
 
-		const getMenuData = (id) => {
-			menuApi.getMenuList(id).then((res) => {
-				console.log(res)
+		const getMenuData = () => {
+			menuApi.getMenuList().then((res) => {
+				state.menuList = res.data
 			})
 		}
 		onMounted(() => {
 			let userId = localStorage.getItem("userId")
 			if (userId) {
-				getMenuData(userId)
+				getMenuData()
 			} else {
 				router.push("login")
 			}

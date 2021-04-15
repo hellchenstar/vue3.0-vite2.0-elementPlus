@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-14 16:49:36
+ * @LastEditTime: 2021-04-15 14:34:55
  * @Description: 工作台
 -->
 <template>
@@ -46,11 +46,10 @@ export default {
 			avatar: "",
 		})
 		onMounted(() => {
-			let userInfo = JSON.parse(localStorage.getItem("userInfo"))
-			if (userInfo) {
-				state.userName = userInfo.name
-				state.avatar = userInfo.avatar
-			}
+			let userName = localStorage.getItem("name")
+			let avatar = localStorage.getItem("avatar")
+			state.userName = userName ? userName : ""
+			state.avatar = avatar ? avatar : defaultAvatar
 		})
 		return { ...toRefs(state), defaultAvatar }
 	},

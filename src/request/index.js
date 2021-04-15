@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-14 18:39:58
+ * @LastEditTime: 2021-04-15 14:37:18
  * @Description: file content
  */
 import { ElMessage } from 'element-plus';
@@ -18,12 +18,12 @@ import { base } from './baseUrl'
 const errorHandle = (status, message) => {
   // 状态码判断
   switch (status) {
-    case 401:
-      // getRefreshToken()
-      break
+    // case 401:
+    // getRefreshToken()
+    // break
     case 403:
       ElMessage.error(message)
-      // router.push('403')
+      router.push('403')
       // 无权限,提示无权限信息
       // 403 token失效，请求刷新token，刷新token也失效，再跳转登录页
       break
@@ -92,8 +92,8 @@ instance.interceptors.request.use(
   config => {
     const token = localStorage.getItem('token')
     if (token) {
-      // debugger
-      config.headers['X-token'] = token
+      // config.headers['X-token'] = token
+      config.headers.Authorization = token
       if (config.url.indexOf('file/UploadFile') === -1) {
         config.headers['Content-Type'] = 'application/json'
       } else {
@@ -173,7 +173,6 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   // 请求成功
   res => {
-    console.log('成功了：', res)
     if (res.status === 200) {
       if (res.data.code !== 200) {
         ElMessage.error(res.data.msg)
@@ -187,7 +186,7 @@ instance.interceptors.response.use(
     const { response } = error
     if (response) {
       // 请求已发出，但是不在2xx的范围
-      errorHandle(response.status, response.data.ElMessage)
+      errorHandle(response.status, response.data.message)
       //403返回的值在response.data.ElMessage
       return Promise.reject(response)
     } else {

@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-14 18:16:56
+ * @LastEditTime: 2021-04-15 14:28:47
  * @Description: 路由文件
  */
 import { createRouter, createWebHistory } from 'vue-router'
@@ -40,9 +40,5 @@ const router = createRouter({
   routes: routerList
 
 })
-router.beforeEach((to, from) => {
-  // ...
-  // 返回 false 以取消导航
 
-})
 export default router

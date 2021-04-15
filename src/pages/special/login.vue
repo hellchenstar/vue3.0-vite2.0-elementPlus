@@ -1,15 +1,15 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-14 18:39:43
+ * @LastEditTime: 2021-04-15 14:31:05
  * @Description: 登录
 -->
 <template>
 	<div class="login">
 		<div class="loginContent">
 			<el-form :model="loginInfo" :rules="rules" ref="loginForm" label-width="60px" class="demo-ruleForm">
-				<el-form-item label="账号" prop="userName">
-					<el-input v-model="loginInfo.userName"></el-input>
+				<el-form-item label="账号" prop="account">
+					<el-input v-model="loginInfo.account"></el-input>
 				</el-form-item>
 				<el-form-item label="密码" prop="password">
 					<el-input v-model="loginInfo.password" show-password></el-input>
@@ -34,12 +34,12 @@ export default {
 
 		const state = reactive({
 			loginInfo: {
-				userName: "",
+				account: "",
 				password: "",
 			},
 			loginLoading: false,
 			rules: {
-				userName: [{ required: true, message: "请输入账号", trigger: "blur" }],
+				account: [{ required: true, message: "请输入账号", trigger: "blur" }],
 				password: [
 					{ required: true, message: "请输入密码", trigger: "blur" },
 					{ max: 16, min: 6, message: "密码长度为6-16之间", trigger: "blur" },
@@ -58,10 +58,10 @@ export default {
 					login
 						.loginSub(state.loginInfo)
 						.then((res) => {
-							console.log(res)
 							state.loginLoading = false
+							localStorage.setItem("name", res.data.name)
 							localStorage.setItem("token", res.data.token)
-							localStorage.setItem("userId", res.data.userId)
+							localStorage.setItem("userId", res.data.id)
 							router.push("home")
 						})
 						.catch((err) => {
