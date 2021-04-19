@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-15 16:00:50
+ * @LastEditTime: 2021-04-19 15:46:09
  * @Description: file content
  */
 
@@ -25,6 +25,14 @@ const system = [
           title: '菜单管理'
         },
         component: () => import('@/pages/system/menuManager/menuList.vue')
+      },
+      {
+        path: '/roleManager',
+        name: 'roleManager',
+        meta: {
+          title: '角色管理'
+        },
+        component: () => import('@/pages/system/roleManager/roleList.vue')
       }
     ],
 

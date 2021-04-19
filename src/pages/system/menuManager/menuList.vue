@@ -1,12 +1,12 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-19 12:01:57
+ * @LastEditTime: 2021-04-19 15:57:09
  * @Description: file content
 -->
 <template>
-	<div class="content">
-		<div class="menuHeader">
+	<div class="module">
+		<div class="module_header">
 			<el-button type="primary" @click="addOrEdit">新增模块</el-button>
 		</div>
 		<el-table :data="menuList" style="width: 100%; margin-bottom: 20px" row-key="url" border>
@@ -21,7 +21,7 @@
 				<template #default="scope">
 					<el-button @click="addOrEdit(scope.row, 'add')" type="primary" size="mini">新增菜单</el-button>
 					<el-button type="primary" size="mini" @click="addOrEdit(scope.row, 'edit')">编辑</el-button>
-					<el-button type="danger" size="mini">删除</el-button>
+					<!-- <el-button type="danger" size="mini">删除</el-button> -->
 				</template>
 			</el-table-column>
 		</el-table>
@@ -82,7 +82,6 @@ export default {
 			})
 		}
 		const addOrEdit = (row, type) => {
-			console.log(row._id)
 			state.infoDialog = true
 			if (row) {
 				if (type === "add") {
@@ -171,12 +170,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.content {
-	width: 100%;
-	height: 100%;
-	background: #fff;
-	padding: 5px;
-	.menuHeader {
+.module {
+	.module_header {
 		padding: 10px 0;
 		display: flex;
 		justify-content: flex-end;
