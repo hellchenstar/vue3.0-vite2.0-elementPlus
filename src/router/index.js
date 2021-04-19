@@ -1,11 +1,12 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-15 14:28:47
+ * @LastEditTime: 2021-04-19 17:09:12
  * @Description: 路由文件
  */
 import { createRouter, createWebHistory } from 'vue-router'
 import childrenRouter from './modules/index.js'
+import NProgress from 'NProgress'
 // 开启历史模式
 // vue2中使用 mode: history 实现
 const routerHistory = createWebHistory();
@@ -40,5 +41,15 @@ const router = createRouter({
   routes: routerList
 
 })
+
+
+router.beforeEach((to, from) => {
+  NProgress.start()
+});
+
+router.afterEach(() => {
+  NProgress.done()
+});
+
 
 export default router

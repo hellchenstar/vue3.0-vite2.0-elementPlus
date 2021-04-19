@@ -1,10 +1,12 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-14 16:00:13
+ * @LastEditTime: 2021-04-19 17:08:42
  * @Description: 自定义主题
  */
-$--color-primary: rgba(255, 145, 0, 0.973);
+@import "./variable.scss";
+
+$--color-primary: $theme-color;
 
 /* 改变 icon 字体路径变量，必需 */
 $--font-path: "node_modules/element-plus/lib/theme-chalk/fonts";
