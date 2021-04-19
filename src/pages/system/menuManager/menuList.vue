@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-15 20:48:32
+ * @LastEditTime: 2021-04-19 12:01:57
  * @Description: file content
 -->
 <template>
@@ -12,6 +12,11 @@
 		<el-table :data="menuList" style="width: 100%; margin-bottom: 20px" row-key="url" border>
 			<el-table-column prop="name" label="菜单名称"> </el-table-column>
 			<el-table-column prop="url" label="菜单地址"> </el-table-column>
+			<el-table-column prop="icon" label="菜单图标">
+				<template #default="scope">
+					<i :class="`el-icon-${scope.row.icon}`"> </i>
+				</template>
+			</el-table-column>
 			<el-table-column label="操作">
 				<template #default="scope">
 					<el-button @click="addOrEdit(scope.row, 'add')" type="primary" size="mini">新增菜单</el-button>
@@ -49,6 +54,7 @@
 import { reactive, toRefs, onMounted, ref, unref } from "vue"
 import { menuApi } from "@/request/api/index.js"
 import { ElMessage } from "element-plus"
+import { makeTreeData } from "@/utils/utils.js"
 export default {
 	setup() {
 		// 登录逻辑
@@ -72,7 +78,7 @@ export default {
 		})
 		const getMenuList = () => {
 			menuApi.getMenuList().then((res) => {
-				state.menuList = res.data
+				state.menuList = makeTreeData(res.data, "")
 			})
 		}
 		const addOrEdit = (row, type) => {
