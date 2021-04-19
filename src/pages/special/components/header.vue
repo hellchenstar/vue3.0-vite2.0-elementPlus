@@ -1,15 +1,24 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-15 14:33:13
+ * @LastEditTime: 2021-04-19 19:11:48
  * @Description: file content
 -->
 <template>
 	<div class="header">
 		<div>
 			<i :class="`el-icon-s-${isCollapse ? 'un' : ''}fold`" @click="setMenuStatus"></i>
+			<!--  -->
+			<!-- <el-breadcrumb separator="/">
+				<el-breadcrumb-item v-if="route.matched[0].path !== '/home'" :to="{ name: 'home' }"> 工作台 </el-breadcrumb-item>
+				<el-breadcrumb-item v-else :to="{ name: 'workbench' }"> 工作台 </el-breadcrumb-item>
+				<el-breadcrumb-item v-for="item in route.matched" :key="item.name" :to="{ name: route.name }" @click="showName(item)">
+					{{ item.meta.title }}
+				</el-breadcrumb-item>
+			</el-breadcrumb> -->
 		</div>
 		<div class="userCenter">
+			{{ route.matched[0].path }}
 			<el-avatar :size="35" class="avatar" :src="avatar">
 				<img :src="defaultAvatar" />
 			</el-avatar>
@@ -34,7 +43,7 @@
 </template>
 <script>
 import { computed, onMounted, reactive, toRefs } from "vue"
-import { useRouter } from "vue-router"
+import { useRouter, useRoute } from "vue-router"
 import { useStore } from "vuex"
 import defaultAvatar from "@/assets/img/header/defaultAvatar.png"
 import UserSetting from "./userSetting.vue"
@@ -44,6 +53,7 @@ export default {
 	},
 	setup() {
 		const router = useRouter()
+		const route = useRoute()
 		const vuex = useStore()
 		// reactive将数据变为响应式
 		const userInfo = reactive({
@@ -56,6 +66,7 @@ export default {
 			}),
 		})
 		const setMenuStatus = () => {
+			console.log(route.matched[0].path)
 			vuex.commit("setIsCollapse", !userInfo.isCollapse)
 		}
 		const getUserInfo = () => {
@@ -80,6 +91,9 @@ export default {
 		const handleClose = () => {
 			userInfo.drawer = false
 		}
+		const showName = (item) => {
+			console.log(item)
+		}
 		onMounted(() => {
 			getUserInfo()
 		})
@@ -90,6 +104,8 @@ export default {
 			setMenuStatus,
 			openSetting,
 			handleClose,
+			showName,
+			route,
 		}
 	},
 }

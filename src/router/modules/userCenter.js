@@ -1,22 +1,12 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-15 18:34:26
+ * @LastEditTime: 2021-04-19 19:11:17
  * @Description: file content
  */
 
 const userCenter = [
-  // ======================================================================工作台======================================================================
-  {
-    path: '/workbench',
-    name: 'workbench',
-    meta: {
-      icon: 'el-icon-s-home',
-      title: '工作台'
-    },
-    children: [],
-    component: () => import('@/pages/workbench/workbench.vue')
-  },
+
   // ======================================================================个人中心======================================================================
   {
     path: '/userCenter',
@@ -25,7 +15,7 @@ const userCenter = [
       icon: 'el-icon-user-solid',
       title: '个人中心'
     },
-    component: () => import('@/pages/userCenter/userCenter.vue'),
+    component: () => import('@/pages/special/components/content.vue'),
     children: [
       {
         path: '/userInfo',

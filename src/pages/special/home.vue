@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-15 16:26:20
+ * @LastEditTime: 2021-04-19 19:07:35
  * @Description: file content
 -->
 <template>
@@ -19,7 +19,7 @@
 </template>
 <script>
 import Header from "./components/header.vue"
-import Container from "./components/Container.vue"
+import Container from "./components/content.vue"
 import Menu from "./components/menu.vue"
 import { computed, reactive, toRefs } from "vue"
 import { useStore } from "vuex"

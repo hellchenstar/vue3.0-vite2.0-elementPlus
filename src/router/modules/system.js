@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-19 15:46:09
+ * @LastEditTime: 2021-04-19 19:09:59
  * @Description: file content
  */
 
@@ -16,7 +16,7 @@ const system = [
       icon: 'el-icon-setting',
       title: '系统设置'
     },
-    component: () => import('@/pages/system/system.vue'),
+    component: () => import('@/pages/special/components/content.vue'),
     children: [
       {
         path: '/menuManager',

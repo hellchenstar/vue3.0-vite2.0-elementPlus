@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-19 17:09:12
+ * @LastEditTime: 2021-04-19 19:01:24
  * @Description: 路由文件
  */
 import { createRouter, createWebHistory } from 'vue-router'
@@ -12,28 +12,33 @@ import NProgress from 'NProgress'
 const routerHistory = createWebHistory();
 
 
-const routerList = [{
-  path: '/',
-  redirect: '/workbench'
-},
+const routerList = [
+  {
+    path: '/',
+    redirect: '/home'
+  },
 
-{
-  path: '/login',
-  name: 'login',
-  component: () => import('@/pages/special/login.vue'),
-},
-{
-  path: '/register',
-  name: 'register',
-  component: () => import('@/pages/special/register.vue'),
-},
-{
-  path: '/home',
-  name: 'home',
-  redirect: '/workbench',
-  component: () => import('@/pages/special/home.vue'),
-  children: [...new Set(childrenRouter)]
-}]
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/pages/special/login.vue'),
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('@/pages/special/register.vue'),
+  },
+  {
+    path: '/home',
+    name: 'home',
+    meta: {
+      title: '工作台'
+    },
+    redirect: '/workbench',
+    component: () => import('@/pages/special/home.vue'),
+    children: [...new Set(childrenRouter)]
+  }
+]
 
 // 创建路由
 const router = createRouter({
