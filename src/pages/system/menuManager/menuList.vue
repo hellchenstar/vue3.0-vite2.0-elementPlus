@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-19 15:57:09
+ * @LastEditTime: 2021-04-19 16:05:20
  * @Description: file content
 -->
 <template>
@@ -169,13 +169,3 @@ export default {
 	},
 }
 </script>
-<style lang="scss" scoped>
-.module {
-	.module_header {
-		padding: 10px 0;
-		display: flex;
-		justify-content: flex-end;
-		align-items: center;
-	}
-}
-</style>
