@@ -1,24 +1,21 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-19 19:11:48
+ * @LastEditTime: 2021-04-19 19:31:12
  * @Description: file content
 -->
 <template>
 	<div class="header">
-		<div>
+		<div class="header_nav">
 			<i :class="`el-icon-s-${isCollapse ? 'un' : ''}fold`" @click="setMenuStatus"></i>
 			<!--  -->
-			<!-- <el-breadcrumb separator="/">
-				<el-breadcrumb-item v-if="route.matched[0].path !== '/home'" :to="{ name: 'home' }"> 工作台 </el-breadcrumb-item>
-				<el-breadcrumb-item v-else :to="{ name: 'workbench' }"> 工作台 </el-breadcrumb-item>
-				<el-breadcrumb-item v-for="item in route.matched" :key="item.name" :to="{ name: route.name }" @click="showName(item)">
+			<el-breadcrumb separator="/" style="margin-left: 10px">
+				<el-breadcrumb-item v-for="item in routeList" :key="item.name" :to="{ name: item.name }">
 					{{ item.meta.title }}
 				</el-breadcrumb-item>
-			</el-breadcrumb> -->
+			</el-breadcrumb>
 		</div>
 		<div class="userCenter">
-			{{ route.matched[0].path }}
 			<el-avatar :size="35" class="avatar" :src="avatar">
 				<img :src="defaultAvatar" />
 			</el-avatar>
@@ -56,6 +53,7 @@ export default {
 		const route = useRoute()
 		const vuex = useStore()
 		// reactive将数据变为响应式
+		// 个人信息===================================================
 		const userInfo = reactive({
 			userName: "",
 			avatar: "",
@@ -65,8 +63,8 @@ export default {
 				return vuex.state.special.isCollapse
 			}),
 		})
+
 		const setMenuStatus = () => {
-			console.log(route.matched[0].path)
 			vuex.commit("setIsCollapse", !userInfo.isCollapse)
 		}
 		const getUserInfo = () => {
@@ -85,16 +83,34 @@ export default {
 				router.push("login")
 			}
 		}
+
+		// 个性化设置 ==============================================
+
+		const setting = reactive({
+			drawer: false,
+		})
 		const openSetting = () => {
-			userInfo.drawer = true
+			setting.drawer = true
 		}
 		const handleClose = () => {
-			userInfo.drawer = false
+			setting.drawer = false
 		}
+
+		// 面包屑 ==============================================
+		const navInfo = reactive({
+			routeList: computed(() => {
+				let arr = route.matched.filter((el, index) => {
+					return index !== 0
+				})
+				return arr
+			}),
+		})
 		const showName = (item) => {
 			console.log(item)
 		}
+
 		onMounted(() => {
+			console.log(navInfo)
 			getUserInfo()
 		})
 		return {
@@ -102,8 +118,12 @@ export default {
 			getUserInfo,
 			handleCommand,
 			setMenuStatus,
+
+			...toRefs(setting),
 			openSetting,
 			handleClose,
+
+			...toRefs(navInfo),
 			showName,
 			route,
 		}
@@ -116,7 +136,10 @@ export default {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-
+	.header_nav {
+		display: flex;
+		align-items: center;
+	}
 	.userCenter {
 		display: flex;
 		justify-content: center;
