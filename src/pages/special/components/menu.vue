@@ -1,11 +1,11 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-19 11:55:25
+ * @LastEditTime: 2021-04-19 17:32:47
  * @Description: 菜单
 -->
 <template>
-	<el-menu router default-active="workbench" class="el-menu-vertical" :collapse="isCollapse">
+	<el-menu router class="el-menu-vertical" :collapse="isCollapse" unique-opened :default-active="defaultActive">
 		<div class="logo">
 			<img src="@/assets/img/logo/logo.jpg" alt="" />
 			<span class="sysName" v-if="!isCollapse"> Vite2.0 + Vue3.0 </span>
@@ -44,6 +44,9 @@ export default {
 			menuInfo: {
 				userId: "",
 			},
+			defaultActive: computed(() => {
+				return router.name
+			}),
 
 			menuList: [],
 			isCollapse: computed(() => {
