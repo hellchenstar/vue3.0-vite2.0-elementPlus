@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-19 19:31:12
+ * @LastEditTime: 2021-04-19 19:34:08
  * @Description: file content
 -->
 <template>
@@ -10,7 +10,7 @@
 			<i :class="`el-icon-s-${isCollapse ? 'un' : ''}fold`" @click="setMenuStatus"></i>
 			<!--  -->
 			<el-breadcrumb separator="/" style="margin-left: 10px">
-				<el-breadcrumb-item v-for="item in routeList" :key="item.name" :to="{ name: item.name }">
+				<el-breadcrumb-item v-for="item in routeList" :key="item.name">
 					{{ item.meta.title }}
 				</el-breadcrumb-item>
 			</el-breadcrumb>
@@ -105,9 +105,6 @@ export default {
 				return arr
 			}),
 		})
-		const showName = (item) => {
-			console.log(item)
-		}
 
 		onMounted(() => {
 			console.log(navInfo)
@@ -124,7 +121,6 @@ export default {
 			handleClose,
 
 			...toRefs(navInfo),
-			showName,
 			route,
 		}
 	},
