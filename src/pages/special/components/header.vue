@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-19 19:34:08
+ * @LastEditTime: 2021-04-20 09:35:30
  * @Description: file content
 -->
 <template>
@@ -107,7 +107,6 @@ export default {
 		})
 
 		onMounted(() => {
-			console.log(navInfo)
 			getUserInfo()
 		})
 		return {

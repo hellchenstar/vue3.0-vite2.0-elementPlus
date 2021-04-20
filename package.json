@@ -9,6 +9,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "element-plus": "^1.0.2-beta.36",
+    "moment": "^2.29.1",
     "nprogress": "^0.2.0",
     "screenfull": "^5.1.0",
     "vue": "^3.0.5",
@@ -16,6 +17,7 @@
     "vuex": "^4.0.0"
   },
   "devDependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
     "@vitejs/plugin-vue": "^1.2.1",
     "@vue/compiler-sfc": "^3.0.5",
     "babel-plugin-component": "^1.1.1",

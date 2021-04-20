@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-15 14:34:55
+ * @LastEditTime: 2021-04-20 17:47:03
  * @Description: 工作台
 -->
 <template>
@@ -9,13 +9,13 @@
 		<div class="top">
 			<div class="top-title">工作台</div>
 			<el-row class="top-content">
-				<el-col :span="16" class="top-content-left">
+				<el-col :span="6" class="top-content-left">
 					<el-avatar :size="35" class="avatar" :src="avatar">
 						<img :src="defaultAvatar" />
 					</el-avatar>
+
 					<div>
 						<div>
-							早上好！
 							<span style="font-weight: 600">
 								{{ userName }}
 							</span>
@@ -24,10 +24,17 @@
 						<!-- <div>西安：</div> -->
 					</div>
 				</el-col>
-				<el-col :span="8">right-content</el-col>
+				<el-col :span="18"> </el-col>
 			</el-row>
 		</div>
-		<div class="center">center</div>
+		<div class="center">
+			<el-row :gutter="10">
+				<el-col :span="14"></el-col>
+				<el-col :span="10">
+					<Weather></Weather>
+				</el-col>
+			</el-row>
+		</div>
 		<div class="footer">
 			<div>left</div>
 			<div>center</div>
@@ -38,13 +45,18 @@
 <script>
 import { reactive, toRefs, onMounted } from "vue"
 import defaultAvatar from "@/assets/img/header/defaultAvatar.png"
+import Weather from "./components/weather.vue"
 export default {
+	components: {
+		Weather,
+	},
 	setup() {
 		defaultAvatar
 		const state = reactive({
 			userName: "",
 			avatar: "",
 		})
+
 		onMounted(() => {
 			let userName = localStorage.getItem("name")
 			let avatar = localStorage.getItem("avatar")
@@ -70,7 +82,9 @@ export default {
 	margin-bottom: 5px;
 }
 .top {
-	height: 100px;
+	height: 150px;
+	color: #fff;
+	background: rgb(110, 134, 179);
 	.top-title {
 		height: 20px;
 	}
@@ -87,7 +101,7 @@ export default {
 	}
 }
 .center {
-	height: 200px;
+	padding: 0;
 }
 .footer {
 	display: flex;
