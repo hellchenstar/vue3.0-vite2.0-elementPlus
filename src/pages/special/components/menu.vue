@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-21 11:14:08
+ * @LastEditTime: 2021-04-21 12:59:21
  * @Description: 菜单
 -->
 <template>
@@ -31,7 +31,7 @@
 	</el-menu>
 </template>
 <script>
-import { computed, onMounted, reactive, toRefs } from "vue"
+import { computed, onMounted, reactive, toRefs, watch } from "vue"
 import { menuApi } from "@/request/api/index.js"
 import { useStore } from "vuex"
 import { useRoute } from "vue-router"
@@ -53,10 +53,22 @@ export default {
 				return vuex.state.special.isCollapse
 			}),
 		})
-
+		const isReloadMenu = computed(() => {
+			return vuex.state.system.isReloadMenu
+		})
+		watch(
+			isReloadMenu,
+			(val) => {
+				if (val) {
+					getMenuData()
+				}
+			},
+			{ lazy: true }
+		)
 		const getMenuData = () => {
 			menuApi.getMenuList().then((res) => {
 				state.menuList = makeTreeData(res.data, "")
+				vuex.commit("setIsReloadMenu", false)
 			})
 		}
 		onMounted(() => {

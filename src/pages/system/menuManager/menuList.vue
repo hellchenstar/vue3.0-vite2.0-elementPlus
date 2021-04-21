@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-21 11:08:51
+ * @LastEditTime: 2021-04-21 12:50:29
  * @Description: file content
 -->
 <template>
@@ -52,6 +52,7 @@
 </template>
 <script>
 import { reactive, toRefs, onMounted, ref, unref } from "vue"
+import { useStore } from "vuex"
 import { menuApi } from "@/request/api/index.js"
 import { ElMessage } from "element-plus"
 import { makeTreeData } from "@/utils/utils.js"
@@ -76,6 +77,8 @@ export default {
 			showParentMenu: false,
 			formLabelWidth: "100px",
 		})
+		// 更新菜单
+
 		const getMenuList = () => {
 			menuApi.getMenuList().then((res) => {
 				state.menuList = makeTreeData(res.data, "")
@@ -129,7 +132,11 @@ export default {
 			state.infoDialog = false
 			state.submitLoading = true
 		}
-
+		// 更新左侧菜单
+		const vuex = useStore()
+		const setIsReloadMenu = () => {
+			vuex.commit("setIsReloadMenu", true)
+		}
 		const menuForm = ref(null)
 		const submit = () => {
 			let str = state.menuInfo.id ? "editMenu" : "addMenu"
@@ -143,6 +150,8 @@ export default {
 							state.submitLoading = false
 							ElMessage.success("新增成功")
 							getMenuList()
+							// 更新左侧菜单
+							setIsReloadMenu()
 						})
 						.catch((err) => {
 							state.infoDialog = false
