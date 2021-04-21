@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-20 18:29:56
+ * @LastEditTime: 2021-04-21 10:43:19
  * @Description: file content
 -->
 <template>
@@ -111,11 +111,9 @@ export default {
 					// 获取未来4天天气预报
 					weather.getForecast("西安市", (err, data) => {
 						if (!err) {
-							console.log(data)
 							mapInfo.weatherInfo.forecasts = data.forecasts
 						}
 					})
-					console.log(mapInfo.weatherInfo)
 				})
 
 				.catch((e) => {

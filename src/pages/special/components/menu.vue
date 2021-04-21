@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-19 17:32:47
+ * @LastEditTime: 2021-04-21 11:14:08
  * @Description: 菜单
 -->
 <template>
@@ -14,7 +14,7 @@
 		<template v-for="(item, index) in menuList" :key="index">
 			<el-submenu :index="item.url" v-if="item.children.length">
 				<template #title>
-					<i :class="`el-icon-${item.icon}`"></i>
+					<i :class="`icon hell${item.icon}`"></i>
 					<span>{{ item.name }}</span>
 				</template>
 
@@ -24,7 +24,7 @@
 			</el-submenu>
 
 			<el-menu-item :index="item.url" v-else>
-				<i :class="`el-icon-${item.icon}`"></i>
+				<i :class="`icon hell${item.icon}`"></i>
 				<template #title>{{ item.name }}</template>
 			</el-menu-item>
 		</template>

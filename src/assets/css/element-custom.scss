@@ -6,7 +6,7 @@
  */
 @import "./variable.scss";
 
-$--color-primary: $theme-color;
+$--color-primary: $themeColor;
 
 /* 改变 icon 字体路径变量，必需 */
 $--font-path: "node_modules/element-plus/lib/theme-chalk/fonts";

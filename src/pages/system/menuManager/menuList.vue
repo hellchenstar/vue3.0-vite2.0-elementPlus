@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-19 16:05:20
+ * @LastEditTime: 2021-04-21 11:08:51
  * @Description: file content
 -->
 <template>
@@ -14,7 +14,7 @@
 			<el-table-column prop="url" label="菜单地址"> </el-table-column>
 			<el-table-column prop="icon" label="菜单图标">
 				<template #default="scope">
-					<i :class="`el-icon-${scope.row.icon}`"> </i>
+					<i :class="`icon hell${scope.row.icon}`"> </i>
 				</template>
 			</el-table-column>
 			<el-table-column label="操作">

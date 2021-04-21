@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-19 19:11:17
+ * @LastEditTime: 2021-04-21 11:10:22
  * @Description: file content
  */
 
@@ -12,7 +12,7 @@ const userCenter = [
     path: '/userCenter',
     name: 'userCenter',
     meta: {
-      icon: 'el-icon-user-solid',
+      icon: 'gerenzhongxin',
       title: '个人中心'
     },
     component: () => import('@/pages/special/components/content.vue'),

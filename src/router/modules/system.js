@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-19 19:09:59
+ * @LastEditTime: 2021-04-21 11:10:40
  * @Description: file content
  */
 
@@ -13,7 +13,7 @@ const system = [
     path: '/system',
     name: 'system',
     meta: {
-      icon: 'el-icon-setting',
+      icon: 'xitongshezhi',
       title: '系统设置'
     },
     component: () => import('@/pages/special/components/content.vue'),

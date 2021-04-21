@@ -1,8 +1,10 @@
 @import "./variable.scss";
 
+// 顶部进度条颜色
 #nprogress .bar {
-	background: $theme-color !important; //自定义颜色
+	background: $themeColor !important; //自定义颜色
 }
+// 模块容器统一设置
 .module {
 	width: 100%;
 	height: 100%;
@@ -15,4 +17,9 @@
 	justify-content: flex-end;
 	align-items: center;
 	margin: 5px 10px;
+}
+
+// 所有图标设置
+.icon {
+	margin-right: 5px;
 }
