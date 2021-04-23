@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-20 17:47:03
+ * @LastEditTime: 2021-04-23 15:02:14
  * @Description: 工作台
 -->
 <template>
@@ -58,7 +58,7 @@ export default {
 		})
 
 		onMounted(() => {
-			let userName = localStorage.getItem("name")
+			let userName = localStorage.getItem("username")
 			let avatar = localStorage.getItem("avatar")
 			state.userName = userName ? userName : ""
 			state.avatar = avatar ? avatar : defaultAvatar

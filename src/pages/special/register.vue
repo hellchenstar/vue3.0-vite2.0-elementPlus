@@ -1,24 +1,22 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-14 17:51:57
+ * @LastEditTime: 2021-04-21 20:13:50
  * @Description: 注册
 -->
 <template>
 	<div class="register">
 		<div class="form">
 			<el-form :model="registerInfo" :rules="rules" ref="registerForm" label-width="100px">
-				<el-form-item label="账号" prop="userName">
-					<el-input v-model="registerInfo.userName"></el-input>
+				<el-form-item label="账号" prop="account">
+					<el-input v-model="registerInfo.account"></el-input>
 				</el-form-item>
 				<el-form-item label="密码" prop="password">
 					<el-input v-model="registerInfo.password" type="password"></el-input>
 				</el-form-item>
-				<el-form-item label="联系电话" prop="phone">
-					<el-input v-model="registerInfo.phone"></el-input>
-				</el-form-item>
-				<el-form-item label="真实姓名" prop="realName">
-					<el-input v-model="registerInfo.realName"></el-input>
+
+				<el-form-item label="用户昵称" prop="username">
+					<el-input v-model="registerInfo.username"></el-input>
 				</el-form-item>
 				<el-form-item>
 					<el-button type="primary" @click="goRegister"> 注册 </el-button>
@@ -37,16 +35,15 @@ export default {
 		const registerForm = ref(null)
 		const state = reactive({
 			registerInfo: {
-				userName: "",
+				username: "",
 				password: "",
-				phone: "",
-				realName: "",
+				role: 1,
+				account: "",
 			},
 			rules: {
-				userName: [{ required: true, message: "请输入账号", trigger: "blur" }],
+				account: [{ required: true, message: "请输入账号", trigger: "blur" }],
 				password: [{ required: true, message: "请输入密码", trigger: "blur" }],
-				phone: [{ required: true, message: "请输入联系电话", trigger: "blur" }],
-				realName: [{ required: true, message: "请输入真实姓名", trigger: "blur" }],
+				username: [{ required: true, message: "请输入用户名称", trigger: "blur" }],
 			},
 		})
 		const goRegister = () => {
@@ -54,8 +51,6 @@ export default {
 			form.validate((valid) => {
 				if (valid) {
 					login.register(state.registerInfo).then((res) => {
-						// if(res)
-						console.log(res)
 						router.push("login")
 					})
 				}
@@ -80,6 +75,9 @@ export default {
 		width: 600px;
 		margin: 50px 100px;
 		border: 1px solid #efefef;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 }
 </style>

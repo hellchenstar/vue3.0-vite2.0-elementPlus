@@ -1,14 +1,14 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-21 10:43:19
+ * @LastEditTime: 2021-04-23 15:17:11
  * @Description: file content
 -->
 <template>
-	<div class="curDate">
-		{{ currentDate }}
-	</div>
 	<div class="weatherContainer">
+		<div class="curDate">
+			{{ currentDate }}
+		</div>
 		<div class="showcase">
 			<a class="canvas" id="sunny">
 				<div class="icon">
@@ -142,26 +142,21 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.curDate {
-	padding: 10px;
-	color: #fff;
-	text-shadow: 1px 1px 1px #555;
-	font-size: 18px;
-	background-image: linear-gradient(#fff, rgb(179, 250, 255));
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
-}
 .weatherContainer {
 	width: 100%;
-	height: calc(100% - 40px);
+	height: 100%;
 	color: #fff;
 	padding: 0 10px 10px 10px;
 	border-radius: 10px;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
 	display: flex;
-	background-image: linear-gradient(rgb(179, 250, 255), cornflowerblue);
-
+	background: #56ccf2; /* fallback for old browsers */
+	background: linear-gradient(rgb(86, 204, 242), rgb(47, 128, 237));
+	.curDate {
+		padding: 10px;
+		color: #fff;
+		text-shadow: 1px 1px 1px #555;
+		font-size: 18px;
+	}
 	.showcase {
 		width: 150px;
 		height: calc(100%);

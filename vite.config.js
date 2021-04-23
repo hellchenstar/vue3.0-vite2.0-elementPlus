@@ -33,9 +33,14 @@ export default defineConfig({
     proxy: {
       '/api': {
         // 替换为本机IP
-        target: 'http://192.168.3.173:5000',
+        target: 'http://192.168.3.173:2888',
         changeOrigin: true,
       },
+      // '/api': {
+      //   // 替换为本机IP
+      //   target: 'http://192.168.3.173:5000',
+      //   changeOrigin: true,
+      // },
     },
     // proxy: {
     //   '/iframe': {

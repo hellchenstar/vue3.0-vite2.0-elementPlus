@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-21 12:59:21
+ * @LastEditTime: 2021-04-23 16:22:01
  * @Description: 菜单
 -->
 <template>
@@ -34,11 +34,11 @@
 import { computed, onMounted, reactive, toRefs, watch } from "vue"
 import { menuApi } from "@/request/api/index.js"
 import { useStore } from "vuex"
-import { useRoute } from "vue-router"
+import { useRouter } from "vue-router"
 import { makeTreeData } from "@/utils/utils.js"
 export default {
 	setup() {
-		const router = useRoute()
+		const router = useRouter()
 		const vuex = useStore()
 		const state = reactive({
 			menuInfo: {
@@ -67,7 +67,7 @@ export default {
 		)
 		const getMenuData = () => {
 			menuApi.getMenuList().then((res) => {
-				state.menuList = makeTreeData(res.data, "")
+				state.menuList = makeTreeData(res.data, null)
 				vuex.commit("setIsReloadMenu", false)
 			})
 		}

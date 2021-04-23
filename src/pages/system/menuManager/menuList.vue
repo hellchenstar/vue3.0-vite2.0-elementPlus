@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-21 12:50:29
+ * @LastEditTime: 2021-04-23 16:21:49
  * @Description: file content
 -->
 <template>
@@ -30,7 +30,7 @@
 			<el-form :model="menuInfo" ref="menuForm">
 				<el-form-item label="父级菜单" :label-width="formLabelWidth" v-if="showParentMenu">
 					<el-select v-model="menuInfo.parentId" placeholder="请选择父级菜单">
-						<el-option v-for="item in menuList" :key="item.url" :label="item.name" :value="item._id"></el-option>
+						<el-option v-for="item in menuList" :key="item.url" :label="item.name" :value="item.id"></el-option>
 					</el-select>
 				</el-form-item>
 				<el-form-item label="菜单名称" :label-width="formLabelWidth">
@@ -70,6 +70,7 @@ export default {
 				name: "",
 				url: "",
 				icon: "",
+				level: 1,
 			},
 			submitLoading: false,
 			iconDisabled: false,
@@ -81,19 +82,20 @@ export default {
 
 		const getMenuList = () => {
 			menuApi.getMenuList().then((res) => {
-				state.menuList = makeTreeData(res.data, "")
+				state.menuList = makeTreeData(res.data, null)
 			})
 		}
 		const addOrEdit = (row, type) => {
 			state.infoDialog = true
 			if (row) {
+				console.log(row)
 				if (type === "add") {
 					state.title = "新增菜单"
 					state.showParentMenu = true
 					state.urlDisabled = false
 					state.iconDisabled = true
 					state.menuInfo = {
-						parentId: row._id,
+						parentId: row.id,
 						id: "",
 						name: "",
 						url: "",
@@ -105,7 +107,7 @@ export default {
 					state.showParentMenu = false
 					state.menuInfo = {
 						parentId: row.parentId,
-						id: row._id,
+						id: row.id,
 						name: row.name,
 						url: row.url,
 						icon: row.icon,
@@ -135,6 +137,7 @@ export default {
 		// 更新左侧菜单
 		const vuex = useStore()
 		const setIsReloadMenu = () => {
+			console.log("测试更新菜单")
 			vuex.commit("setIsReloadMenu", true)
 		}
 		const menuForm = ref(null)

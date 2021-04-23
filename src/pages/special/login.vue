@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-15 14:31:05
+ * @LastEditTime: 2021-04-23 15:00:28
  * @Description: 登录
 -->
 <template>
@@ -36,6 +36,7 @@ export default {
 			loginInfo: {
 				account: "",
 				password: "",
+				role: 1,
 			},
 			loginLoading: false,
 			rules: {
@@ -59,7 +60,8 @@ export default {
 						.loginSub(state.loginInfo)
 						.then((res) => {
 							state.loginLoading = false
-							localStorage.setItem("name", res.data.name)
+							localStorage.setItem("username", res.data.username)
+							localStorage.setItem("avatar", res.data.avatar)
 							localStorage.setItem("token", res.data.token)
 							localStorage.setItem("userId", res.data.id)
 							router.push("home")

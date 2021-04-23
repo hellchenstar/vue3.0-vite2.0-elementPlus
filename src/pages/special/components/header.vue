@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-20 09:35:30
+ * @LastEditTime: 2021-04-23 14:59:36
  * @Description: file content
 -->
 <template>
@@ -68,9 +68,9 @@ export default {
 			vuex.commit("setIsCollapse", !userInfo.isCollapse)
 		}
 		const getUserInfo = () => {
-			let user = localStorage.getItem("name")
-			if (user) {
-				userInfo.userName = user
+			let username = localStorage.getItem("username")
+			if (username) {
+				userInfo.userName = username
 			} else {
 				router.push("login")
 			}

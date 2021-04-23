@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-13 21:46:10
+ * @LastEditTime: 2021-04-23 15:43:22
  * @Description: file content
  */
 const errorIndex = () => import('@/pages/errorPage/index.vue')
@@ -22,7 +22,7 @@ const errorPageArr = [
         path: '/403',
         name: '403',
         meta: {
-          title: '无权限'
+          title: '403'
         },
         component: page403
       },
@@ -30,7 +30,7 @@ const errorPageArr = [
         path: '/404',
         name: '404',
         meta: {
-          title: '页面丢失'
+          title: '404'
         },
         component: page404
       }

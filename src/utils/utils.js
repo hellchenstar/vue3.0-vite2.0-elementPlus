@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-19 15:19:41
+ * @LastEditTime: 2021-04-23 16:18:54
  * @Description: file content
  */
 // 菜单数据接口重组
@@ -12,7 +12,7 @@ export const makeTreeData = function (data, pId) {
 
     if (data[i].parentId === pId) {
       temp.push(data[i])
-      data[i].children = makeTreeData(data, data[i]._id)
+      data[i].children = makeTreeData(data, data[i].id)
     }
   }
   return temp
