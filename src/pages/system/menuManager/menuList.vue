@@ -1,13 +1,13 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-23 16:21:49
+ * @LastEditTime: 2021-04-25 14:55:14
  * @Description: file content
 -->
 <template>
 	<div class="module">
 		<div class="module_header">
-			<el-button type="primary" @click="addOrEdit">新增模块</el-button>
+			<el-button type="primary" @click="addOrEdit()">新增模块</el-button>
 		</div>
 		<el-table :data="menuList" style="width: 100%; margin-bottom: 20px" row-key="url" border>
 			<el-table-column prop="name" label="菜单名称"> </el-table-column>
@@ -151,7 +151,7 @@ export default {
 						.then((res) => {
 							state.infoDialog = false
 							state.submitLoading = false
-							ElMessage.success("新增成功")
+							ElMessage.success(res.msg)
 							getMenuList()
 							// 更新左侧菜单
 							setIsReloadMenu()

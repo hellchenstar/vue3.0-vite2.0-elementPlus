@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "chinese-lunar": "^0.1.4",
+    "echarts": "^5.1.0",
     "element-plus": "^1.0.2-beta.36",
     "moment": "^2.29.1",
     "nprogress": "^0.2.0",

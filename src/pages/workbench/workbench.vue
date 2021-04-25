@@ -1,45 +1,41 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-23 15:02:14
+ * @LastEditTime: 2021-04-25 16:49:06
  * @Description: 工作台
 -->
 <template>
 	<div class="workbench">
-		<div class="top">
-			<div class="top-title">工作台</div>
-			<el-row class="top-content">
-				<el-col :span="6" class="top-content-left">
-					<el-avatar :size="35" class="avatar" :src="avatar">
-						<img :src="defaultAvatar" />
-					</el-avatar>
+		<el-carousel type="card" height="300px" class="carousel">
+			<el-carousel-item v-for="(item, index) in imgList" :key="index">
+				<img :src="item.src" alt="" />
+			</el-carousel-item>
+		</el-carousel>
 
-					<div>
-						<div>
-							<span style="font-weight: 600">
-								{{ userName }}
-							</span>
-							,祝你新的一天工作愉快
-						</div>
-						<!-- <div>西安：</div> -->
-					</div>
-				</el-col>
-				<el-col :span="18"> </el-col>
-			</el-row>
-		</div>
 		<div class="center">
-			<el-row :gutter="10">
-				<el-col :span="14"></el-col>
-				<el-col :span="10">
-					<Weather></Weather>
-				</el-col>
-			</el-row>
+			<Weather></Weather>
+			<div class="center_right">
+				<el-avatar :size="35" class="avatar" :src="avatar">
+					<img :src="defaultAvatar" />
+				</el-avatar>
+				<div>
+					<div>
+						<span style="font-weight: 600">
+							{{ userName }}
+						</span>
+						,祝你新的一天工作愉快
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="footer">
-			<div>left</div>
-			<div>center</div>
-			<div>right</div>
-		</div>
+		<el-row :gutter="10" class="top">
+			<el-col :span="4"><div class="grid-content bg-purple">1</div></el-col>
+			<el-col :span="4"><div class="grid-content bg-purple">2</div></el-col>
+			<el-col :span="4"><div class="grid-content bg-purple">3</div></el-col>
+			<el-col :span="4"><div class="grid-content bg-purple">4</div></el-col>
+			<el-col :span="4"><div class="grid-content bg-purple">4</div></el-col>
+			<el-col :span="4"><div class="grid-content bg-purple">4</div></el-col>
+		</el-row>
 	</div>
 </template>
 <script>
@@ -56,14 +52,21 @@ export default {
 			userName: "",
 			avatar: "",
 		})
-
+		const imgList = [
+			{ src: "/src/assets/img/workbench/slider/1.jpg" },
+			{ src: "/src/assets/img/workbench/slider/2.jpg" },
+			{ src: "/src/assets/img/workbench/slider/3.jpg" },
+			{ src: "/src/assets/img/workbench/slider/4.jpg" },
+			{ src: "/src/assets/img/workbench/slider/5.jpg" },
+		]
+		console.log(imgList)
 		onMounted(() => {
 			let userName = localStorage.getItem("username")
 			let avatar = localStorage.getItem("avatar")
 			state.userName = userName ? userName : ""
 			state.avatar = avatar ? avatar : defaultAvatar
 		})
-		return { ...toRefs(state), defaultAvatar }
+		return { ...toRefs(state), defaultAvatar, imgList }
 	},
 }
 </script>
@@ -77,35 +80,42 @@ export default {
 .footer {
 	width: 100%;
 	border-radius: 10px;
-	padding: 5px;
-	background: #fff;
-	margin-bottom: 5px;
+}
+.bg-purple {
+	background: #aedadd;
 }
 .top {
-	height: 150px;
-	color: #fff;
-	background: rgb(110, 134, 179);
-	.top-title {
-		height: 20px;
-	}
-	.top-content {
-		height: calc(100% - 20px);
-		.top-content-left {
-			padding: 0 20px;
-			display: flex;
-			align-items: center;
-			.el-avatar {
-				margin-right: 10px;
-			}
+	height: 250px;
+	margin-bottom: 10px;
+	.el-col {
+		height: 100%;
+		.grid-content {
+			height: 100%;
+			border-radius: 10px;
 		}
 	}
 }
 .center {
-	padding: 0;
-}
-.footer {
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	padding: 0;
+	height: 286px;
+	margin-bottom: 10px;
+	.center_left {
+		background: #fff;
+	}
+	.center_right {
+		margin-left: 10px;
+		width: calc(100% - 710px);
+		height: 100%;
+		background: #fff;
+		border-radius: 10px;
+		padding: 10px;
+	}
+}
+.carousel {
+	img {
+		width: 100%;
+		height: 100%;
+	}
 }
 </style>

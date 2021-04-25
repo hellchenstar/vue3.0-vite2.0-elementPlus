@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-23 14:59:11
+ * @LastEditTime: 2021-04-25 15:30:17
  * @Description: file content
 -->
 <template>
@@ -35,7 +35,6 @@ export default {
 	width: 100%;
 	height: 100%;
 	display: flex;
-
 	.el-container {
 		width: calc(100% - 220px);
 		height: 100%;
@@ -44,6 +43,7 @@ export default {
 			background: #fff;
 		}
 		.el-main {
+			width: 100%;
 			padding: 5px;
 			background: #eee;
 			height: calc(100% - 50px);

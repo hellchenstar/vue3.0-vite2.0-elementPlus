@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-23 15:17:11
+ * @LastEditTime: 2021-04-25 15:41:04
  * @Description: file content
 -->
 <template>
@@ -26,7 +26,8 @@
 						<div class="temperature">{{ weatherInfo.temperature }}</div>
 						<div class="desc">
 							<div>℃</div>
-							<div>{{ weatherInfo.weather }}</div>
+
+							<div style="font-size: 14px">{{ weatherInfo.weather }}(实时)</div>
 						</div>
 					</div>
 					<div class="other">
@@ -42,12 +43,13 @@
 			<div class="showcase" v-for="(item, index) in weatherInfo.forecasts" :key="index">
 				<a class="canvas" id="sunny">
 					<div class="date">
-						<div>{{ `星期${item.week}` }}</div>
+						<div>{{ `${getCurrentDay(parseInt(item.week))}` }}</div>
 						<div>{{ `${item.date}` }}</div>
 					</div>
 					<div class="icon">
 						<i class="icon helltianqi weatherIcon" v-if="item.dayWeather.indexOf('多云') !== -1"></i>
 						<i class="icon hellxiaoyu weatherIcon" v-if="item.dayWeather.indexOf('小雨') !== -1"></i>
+						<i class="icon hellxiaoyu weatherIcon" v-if="item.dayWeather.indexOf('阵雨') !== -1"></i>
 						<i class="icon hellxue weatherIcon" v-if="item.dayWeather.indexOf('雪') !== -1"></i>
 						<i class="icon hellyintian weatherIcon" v-if="item.dayWeather.indexOf('阴') !== -1"></i>
 						<i class="icon hellleidian weatherIcon" v-if="item.dayWeather.indexOf('雷') !== -1"></i>
@@ -79,6 +81,7 @@ import { onBeforeMount, reactive, toRefs } from "vue"
 
 import AMapLoader from "@amap/amap-jsapi-loader"
 import { weatherKey } from "@/utils/config.js"
+import chineseLunar from "chinese-lunar"
 import moment from "moment"
 export default {
 	setup() {
@@ -120,6 +123,24 @@ export default {
 					console.log(e)
 				})
 		}
+		const getCurrentDay = (week) => {
+			switch (week) {
+				case 1:
+					return "周一"
+				case 2:
+					return "周二"
+				case 3:
+					return "周三"
+				case 4:
+					return "周四"
+				case 5:
+					return "周五"
+				case 6:
+					return "周六"
+				case 7:
+					return "周日"
+			}
+		}
 		onBeforeMount(() => {
 			window.WIDGET = {
 				CONFIG: {
@@ -131,36 +152,44 @@ export default {
 					key: "373cce0854064c2c9b54132775106d84",
 				},
 			}
-			mapInfo.currentDate = `${moment().format("YYYY-MM-YY")}  星期${moment().format("d")}`
 			initAmap()
+			// 设置农历  时间
+			let curDate = chineseLunar.solarToLunar(new Date())
+			let dayName = chineseLunar.dayName(curDate.day - 1)
+			let monthName = chineseLunar.monthName(curDate.month)
+			mapInfo.currentDate = `${moment().format("YYYY-MM-YY")} 农历${monthName}${dayName}`
 		})
 		return {
 			...toRefs(mapInfo),
 			initAmap,
+			getCurrentDay,
 		}
 	},
 }
 </script>
 <style lang="scss" scoped>
 .weatherContainer {
-	width: 100%;
+	position: relative;
+	width: 700px;
 	height: 100%;
 	color: #fff;
-	padding: 0 10px 10px 10px;
+	padding: 40px 10px 10px 10px;
 	border-radius: 10px;
 	display: flex;
 	background: #56ccf2; /* fallback for old browsers */
 	background: linear-gradient(rgb(86, 204, 242), rgb(47, 128, 237));
 	.curDate {
+		position: absolute;
+		top: 0;
+		left: 0;
 		padding: 10px;
 		color: #fff;
 		text-shadow: 1px 1px 1px #555;
-		font-size: 18px;
+		font-size: 14px;
 	}
 	.showcase {
 		width: 150px;
 		height: calc(100%);
-		padding: 10px 0;
 		border-right: 1px solid #fff;
 	}
 
