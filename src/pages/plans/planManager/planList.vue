@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-25 18:59:36
+ * @LastEditTime: 2021-04-25 19:05:30
  * @Description: file content
 -->
 <template>
@@ -146,7 +146,8 @@ li {
 	display: flex;
 	flex-direction: column;
 	.canlendar-header {
-		line-height: 30px;
+		line-height: 40px;
+		height: 40px;
 		background: #eee;
 		display: flex;
 		flex-direction: row;
@@ -161,29 +162,33 @@ li {
 		}
 	}
 	.canlendar-main {
+		height: calc(100% - 40px);
 		flex: 1;
 		display: flex;
 		flex-direction: column;
 		.main-header {
+			height: 40px;
 			display: flex;
-			line-height: 30px;
+
+			line-height: 40px;
 			color: #333;
 			li {
 				flex: 1;
 			}
 		}
 		ul.main {
+			height: calc(100% - 40px);
 			display: flex;
 			flex-wrap: wrap;
 			align-items: center;
 			padding-bottom: 10px;
 			font-size: 14px;
 			li {
-				width: 14.2%;
+				height: calc(100% / 5);
+				width: calc(100% / 7);
 				position: relative;
 				line-height: 25px;
 				cursor: pointer;
-				height: 50px;
 			}
 			.ohterMonth {
 				color: #333;
