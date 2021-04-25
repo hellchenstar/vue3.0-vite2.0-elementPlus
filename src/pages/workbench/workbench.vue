@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-25 16:49:06
+ * @LastEditTime: 2021-04-25 18:05:57
  * @Description: 工作台
 -->
 <template>
@@ -51,6 +51,7 @@ export default {
 		const state = reactive({
 			userName: "",
 			avatar: "",
+			currentDate: "",
 		})
 		const imgList = [
 			{ src: "/src/assets/img/workbench/slider/1.jpg" },
@@ -107,11 +108,14 @@ export default {
 		margin-left: 10px;
 		width: calc(100% - 710px);
 		height: 100%;
+		display: flex;
+		align-items: center;
 		background: #fff;
 		border-radius: 10px;
 		padding: 10px;
 	}
 }
+
 .carousel {
 	img {
 		width: 100%;

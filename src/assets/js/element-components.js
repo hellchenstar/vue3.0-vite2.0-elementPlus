@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-25 16:20:43
+ * @LastEditTime: 2021-04-25 17:36:08
  * @Description: element-ui按需加载分离（不写在main.js中）
  */
 import "dayjs/locale/zh-cn";
@@ -48,6 +48,7 @@ import {
   ElTabPane,
   ElCarousel,
   ElCarouselItem,
+  ElCalendar,
 } from 'element-plus';
 const components = [
   ElAvatar,
@@ -85,6 +86,7 @@ const components = [
   ElTabPane,
   ElCarousel,
   ElCarouselItem,
+  ElCalendar,
 ]
 const plugins = [
   ElInfiniteScroll,
