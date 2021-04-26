@@ -1,28 +1,45 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-25 17:13:50
- * @Description: 文章管理
+ * @LastEditTime: 2021-04-26 15:25:41
+ * @Description: file content
 -->
 <template>
 	<div class="module">
-		<div class="module_header">
-			<el-button type="primary" @click="addOrEdit">新增</el-button>
-		</div>
-		<el-table :data="dataList" style="width: 100%; margin-bottom: 20px" row-key="url" border>
-			<el-table-column prop="name" label="文章名称"> </el-table-column>
-			<el-table-column prop="url" label="更新时间"> </el-table-column>
-
+		<el-row type="flex" justify="space-between">
+			<el-col :span="21">
+				<el-row type="flex">
+					<el-col :span="6">
+						<div class="search_item">
+							<label>名称：</label>
+							<el-input v-model="params.name"></el-input>
+						</div>
+					</el-col>
+					<el-col :span="6">
+						<div class="search_item">
+							<label>作者：</label>
+							<el-input v-model="params.author"></el-input>
+						</div>
+					</el-col>
+				</el-row>
+			</el-col>
+			<el-col :span="3" style="text-align: right">
+				<el-button type="primary" @click="addOrEdit">新增</el-button>
+			</el-col>
+		</el-row>
+		<el-table :data="dataList" row-key="id" border>
+			<el-table-column prop="name" label="名称"> </el-table-column>
+			<el-table-column prop="author" label="作者"> </el-table-column>
 			<el-table-column label="操作">
 				<template #default="scope">
-					<el-button @click="views(scope.row, 'add')" type="primary" size="mini">预览</el-button>
+					<el-button @click="preview(scope.row, 'add')" type="primary" size="mini">预览</el-button>
 					<el-button type="primary" size="mini" @click="addOrEdit(scope.row, 'edit')">编辑</el-button>
-					<!-- <el-button type="danger" size="mini">删除</el-button> -->
 				</template>
 			</el-table-column>
 		</el-table>
+
 		<el-dialog :title="diaTitle" v-model="infoDialog">
-			<el-form :model="form" ref="articleForm">
+			<el-form :model="form" ref="articleForm" :rule="rules">
 				<el-form-item label="文章标题" :label-width="formLabelWidth">
 					<el-input v-model="form.title"></el-input>
 				</el-form-item>
@@ -47,9 +64,19 @@
 import { reactive, toRefs } from "vue"
 export default {
 	setup() {
-		const formLabelWidth = "100px"
+		const formLabelWidth = "120px"
+		const rules = {
+			name: [{ trigger: "blur", message: "请输入名称", required: true }],
+			author: [{ trigger: "blur", message: "请输入作者", required: true }],
+			content: [{ trigger: "blur", message: "请输入作者", required: true }],
+		}
 		const state = reactive({
 			dataList: [],
+			params: {
+				pageSize: "",
+				pageNo: "",
+				name: "",
+			},
 			diaTitle: "",
 			infoDialog: false,
 			submitLoading: false,
@@ -60,10 +87,10 @@ export default {
 				content: "",
 			},
 		})
-		const getArticleList = () => {}
-		const addOrEdit = () => {
+		const addOrEdit = (row) => {
 			state.infoDialog = true
 		}
+		const preview = (row) => {}
 		const closeDia = () => {
 			state.infoDialog = false
 		}
@@ -72,11 +99,24 @@ export default {
 		}
 		return {
 			...toRefs(state),
-			addOrEdit,
 			formLabelWidth,
-			getArticleList,
+			rules,
+			addOrEdit,
+			preview,
 			closeDia,
+			submit,
 		}
 	},
 }
 </script>
+<style lang="scss" scoped>
+.search_item {
+	display: flex;
+	align-items: center;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	label {
+		width: 60px;
+	}
+}
+</style>

@@ -11,6 +11,7 @@ import store from '@/vuex/index.js'
 
 
 const app = createApp(App)
+
 app.use(store)
 app.use(router)
 app.config.globalProperties.$ELEMENT = { size: 'small' }

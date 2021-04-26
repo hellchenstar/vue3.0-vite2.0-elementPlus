@@ -1,28 +1,29 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-25 19:05:30
- * @Description: file content
+ * @LastEditTime: 2021-04-26 12:20:21
+ * @Description: 日期组件
 -->
+
 <template>
 	<div class="module">
 		<div class="canlendarPanel">
 			<div class="canlendar-header">
 				<p class="pre">
 					<span @click="changeDate('preYear')">
-						<icon class="icon" name="preYear" />
+						<i class="el-icon-d-arrow-left" name="preYear" />
 					</span>
 					<span @click="changeDate('preMonth')">
-						<icon class="icon" name="preMonth" />
+						<i class="el-icon-arrow-left" name="preMonth" />
 					</span>
 				</p>
 				<p class="currenDate">{{ `${year}年${month}月` }}</p>
 				<p class="next">
 					<span @click="changeDate('nextMonth')">
-						<icon class="icon" name="nextMonth" />
+						<i class="el-icon-arrow-right" name="nextMonth" />
 					</span>
 					<span @click="changeDate('nextYear')">
-						<icon class="icon" name="nextYear" />
+						<i class="el-icon-d-arrow-right" name="nextYear" />
 					</span>
 				</p>
 			</div>
@@ -33,14 +34,19 @@
 					</li>
 				</ul>
 				<ul class="main">
-					<li v-for="inx in weekDay" class="ohterMonth" :key="inx + new Date()">
-						<span>{{ preMonthSize() - weekDay + inx }}</span>
+					<!-- 上个月多出的时间显示 -->
+					<li v-for="inx in weekDay" class="ohterMonth" :key="inx" @click="clickDate(year, month - 1, preMonthSize() - weekDay + inx)">
+						<div>{{ preMonthSize() - weekDay + inx }}</div>
 					</li>
-
-					<li v-for="index in monthList[month - 1]" :class="{ currentDay: index === day }" :key="index + new Date()">
-						<span> {{ index }}</span>
+					<!-- 当月时间显示 -->
+					<li v-for="item in monthList[month - 1]" class="currentMonth" :class="{ currentDay: item === day }" :key="item" @click="clickDate(year, month, item)">
+						<div class="currentMonthDay">{{ item }}</div>
+						<!-- <slot></slot> -->
 					</li>
-					<li v-for="index in lastWeekDay" class="disabled" :key="index + new Date()">{{ index }}</li>
+					<!-- 下个月时间显示 -->
+					<li v-for="index in lastWeekDay" class="ohterMonth" :key="index" @click="clickDate(year, month + 1, index)">
+						<div>{{ index }}</div>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -49,11 +55,11 @@
 <script>
 import { onBeforeMount, reactive, toRefs } from "vue"
 export default {
-	setup() {
+	setup(props, { emit }) {
 		// 获得今天的日期
 		const state = reactive({
-			weekArr: [],
-			monthList: [], //十二个月，每个月的天数
+			weekArr: ["日", "一", "二", "三", "四", "五", "六"],
+			monthList: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31], //十二个月，每个月的天数
 			weekDay: "",
 			lastWeekDay: "",
 			year: "",
@@ -70,7 +76,7 @@ export default {
 			state.month = date.getMonth() + 1
 			state.day = date.getDate()
 		}
-		// 根据年月日获得为星期几
+		// 根据年月日获得为当前时间为星期几
 		const getWeekDay = (year, month, day) => {
 			return new Date(`${year}/${month}/${day}`).getDay()
 		}
@@ -81,14 +87,16 @@ export default {
 			} else {
 				state.monthList[1] = 28
 			}
+
 			// 获得指定年月的1号是星期几
 			const firstDay = getWeekDay(state.year, state.month, 1)
 			// 在1号前面填充多少个上个月的日期
 			state.weekDay = firstDay === 7 ? 0 : firstDay
-			// 获得最后一天是星期几，往后填充多少个
+			// 获得最后一天是星期几，往后填充多少个,如果小于6，则多加7天
 			const remineDay = getWeekDay(state.year, state.month, state.monthList[state.month - 1])
 			state.lastWeekDay = remineDay === 7 ? 6 : 6 - remineDay
 		}
+		// 切换月份年份
 		const changeDate = (type) => {
 			switch (type) {
 				case "preYear":
@@ -118,10 +126,17 @@ export default {
 				default:
 					break
 			}
+			initDate()
+		}
+		const clickDate = (year, month, day) => {
+			let date = {
+				year,
+				month,
+				day,
+			}
+			emit("getCurrentDate", date)
 		}
 		onBeforeMount(() => {
-			state.weekArr = ["日", "一", "二", "三", "四", "五", "六"]
-			state.monthList = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 			getCurrentDate()
 			initDate()
 		})
@@ -129,6 +144,7 @@ export default {
 			...toRefs(state),
 			preMonthSize,
 			changeDate,
+			clickDate,
 		}
 	},
 }
@@ -177,26 +193,36 @@ li {
 			}
 		}
 		ul.main {
-			height: calc(100% - 40px);
 			display: flex;
 			flex-wrap: wrap;
 			align-items: center;
 			padding-bottom: 10px;
 			font-size: 14px;
 			li {
-				height: calc(100% / 5);
+				height: 80px;
 				width: calc(100% / 7);
 				position: relative;
 				line-height: 25px;
 				cursor: pointer;
+				color: #666;
+				padding: 5px;
+			}
+			li:hover {
+				background: #bfe8ff;
+			}
+			.currentMonth {
+				background: #ecfcff;
+				.currentMonthDay {
+					font-size: 20px;
+					font-weight: 600;
+				}
 			}
 			.ohterMonth {
-				color: #333;
-				background: #ccc;
+				background: rgb(255, 255, 255);
 				cursor: default;
 			}
 			.currentDay {
-				background: #e6f6ff;
+				background: #bfe8ff;
 			}
 		}
 	}

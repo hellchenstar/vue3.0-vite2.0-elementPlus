@@ -1,10 +1,10 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-25 14:58:20
+ * @LastEditTime: 2021-04-26 14:39:32
  * @Description: file content
  */
-const plans = [
+const fnComponents = [
 
   // ======================================================================计划======================================================================
   {
@@ -18,15 +18,23 @@ const plans = [
     children: [
 
       {
-        path: '/planList',
-        name: 'planList',
+        path: '/calendar',
+        name: 'calendar',
         meta: {
-          title: '计划管理'
+          title: '日历'
         },
-        component: () => import('@/pages/plans/planManager/planList.vue')
+        component: () => import('@/pages/fnComponents/calendar/calendar.vue')
+      },
+      {
+        path: '/editorlist',
+        name: 'editorlist',
+        meta: {
+          title: '富文本'
+        },
+        component: () => import('@/pages/fnComponents/editor/editorlist.vue')
       }
     ],
   },
 ]
 
-export default plans
+export default fnComponents

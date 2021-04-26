@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-25 18:05:57
+ * @LastEditTime: 2021-04-26 12:32:14
  * @Description: 工作台
 -->
 <template>
@@ -60,7 +60,6 @@ export default {
 			{ src: "/src/assets/img/workbench/slider/4.jpg" },
 			{ src: "/src/assets/img/workbench/slider/5.jpg" },
 		]
-		console.log(imgList)
 		onMounted(() => {
 			let userName = localStorage.getItem("username")
 			let avatar = localStorage.getItem("avatar")

@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-23 16:22:01
+ * @LastEditTime: 2021-04-26 14:35:57
  * @Description: 菜单
 -->
 <template>
@@ -34,18 +34,21 @@
 import { computed, onMounted, reactive, toRefs, watch } from "vue"
 import { menuApi } from "@/request/api/index.js"
 import { useStore } from "vuex"
-import { useRouter } from "vue-router"
+import { useRouter, useRoute } from "vue-router"
 import { makeTreeData } from "@/utils/utils.js"
 export default {
 	setup() {
+		// vue的路由实例
 		const router = useRouter()
+		// 当前路由对象
+		const route = useRoute()
 		const vuex = useStore()
 		const state = reactive({
 			menuInfo: {
 				userId: "",
 			},
 			defaultActive: computed(() => {
-				return router.name
+				return route.name
 			}),
 
 			menuList: [],
