@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-15 14:37:18
+ * @LastEditTime: 2021-05-07 16:40:30
  * @Description: file content
  */
 import { ElMessage } from 'element-plus';
@@ -77,7 +77,7 @@ function subscribeTokenRefresh(cb) {
 
 // 创建axios实例，超时时间为10秒
 let instance = axios.create({
-  timeout: 1000 * 60
+  timeout: 1000 * 20
 })
 
 /**
