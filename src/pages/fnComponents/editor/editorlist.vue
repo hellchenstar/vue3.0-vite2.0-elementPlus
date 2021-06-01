@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-26 15:25:41
+ * @LastEditTime: 2021-06-01 17:00:32
  * @Description: file content
 -->
 <template>
@@ -50,7 +50,7 @@
 					<el-input v-model="form.sign"></el-input>
 				</el-form-item>
 				<el-form-item label="文章内容" :label-width="formLabelWidth">
-					<el-input v-model="form.content"></el-input>
+					<Ue ref="ueditor" v-model="form.content"></Ue>
 				</el-form-item>
 				<el-form-item :label-width="formLabelWidth">
 					<el-button @click="closeDia">取 消</el-button>
@@ -63,6 +63,9 @@
 <script>
 import { reactive, toRefs } from "vue"
 export default {
+	components: {
+		Ue: () => import("@/components/UEditor/newUeditor.vue"),
+	},
 	setup() {
 		const formLabelWidth = "120px"
 		const rules = {
