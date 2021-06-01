@@ -31,15 +31,15 @@ export default defineConfig({
     strictPort: false,//如果端口占用，是退出，还是尝试其他端口
     https: false,// 是否开启 https
     proxy: {
-      // '/api': {
-      //   // 替换为本机IP
-      //   target: 'http://192.168.3.173:2888',
-      //   changeOrigin: true,
-      // },
       '/api': {
-        target: 'http://39.97.254.142:2888',
+        // 替换为本机IP
+        target: 'http://192.168.3.173:2888',
         changeOrigin: true,
       },
+      // '/api': {
+      //   target: 'http://39.97.254.142:2888',
+      //   changeOrigin: true,
+      // },
     },
 
   },

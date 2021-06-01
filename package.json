@@ -9,12 +9,13 @@
   "dependencies": {
     "axios": "^0.21.1",
     "chinese-lunar": "^0.1.4",
-    "echarts": "^5.1.0",
+    "echarts": "^5.1.1",
     "element-plus": "^1.0.2-beta.36",
     "moment": "^2.29.1",
     "nprogress": "^0.2.0",
     "screenfull": "^5.1.0",
     "vue": "^3.0.5",
+    "vue-echarts": "^6.0.0-rc.5",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
   },

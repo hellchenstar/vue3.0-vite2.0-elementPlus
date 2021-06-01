@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-05-07 16:40:30
+ * @LastEditTime: 2021-06-01 11:41:35
  * @Description: file content
  */
 import { ElMessage } from 'element-plus';
@@ -175,6 +175,7 @@ instance.interceptors.response.use(
   res => {
     if (res.status === 200) {
       if (res.data.code !== 200) {
+        debugger
         ElMessage.error(res.data.msg)
       }
       return Promise.resolve(res.data)

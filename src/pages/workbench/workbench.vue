@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-26 12:32:14
+ * @LastEditTime: 2021-06-01 10:27:43
  * @Description: 工作台
 -->
 <template>
@@ -13,20 +13,22 @@
 		</el-carousel>
 
 		<div class="center">
-			<Weather></Weather>
-			<div class="center_right">
-				<el-avatar :size="35" class="avatar" :src="avatar">
-					<img :src="defaultAvatar" />
-				</el-avatar>
-				<div>
+			<div class="center_left">
+				<div class="center_left_top">
+					<el-avatar :size="35" class="avatar" :src="avatar">
+						<img :src="defaultAvatar" />
+					</el-avatar>
 					<div>
-						<span style="font-weight: 600">
-							{{ userName }}
-						</span>
-						,祝你新的一天工作愉快
+						<div>
+							<span style="font-weight: 600">
+								{{ userName }}
+							</span>
+							,祝你新的一天工作愉快
+						</div>
 					</div>
 				</div>
 			</div>
+			<Weather></Weather>
 		</div>
 		<el-row :gutter="10" class="top">
 			<el-col :span="4"><div class="grid-content bg-purple">1</div></el-col>
@@ -100,18 +102,25 @@ export default {
 	padding: 0;
 	height: 286px;
 	margin-bottom: 10px;
-	.center_left {
+	.center_right {
 		background: #fff;
 	}
-	.center_right {
-		margin-left: 10px;
+	.center_left {
+		margin-right: 10px;
 		width: calc(100% - 710px);
 		height: 100%;
-		display: flex;
-		align-items: center;
 		background: #fff;
 		border-radius: 10px;
 		padding: 10px;
+		.center_left_top {
+			display: flex;
+			align-items: center;
+			height: 60px;
+			border-bottom: 1px dashed #ccc;
+			.el-avatar {
+				margin-right: 5px;
+			}
+		}
 	}
 }
 

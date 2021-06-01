@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-26 12:20:21
+ * @LastEditTime: 2021-06-01 11:50:32
  * @Description: 日期组件
 -->
 
@@ -35,17 +35,19 @@
 				</ul>
 				<ul class="main">
 					<!-- 上个月多出的时间显示 -->
-					<li v-for="inx in weekDay" class="ohterMonth" :key="inx" @click="clickDate(year, month - 1, preMonthSize() - weekDay + inx)">
+					<li v-for="inx in weekDay" class="ohterMonth" :class="{ avtive: inx === day }" :key="inx" @click="clickDate(year, month - 1, preMonthSize() - weekDay + inx)">
 						<div>{{ preMonthSize() - weekDay + inx }}</div>
+						<slot name="last"></slot>
 					</li>
 					<!-- 当月时间显示 -->
 					<li v-for="item in monthList[month - 1]" class="currentMonth" :class="{ currentDay: item === day }" :key="item" @click="clickDate(year, month, item)">
 						<div class="currentMonthDay">{{ item }}</div>
-						<!-- <slot></slot> -->
+						<slot name="now"></slot>
 					</li>
 					<!-- 下个月时间显示 -->
 					<li v-for="index in lastWeekDay" class="ohterMonth" :key="index" @click="clickDate(year, month + 1, index)">
 						<div>{{ index }}</div>
+						<slot name="next"></slot>
 					</li>
 				</ul>
 			</div>
@@ -70,11 +72,18 @@ export default {
 		const preMonthSize = () => {
 			return state.month - 1 === 0 ? 31 : state.monthList[state.month - 2]
 		}
+		// 获取当前日期
 		const getCurrentDate = () => {
 			let date = new Date()
 			state.year = date.getFullYear()
 			state.month = date.getMonth() + 1
 			state.day = date.getDate()
+			let curDate = {
+				year: state.year,
+				month: state.month,
+				day: state.day,
+			}
+			emit("getCurrentDate", curDate)
 		}
 		// 根据年月日获得为当前时间为星期几
 		const getWeekDay = (year, month, day) => {
@@ -208,6 +217,9 @@ li {
 				padding: 5px;
 			}
 			li:hover {
+				background: #bfe8ff;
+			}
+			li:visited {
 				background: #bfe8ff;
 			}
 			.currentMonth {
