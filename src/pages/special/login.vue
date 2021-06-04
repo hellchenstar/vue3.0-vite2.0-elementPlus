@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-23 15:00:28
+ * @LastEditTime: 2021-06-02 11:16:09
  * @Description: 登录
 -->
 <template>
@@ -9,10 +9,10 @@
 		<div class="loginContent">
 			<el-form :model="loginInfo" :rules="rules" ref="loginForm" label-width="60px" class="demo-ruleForm">
 				<el-form-item label="账号" prop="account">
-					<el-input v-model="loginInfo.account"></el-input>
+					<el-input v-model="loginInfo.account" @keyup.enter="goLogin"></el-input>
 				</el-form-item>
 				<el-form-item label="密码" prop="password">
-					<el-input v-model="loginInfo.password" show-password></el-input>
+					<el-input v-model="loginInfo.password" show-password @keyup.enter="goLogin"></el-input>
 				</el-form-item>
 				<el-form-item>
 					<el-button type="primary" :loading="loginLoading" @click="goLogin" style="width: 45%"> 登录 </el-button>
@@ -51,7 +51,6 @@ export default {
 		const loginForm = ref(null)
 		const goLogin = () => {
 			state.loginLoading = true
-			// unref
 			// 如果参数是一个 ref，则返回内部值，否则返回参数本身。这是 val = isRef(val) ? val.value : val 的语法糖函数。
 			const form = unref(loginForm)
 			form.validate((valid) => {

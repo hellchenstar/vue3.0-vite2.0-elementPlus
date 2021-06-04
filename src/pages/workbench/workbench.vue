@@ -1,12 +1,12 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-06-01 10:27:43
+ * @LastEditTime: 2021-06-02 09:35:22
  * @Description: 工作台
 -->
 <template>
 	<div class="workbench">
-		<el-carousel type="card" height="300px" class="carousel">
+		<el-carousel height="300px" class="carousel">
 			<el-carousel-item v-for="(item, index) in imgList" :key="index">
 				<img :src="item.src" alt="" />
 			</el-carousel-item>
