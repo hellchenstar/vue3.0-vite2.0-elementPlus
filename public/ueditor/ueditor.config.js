@@ -24,25 +24,28 @@
   /**
    * 配置项主体。注意，此处所有涉及到路径的配置别遗漏URL变量。
    */
-  var orgin = window.location.origin;
-  var path = /([^\/]+\.{1}[^\/]+)$/.exec(window.location.pathname) && /([^\/]+\.{1}[^\/]+)$/.exec(window.location.pathname)[1] || '';
-  path = window.location.pathname.replace(path, '');
   window.UEDITOR_CONFIG = {
-    serverUrl: URL + "jsp/controller.jsp",
+
     //为编辑器实例添加一个路径，这个不能被注释
-    UEDITOR_HOME_URL: orgin + path + "/public/ueditor/"
+    UEDITOR_HOME_URL: URL
+
+    // 服务器统一请求接口路径
+    , serverUrl: URL + "jsp/controller.jsp"
+
     //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的重新定义
     , toolbars: [[
       'fullscreen', 'source', '|', 'undo', 'redo', '|',
       'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
       'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
-      'directionalityltr', 'directionalityrtl', 'indent', '|', 'link', 'unlink', '|',
-      'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-      'simpleupload', 'pagebreak', '|',
-      'horizontal', 'spechars', '|',
-      'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', '|',
-      'searchreplace', '|', 'customstyle', 'paragraph', 'fontfamily', 'fontsize'
-    ]],
+      'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+      'directionalityltr', 'directionalityrtl', 'indent', '|',
+      'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+      'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+      'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
+      'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
+      'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
+      'print', 'preview', 'searchreplace', 'drafts', 'help'
+    ]]
     //当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准
     //,labelMap:{
     //    'anchor':'', 'undo':''
@@ -58,7 +61,7 @@
     //,theme:'default'
     //,themePath:URL +"themes/"
 
-    zIndex: 0,     //编辑器层级的基数,默认是900
+    //,zIndex : 900     //编辑器层级的基数,默认是900
 
     //针对getAllHtml方法，会在对应的head标签中增加该编码设置。
     //,charset:"utf-8"
@@ -87,16 +90,16 @@
     //,indentValue:'2em'
 
     //,initialFrameWidth:1000  //初始化编辑器宽度,默认1000
-    initialFrameHeight: 600,  //初始化编辑器高度,默认320
+    //,initialFrameHeight:320  //初始化编辑器高度,默认320
 
     //,readonly : false //编辑器初始化结束后,编辑区域是否是只读的，默认是false
 
     //,autoClearEmptyNode : true //getContent时，是否删除空的inlineElement节点（包括嵌套的情况）
 
     //启用自动保存
-    enableAutoSave: false,
-    // 自动保存间隔时间， 单位ms
-    saveInterval: 50000000
+    //,enableAutoSave: true
+    //自动保存间隔时间， 单位ms
+    //,saveInterval: 500
 
     //,fullscreen : false //是否开启初始化时即全屏，默认关闭
 
@@ -274,7 +277,7 @@
 
     //autoHeightEnabled
     // 是否自动长高,默认true
-    , autoHeightEnabled: false
+    //,autoHeightEnabled:true
 
     //scaleEnabled
     //是否可以拉伸长高,默认true(当开启时，自动长高失效)
@@ -359,7 +362,7 @@
     //output xss过滤
     , outputXssFilter: true
     // xss过滤白名单 名单来源: https://raw.githubusercontent.com/leizongmin/js-xss/master/lib/default.js
-    , whitList: {
+    , whiteList: {
       a: ['target', 'href', 'title', 'class', 'style'],
       abbr: ['title', 'class', 'style'],
       address: ['class', 'style'],
@@ -397,7 +400,7 @@
       header: [],
       hr: [],
       i: ['class', 'style'],
-      img: ['src', 'alt', 'title', 'width', 'height', 'id', '_src', 'loadingclass', 'class', 'data-latex', 'style'],
+      img: ['src', 'alt', 'title', 'width', 'height', 'id', '_src', 'loadingclass', 'class', 'data-latex'],
       ins: ['datetime'],
       li: ['class', 'style'],
       mark: [],

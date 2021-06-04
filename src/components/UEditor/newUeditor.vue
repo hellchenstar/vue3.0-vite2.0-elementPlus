@@ -1,17 +1,13 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-06-01 17:29:47
+ * @LastEditTime: 2021-06-04 10:17:48
  * @Description: file content
 -->
 <template>
 	<div id="editorContainer"></div>
 </template>
 <script>
-// import "/ueditor/ueditor.all.js"
-// import "/ueditor/ueditor.config.js"
-// import "/ueditor/ueditor.parse.min.js"
-// import "/ueditor/lang/zh-cn/zh-cn.js"
 import "/ueditor/ueditor.config.js"
 import "/ueditor/ueditor.all.js"
 import "/ueditor/ueditor.parse.min.js"

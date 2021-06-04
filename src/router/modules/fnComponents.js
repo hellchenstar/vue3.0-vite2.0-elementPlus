@@ -1,18 +1,18 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-26 14:39:32
+ * @LastEditTime: 2021-06-04 10:53:07
  * @Description: file content
  */
 const fnComponents = [
 
   // ======================================================================计划======================================================================
   {
-    path: '/plan',
-    name: 'plan',
+    path: '/fnList',
+    name: 'fnList',
     meta: {
       icon: 'helljihua',
-      title: '计划管理'
+      title: '功能组件'
     },
     component: () => import('@/pages/special/components/content.vue'),
     children: [
@@ -26,12 +26,12 @@ const fnComponents = [
         component: () => import('@/pages/fnComponents/calendar/calendar.vue')
       },
       {
-        path: '/editorlist',
-        name: 'editorlist',
+        path: '/editorList',
+        name: 'editorList',
         meta: {
           title: '富文本'
         },
-        component: () => import('@/pages/fnComponents/editor/editorlist.vue')
+        component: () => import('@/pages/fnComponents/editor/editorList.vue')
       }
     ],
   },

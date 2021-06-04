@@ -1,7 +1,7 @@
 /*!
  * UEditor
  * version: ueditor
- * build: Wed Nov 15 2017 19:18:00 GMT+0800 (CST)
+ * build: Wed Dec 26 2018 17:24:52 GMT+0800 (CST)
  */
 
 (function(){
@@ -386,7 +386,7 @@ UE.parse.register('table', function (utils) {
         utils.cssRule('table',
             selector + ' table.noBorderTable td,' +
                 selector + ' table.noBorderTable th,' +
-                selector + ' table.noBorderTable caption{border:1px dashed #fff !important}' +
+                selector + ' table.noBorderTable caption{border:1px dashed #ddd !important}' +
                 selector + ' table.sortEnabled tr.firstRow th,' + selector + ' table.sortEnabled tr.firstRow td{padding-right:20px; background-repeat: no-repeat;' +
                     'background-position: center right; background-image:url(' + this.rootPath + 'themes/default/images/sortable.png);}' +
                 selector + ' table.sortEnabled tr.firstRow th:hover,' + selector + ' table.sortEnabled tr.firstRow td:hover{background-color: #EEE;}' +
