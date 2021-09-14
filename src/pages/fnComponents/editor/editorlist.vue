@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-06-04 13:41:10
+ * @LastEditTime: 2021-06-04 16:08:26
  * @Description: file content
 -->
 <template>
@@ -18,7 +18,7 @@ import { reactive } from "vue"
 export default {
 	setup() {
 		const state = reactive({
-			content: "<p>2333</p>",
+			content: "",
 		})
 
 		return { state }

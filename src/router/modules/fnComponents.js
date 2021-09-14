@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-06-04 10:53:07
+ * @LastEditTime: 2021-06-07 10:23:51
  * @Description: file content
  */
 const fnComponents = [
@@ -32,6 +32,14 @@ const fnComponents = [
           title: '富文本'
         },
         component: () => import('@/pages/fnComponents/editor/editorList.vue')
+      },
+      {
+        path: '/markdownEditor',
+        name: 'markdownEditor',
+        meta: {
+          title: 'markdown编辑器'
+        },
+        component: () => import('@/pages/fnComponents/markdown/markdownEditor.vue')
       }
     ],
   },
