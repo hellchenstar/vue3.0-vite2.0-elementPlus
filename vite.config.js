@@ -3,7 +3,7 @@
  * @Descripttion: 
  * @Date: 2021-04-13 10:05:44
  * @LastEditors: chenx
- * @LastEditTime: 2021-09-15 16:00:08
+ * @LastEditTime: 2021-09-15 18:16:33
  */
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -11,6 +11,7 @@ import styleImport from 'vite-plugin-style-import'
 const path = require("path");
 // https://vitejs.dev/config/
 export default defineConfig({
+  base:'./',
   plugins: [
     vue(),
     styleImport({
@@ -51,12 +52,14 @@ export default defineConfig({
 
   },
   build: {
-    outDir: 'dist',//Specify the output directory (relative to project root).
-    assetsDir:'assets/img',
-    rollupOptions:{
-      assetFileNames:'assets/[ext]/[name].[ext]',
-      entryFileNames:'assets/js/[name].js',
-      chunkFileNames:'assets/js/[name].js'
-    }
+    assetsInlineLimit:0
+    // assetsDir: 'static/img',
+    // rollupOptions: {
+    //   output: {
+    //     assetFileNames: 'static/[ext]/[name].[ext]',
+    //     entryFileNames: 'static/js/[name].js',
+    //     chunkFileNames: 'static/js/[name].js'
+    //   }
+    // }
   }
 })

@@ -1,3 +1,10 @@
+/*
+ * @Author: chenx
+ * @Descripttion: 
+ * @Date: 2021-04-13 10:05:44
+ * @LastEditors: chenx
+ * @LastEditTime: 2021-09-15 18:30:07
+ */
 import { createApp } from 'vue'
 import router from './router'
 import App from './App.vue'
@@ -26,6 +33,5 @@ app.config.errorHandler = (err, vm, info) => {
   console.log(vm)
   console.log(info)
 }
-
 element(app);
 app.mount('#app')

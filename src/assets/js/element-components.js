@@ -1,11 +1,11 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-25 17:36:08
+ * @LastEditTime: 2021-09-15 18:40:57
  * @Description: element-ui按需加载分离（不写在main.js中）
  */
 import "dayjs/locale/zh-cn";
-import locale from "element-plus/lib/locale";
+// import locale from "element-plus/lib/locale";
 import lang from "element-plus/lib/locale/lang/zh-cn";
 import {
   ElAvatar,
@@ -98,7 +98,7 @@ const plugins = [
 
 export default (app) => {
 
-  locale.use(lang);
+  // locale:lang,
   components.forEach(component => {
     app.component(component.name, component);
   });
