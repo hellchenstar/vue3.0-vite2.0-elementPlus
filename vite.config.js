@@ -1,3 +1,10 @@
+/*
+ * @Author: chenx
+ * @Descripttion: 
+ * @Date: 2021-04-13 10:05:44
+ * @LastEditors: chenx
+ * @LastEditTime: 2021-09-15 16:00:08
+ */
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import styleImport from 'vite-plugin-style-import'
@@ -33,7 +40,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         // 替换为本机IP
-        target: 'http://192.168.3.173:2888',
+        target: 'http://139.129.101.158:21009',
         changeOrigin: true,
       },
       // '/api': {
@@ -45,5 +52,11 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',//Specify the output directory (relative to project root).
+    assetsDir:'assets/img',
+    rollupOptions:{
+      assetFileNames:'assets/[ext]/[name].[ext]',
+      entryFileNames:'assets/js/[name].js',
+      chunkFileNames:'assets/js/[name].js'
+    }
   }
 })

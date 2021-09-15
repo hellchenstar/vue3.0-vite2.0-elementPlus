@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-06-01 11:41:35
+ * @LastEditTime: 2021-09-15 13:02:37
  * @Description: file content
  */
 import { ElMessage } from 'element-plus';
@@ -36,6 +36,7 @@ const errorHandle = (status, message) => {
       break
     default:
       ElMessage.error(message)
+      break
   }
 }
 // 刷新token
@@ -175,7 +176,6 @@ instance.interceptors.response.use(
   res => {
     if (res.status === 200) {
       if (res.data.code !== 200) {
-        debugger
         ElMessage.error(res.data.msg)
       }
       return Promise.resolve(res.data)
@@ -183,7 +183,6 @@ instance.interceptors.response.use(
   },
   // 请求失败
   error => {
-    console.log('失败了：', error)
     const { response } = error
     if (response) {
       // 请求已发出，但是不在2xx的范围
