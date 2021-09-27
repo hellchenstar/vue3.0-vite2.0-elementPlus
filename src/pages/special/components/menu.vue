@@ -1,13 +1,13 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-26 14:35:57
+ * @LastEditTime: 2021-09-27 16:14:09
  * @Description: 菜单
 -->
 <template>
 	<el-menu router class="el-menu-vertical" :collapse="isCollapse" unique-opened :default-active="defaultActive">
 		<div class="logo">
-			<img src="@/assets/img/logo/logo.jpg" alt="" />
+			<img src="../../../assets/img/logo/logo.jpg" alt="" />
 			<span class="sysName" v-if="!isCollapse"> Vite2.0 + Vue3.0 </span>
 		</div>
 
@@ -32,10 +32,10 @@
 </template>
 <script>
 import { computed, onMounted, reactive, toRefs, watch } from "vue"
-import { menuApi } from "@/request/api/index.js"
+import { menuApi } from "/@/request/api/index.js"
 import { useStore } from "vuex"
 import { useRouter, useRoute } from "vue-router"
-import { makeTreeData } from "@/utils/utils.js"
+import { makeTreeData } from "/@/utils/utils.js"
 export default {
 	setup() {
 		// vue的路由实例

@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-25 14:55:14
+ * @LastEditTime: 2021-09-27 16:08:53
  * @Description: file content
 -->
 <template>
@@ -53,9 +53,9 @@
 <script>
 import { reactive, toRefs, onMounted, ref, unref } from "vue"
 import { useStore } from "vuex"
-import { menuApi } from "@/request/api/index.js"
+import { menuApi } from "/@/request/api/index.js"
 import { ElMessage } from "element-plus"
-import { makeTreeData } from "@/utils/utils.js"
+import { makeTreeData } from "/@/utils/utils.js"
 export default {
 	setup() {
 		// 登录逻辑

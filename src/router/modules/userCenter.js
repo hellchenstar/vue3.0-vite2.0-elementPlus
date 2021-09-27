@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-21 11:10:22
+ * @LastEditTime: 2021-09-27 16:10:58
  * @Description: file content
  */
 
@@ -15,7 +15,7 @@ const userCenter = [
       icon: 'gerenzhongxin',
       title: '个人中心'
     },
-    component: () => import('@/pages/special/components/content.vue'),
+    component: () => import('/@/pages/special/components/content.vue'),
     children: [
       {
         path: '/userInfo',
@@ -23,7 +23,7 @@ const userCenter = [
         meta: {
           title: '个人资料'
         },
-        component: () => import('@/pages/userCenter/userInfo/userInfo.vue')
+        component: () => import('/@/pages/userCenter/userInfo/userInfo.vue')
       }
     ],
   },

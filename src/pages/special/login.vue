@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-06-02 11:16:09
+ * @LastEditTime: 2021-09-27 16:09:07
  * @Description: 登录
 -->
 <template>
@@ -25,7 +25,7 @@
 <script>
 import { reactive, toRefs, onMounted, ref, unref } from "vue"
 import { useRouter } from "vue-router"
-import { login } from "@/request/api/index.js"
+import { login } from "/@/request/api/index.js"
 export default {
 	name: "login",
 	setup() {

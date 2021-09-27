@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-05-06 11:20:30
+ * @LastEditTime: 2021-09-27 16:10:27
  * @Description: file content
  */
 const cssEffect = [
@@ -14,7 +14,7 @@ const cssEffect = [
       icon: 'helljihua',
       title: 'css特效'
     },
-    component: () => import('@/pages/special/components/content.vue'),
+    component: () => import('/@/pages/special/components/content.vue'),
     children: [
 
       {
@@ -23,7 +23,7 @@ const cssEffect = [
         meta: {
           title: '流星雨'
         },
-        component: () => import('@/pages/cssEffect/cssEffect-1/cssEffect-1.vue')
+        component: () => import('/@/pages/cssEffect/cssEffect-1/cssEffect-1.vue')
       },
 
     ],

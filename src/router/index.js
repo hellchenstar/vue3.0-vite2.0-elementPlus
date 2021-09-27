@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-05-07 16:38:59
+ * @LastEditTime: 2021-09-27 16:09:51
  * @Description: 路由文件
  */
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
@@ -22,12 +22,12 @@ const routerList = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/pages/special/login.vue'),
+    component: () => import('/@/pages/special/login.vue'),
   },
   {
     path: '/register',
     name: 'register',
-    component: () => import('@/pages/special/register.vue'),
+    component: () => import('/@/pages/special/register.vue'),
   },
   {
     path: '/home',
@@ -36,7 +36,7 @@ const routerList = [
       title: '工作台'
     },
     redirect: '/workbench',
-    component: () => import('@/pages/special/home.vue'),
+    component: () => import('/@/pages/special/home.vue'),
     children: [...new Set(childrenRouter)]
   }
 ]

@@ -1,9 +1,16 @@
 /*
  * @Author: chenx
  * @Descripttion: 
+ * @Date: 2021-09-27 15:53:37
+ * @LastEditors: chenx
+ * @LastEditTime: 2021-09-27 16:09:10
+ */
+/*
+ * @Author: chenx
+ * @Descripttion: 
  * @Date: 2021-04-13 10:05:44
  * @LastEditors: chenx
- * @LastEditTime: 2021-09-15 18:16:33
+ * @LastEditTime: 2021-09-27 16:07:11
  */
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -29,7 +36,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: [
-      { find: '@', replacement: path.resolve(__dirname, 'src') }
+      { find: '/@', replacement: path.resolve(__dirname, 'src') }
     ],
   },
   server: {
@@ -52,14 +59,15 @@ export default defineConfig({
 
   },
   build: {
-    assetsInlineLimit:0
-    // assetsDir: 'static/img',
-    // rollupOptions: {
-    //   output: {
-    //     assetFileNames: 'static/[ext]/[name].[ext]',
-    //     entryFileNames: 'static/js/[name].js',
-    //     chunkFileNames: 'static/js/[name].js'
-    //   }
-    // }
+    assetsInlineLimit:0,
+    assetsDir:"assets",
+    rollupOptions: {
+      external: ['vue', 'vuetify'],
+      output: {
+        assetFileNames: 'assets/[ext]/[name].[ext]',
+        entryFileNames: 'assets/js/[name].js',
+        chunkFileNames: 'assets/js/[name].js'
+      }
+    }
   }
 })

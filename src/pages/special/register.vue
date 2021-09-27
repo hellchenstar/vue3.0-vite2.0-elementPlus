@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-21 20:13:50
+ * @LastEditTime: 2021-09-27 16:09:07
  * @Description: 注册
 -->
 <template>
@@ -28,7 +28,7 @@
 <script>
 import { reactive, ref, toRefs, unref } from "vue"
 import { useRouter } from "vue-router"
-import { login } from "@/request/api/index.js"
+import { login } from "/@/request/api/index.js"
 export default {
 	setup() {
 		const router = useRouter()

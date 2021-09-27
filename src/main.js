@@ -3,18 +3,18 @@
  * @Descripttion: 
  * @Date: 2021-04-13 10:05:44
  * @LastEditors: chenx
- * @LastEditTime: 2021-09-15 18:30:07
+ * @LastEditTime: 2021-09-27 16:11:26
  */
 import { createApp } from 'vue'
 import router from './router'
 import App from './App.vue'
-import element from "@/assets/js/element-components";
-import '@/assets/css/element-custom.scss'
+import element from "/@/assets/js/element-components";
+import '/@/assets/css/element-custom.scss'
 import 'element-plus/packages/theme-chalk/src/base.scss'
-import '@/assets/css/common.scss'
+import '/@/assets/css/common.scss'
 import 'nprogress/nprogress.css'
 import VueUeditorWrap from 'vue-ueditor-wrap';
-import store from '@/vuex/index.js'
+import store from '/@/vuex/index.js'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 

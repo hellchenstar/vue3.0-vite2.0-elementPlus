@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-06-02 09:35:22
+ * @LastEditTime: 2021-09-27 16:18:52
  * @Description: 工作台
 -->
 <template>
@@ -42,7 +42,7 @@
 </template>
 <script>
 import { reactive, toRefs, onMounted } from "vue"
-import defaultAvatar from "@/assets/img/header/defaultAvatar.png"
+import defaultAvatar from "/@/assets/img/header/defaultAvatar.png"
 import Weather from "./components/weather.vue"
 export default {
 	components: {
@@ -56,7 +56,7 @@ export default {
 			currentDate: "",
 		})
 		const imgList = [
-			{ src: "/src/assets/img/workbench/slider/1.jpg" },
+			{ src: require("/@/assets/img/workbench/slider/1.jpg") },
 			{ src: "/src/assets/img/workbench/slider/2.jpg" },
 			{ src: "/src/assets/img/workbench/slider/3.jpg" },
 			{ src: "/src/assets/img/workbench/slider/4.jpg" },

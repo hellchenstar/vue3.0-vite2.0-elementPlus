@@ -1,14 +1,14 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-09-15 13:02:37
+ * @LastEditTime: 2021-09-27 16:11:37
  * @Description: file content
  */
 import { ElMessage } from 'element-plus';
 import axios from 'axios'
-import router from '@/router/index'
+import router from '/@/router/index'
 import { base } from './baseUrl'
-// import store from '@/store/index.js'
+// import store from '/@/store/index.js'
 // import Vue from 'vue'
 
 /**

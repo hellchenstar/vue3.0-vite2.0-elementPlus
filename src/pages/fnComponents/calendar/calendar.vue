@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-06-01 11:55:14
+ * @LastEditTime: 2021-09-27 16:09:08
  * @Description: file content
 -->
 <template>
@@ -19,7 +19,7 @@
 	</div>
 </template>
 <script>
-import Calendar from "@/components/calendar.vue"
+import Calendar from "/@/components/calendar.vue"
 import { reactive, toRefs, onMounted } from "vue"
 export default {
 	components: {

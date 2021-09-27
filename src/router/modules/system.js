@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-26 17:21:06
+ * @LastEditTime: 2021-09-27 16:10:54
  * @Description: file content
  */
 
@@ -16,7 +16,7 @@ const system = [
       icon: 'xitongshezhi',
       title: '系统设置'
     },
-    component: () => import('@/pages/special/components/content.vue'),
+    component: () => import('/@/pages/special/components/content.vue'),
     children: [
       {
         path: '/menuManager',
@@ -24,7 +24,7 @@ const system = [
         meta: {
           title: '菜单管理'
         },
-        component: () => import('@/pages/system/menuManager/menuList.vue')
+        component: () => import('/@/pages/system/menuManager/menuList.vue')
       }
 
     ],
