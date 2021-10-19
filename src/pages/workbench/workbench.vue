@@ -1,16 +1,16 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-09-27 16:18:52
+ * @LastEditTime: 2021-10-16 17:57:55
  * @Description: 工作台
 -->
 <template>
 	<div class="workbench">
-		<el-carousel height="300px" class="carousel">
-			<el-carousel-item v-for="(item, index) in imgList" :key="index">
-				<img :src="item.src" alt="" />
-			</el-carousel-item>
-		</el-carousel>
+		<el-carousel trigger="click" height="300px" class="carousel">
+				<el-carousel-item v-for="(item, index) in imgList" :key="index">
+					<img :src="item.default" alt="" />
+				</el-carousel-item>
+    </el-carousel>
 
 		<div class="center">
 			<div class="center_left">
@@ -41,7 +41,7 @@
 	</div>
 </template>
 <script>
-import { reactive, toRefs, onMounted } from "vue"
+import { reactive, toRefs, onBeforeMount, onMounted } from "vue"
 import defaultAvatar from "/@/assets/img/header/defaultAvatar.png"
 import Weather from "./components/weather.vue"
 export default {
@@ -55,13 +55,13 @@ export default {
 			avatar: "",
 			currentDate: "",
 		})
-		const imgList = [
-			{ src: require("/@/assets/img/workbench/slider/1.jpg") },
-			{ src: "/src/assets/img/workbench/slider/2.jpg" },
-			{ src: "/src/assets/img/workbench/slider/3.jpg" },
-			{ src: "/src/assets/img/workbench/slider/4.jpg" },
-			{ src: "/src/assets/img/workbench/slider/5.jpg" },
-		]
+		const imgList = []
+		onBeforeMount(() => {
+			const pic = import.meta.globEager("/src/assets/img/workbench/slider/*")
+			for (const key in pic) {
+				imgList.push(pic[key])
+			}
+		})
 		onMounted(() => {
 			let userName = localStorage.getItem("username")
 			let avatar = localStorage.getItem("avatar")

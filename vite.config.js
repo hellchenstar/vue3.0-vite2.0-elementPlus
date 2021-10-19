@@ -3,7 +3,7 @@
  * @Descripttion: 
  * @Date: 2021-09-27 15:53:37
  * @LastEditors: chenx
- * @LastEditTime: 2021-09-27 16:09:10
+ * @LastEditTime: 2021-10-16 17:58:43
  */
 /*
  * @Author: chenx
@@ -60,14 +60,14 @@ export default defineConfig({
   },
   build: {
     assetsInlineLimit:0,
-    assetsDir:"assets",
-    rollupOptions: {
-      external: ['vue', 'vuetify'],
-      output: {
-        assetFileNames: 'assets/[ext]/[name].[ext]',
-        entryFileNames: 'assets/js/[name].js',
-        chunkFileNames: 'assets/js/[name].js'
-      }
-    }
+    // assetsDir:"assets",
+    // rollupOptions: {
+    //   external: ['vue', 'vuetify'],
+    //   output: {
+    //     assetFileNames: 'assets/[ext]/[name].[ext]',
+    //     entryFileNames: 'assets/js/[name].js',
+    //     chunkFileNames: 'assets/js/[name].js'
+    //   }
+    // }
   }
 })
