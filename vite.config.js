@@ -3,7 +3,7 @@
  * @Descripttion: 
  * @Date: 2021-09-27 15:53:37
  * @LastEditors: chenx
- * @LastEditTime: 2021-10-16 17:58:43
+ * @LastEditTime: 2021-10-20 10:47:37
  */
 /*
  * @Author: chenx
@@ -46,15 +46,16 @@ export default defineConfig({
     strictPort: false,//如果端口占用，是退出，还是尝试其他端口
     https: false,// 是否开启 https
     proxy: {
-      '/api': {
-        // 替换为本机IP
-        target: 'http://139.129.101.158:21009',
-        changeOrigin: true,
-      },
+      // 远端服务
       // '/api': {
-      //   target: 'http://39.97.254.142:2888',
+      //   target: 'http://139.129.101.158:21009',
       //   changeOrigin: true,
       // },
+      // 本地服务
+      '/api': {
+        target: 'http://192.168.2.105:2888',
+        changeOrigin: true,
+      },
     },
 
   },

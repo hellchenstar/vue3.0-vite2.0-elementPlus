@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-09-27 16:11:37
+ * @LastEditTime: 2021-10-20 14:39:34
  * @Description: file content
  */
 import { ElMessage } from 'element-plus';
@@ -18,9 +18,13 @@ import { base } from './baseUrl'
 const errorHandle = (status, message) => {
   // 状态码判断
   switch (status) {
-    // case 401:
+    case 401:
+      ElMessage.error("用户令牌已失效,请重新登录")
+      localStorage.clear()
+      sessionStorage.clear()
+      router.push("login")
     // getRefreshToken()
-    // break
+    break
     case 403:
       ElMessage.error(message)
       router.push('403')

@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-09-27 16:09:07
+ * @LastEditTime: 2021-10-20 15:09:34
  * @Description: 登录
 -->
 <template>
@@ -95,7 +95,8 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: #ecf5ff;
+	background:url("/@/assets/img/login/bg1.jpeg") no-repeat;
+	background-size: 100% 100%;
 }
 .loginContent {
 	width: 500px;
@@ -106,6 +107,19 @@ export default {
 	align-items: center;
 	border: 1px solid #eee;
 	border-radius: 10px;
-	box-shadow: 5px 5px 5px rgba(238, 238, 238, 0.5);
+	// 添加css 毛玻璃效果
+	background: rgba(255, 255, 255, .3);
+	box-shadow: 3px 3px 6px 3px rgba(0, 0, 0, .3);
+	overflow: hidden;
+	&::before{
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+		// 这里很重要
+    filter: blur(20px);
+    z-index: -1;
+    margin: -30px;
+	}
 }
 </style>
