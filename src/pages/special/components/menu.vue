@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-09-27 16:14:09
+ * @LastEditTime: 2021-10-21 16:11:02
  * @Description: 菜单
 -->
 <template>
@@ -32,10 +32,10 @@
 </template>
 <script>
 import { computed, onMounted, reactive, toRefs, watch } from "vue"
-import { menuApi } from "/@/request/api/index.js"
+import { menuApi } from "@/request/api/index.js"
 import { useStore } from "vuex"
 import { useRouter, useRoute } from "vue-router"
-import { makeTreeData } from "/@/utils/utils.js"
+import { makeTreeData } from "@/utils/utils.js"
 export default {
 	setup() {
 		// vue的路由实例

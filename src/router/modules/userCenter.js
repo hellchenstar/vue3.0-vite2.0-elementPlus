@@ -15,7 +15,7 @@ const userCenter = [
       icon: 'gerenzhongxin',
       title: '个人中心'
     },
-    component: () => import('/@/pages/special/components/content.vue'),
+    component: () => import('@/pages/special/components/content.vue'),
     children: [
       {
         path: '/userInfo',
@@ -23,7 +23,7 @@ const userCenter = [
         meta: {
           title: '个人资料'
         },
-        component: () => import('/@/pages/userCenter/userInfo/userInfo.vue')
+        component: () => import('@/pages/userCenter/userInfo/userInfo.vue')
       }
     ],
   },

@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-10-20 15:18:09
+ * @LastEditTime: 2021-10-21 16:10:47
  * @Description: 登录
 -->
 <template>
@@ -25,7 +25,7 @@
 <script>
 import { reactive, toRefs, onMounted, ref, unref } from "vue"
 import { useRouter } from "vue-router"
-import { login } from "/@/request/api/index.js"
+import { login } from "@/request/api/index.js"
 export default {
 	name: "login",
 	setup() {
@@ -95,7 +95,7 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background:url("/@/assets/img/login/bg2.jpeg") no-repeat;
+	background:url("@/assets/img/login/bg2.jpeg") no-repeat;
 	background-size: 100% 100%;
 }
 .loginContent {

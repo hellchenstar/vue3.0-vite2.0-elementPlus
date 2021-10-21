@@ -15,7 +15,7 @@ const test = [
       icon: 'weimingmingwenjianjia_gongzuotai',
       title: '测试页面'
     },
-    component: () => import('/@/pages/test/index.vue'),
+    component: () => import('@/pages/test/index.vue'),
 
   },
 ]

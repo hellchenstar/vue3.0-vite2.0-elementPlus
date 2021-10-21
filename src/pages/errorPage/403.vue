@@ -1,3 +1,10 @@
+<!--
+ * @Author: chenx
+ * @Descripttion: 
+ * @Date: 2021-04-13 21:07:26
+ * @LastEditors: chenx
+ * @LastEditTime: 2021-10-21 16:10:47
+-->
 <template>
   <div class="errPage-container">
     <el-button icon="el-icon-arrow-left" type="primary" @click="goback">
@@ -25,7 +32,7 @@
 </template>
 
 <script>
-import errGif from '/@/assets/img/errImg/401.gif'
+import errGif from '@/assets/img/errImg/401.gif'
 export default {
   name: 'page403',
   data() {

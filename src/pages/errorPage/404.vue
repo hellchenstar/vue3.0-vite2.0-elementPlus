@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @Date: 2021-01-12 14:53:19
- * @LastEditTime: 2021-10-16 18:04:17
+ * @LastEditTime: 2021-10-21 16:11:05
  * @Description: file content
 -->
 <template>
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import errGif from '/@/assets/img/errImg/401.gif'
+import errGif from '@/assets/img/errImg/401.gif'
 export default {
   name: 'page404',
   data() {

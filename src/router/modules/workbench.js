@@ -15,7 +15,7 @@ const workbench = [
       icon: 'weimingmingwenjianjia_gongzuotai',
       title: '工作台'
     },
-    component: () => import('/@/pages/workbench/workbench.vue'),
+    component: () => import('@/pages/workbench/workbench.vue'),
 
   },
 ]

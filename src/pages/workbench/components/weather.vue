@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-09-27 16:08:40
+ * @LastEditTime: 2021-10-21 16:10:42
  * @Description: file content
 -->
 <template>
@@ -80,7 +80,7 @@
 import { onBeforeMount, reactive, toRefs } from "vue"
 
 import AMapLoader from "@amap/amap-jsapi-loader"
-import { weatherKey } from "/@/utils/config.js"
+import { weatherKey } from "@/utils/config.js"
 import chineseLunar from "chinese-lunar"
 import moment from "moment"
 export default {

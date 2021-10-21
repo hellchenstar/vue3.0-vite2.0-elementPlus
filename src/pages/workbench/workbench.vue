@@ -1,133 +1,133 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-10-16 17:57:55
+ * @LastEditTime: 2021-10-21 16:32:59
  * @Description: 工作台
 -->
 <template>
-	<div class="workbench">
-		<el-carousel trigger="click" height="300px" class="carousel">
-				<el-carousel-item v-for="(item, index) in imgList" :key="index">
-					<img :src="item.default" alt="" />
-				</el-carousel-item>
+  <div class="workbench">
+    <el-carousel trigger="click" height="300px" class="carousel">
+      <el-carousel-item v-for="(item, index) in imgList" :key="index">
+        <img :src="item.default" alt="" />
+      </el-carousel-item>
     </el-carousel>
 
-		<div class="center">
-			<div class="center_left">
-				<div class="center_left_top">
-					<el-avatar :size="35" class="avatar" :src="avatar">
-						<img :src="defaultAvatar" />
-					</el-avatar>
-					<div>
-						<div>
-							<span style="font-weight: 600">
-								{{ userName }}
-							</span>
-							,祝你新的一天工作愉快
-						</div>
-					</div>
-				</div>
-			</div>
-			<Weather></Weather>
-		</div>
-		<el-row :gutter="10" class="top">
-			<el-col :span="4"><div class="grid-content bg-purple">1</div></el-col>
-			<el-col :span="4"><div class="grid-content bg-purple">2</div></el-col>
-			<el-col :span="4"><div class="grid-content bg-purple">3</div></el-col>
-			<el-col :span="4"><div class="grid-content bg-purple">4</div></el-col>
-			<el-col :span="4"><div class="grid-content bg-purple">4</div></el-col>
-			<el-col :span="4"><div class="grid-content bg-purple">4</div></el-col>
-		</el-row>
-	</div>
+    <div class="center">
+      <div class="center_left">
+        <div class="center_left_top">
+          <el-avatar :size="35" class="avatar" :src="avatar">
+            <img :src="defaultAvatar" />
+          </el-avatar>
+          <div>
+            <div>
+              <span style="font-weight: 600">
+                {{ userName }}
+              </span>
+              ,祝你新的一天工作愉快
+            </div>
+          </div>
+        </div>
+      </div>
+      <Weather></Weather>
+    </div>
+    <el-row :gutter="10" class="top">
+      <el-col :span="4"><div class="grid-content bg-purple">1</div></el-col>
+      <el-col :span="4"><div class="grid-content bg-purple">2</div></el-col>
+      <el-col :span="4"><div class="grid-content bg-purple">3</div></el-col>
+      <el-col :span="4"><div class="grid-content bg-purple">4</div></el-col>
+      <el-col :span="4"><div class="grid-content bg-purple">4</div></el-col>
+      <el-col :span="4"><div class="grid-content bg-purple">4</div></el-col>
+    </el-row>
+  </div>
 </template>
 <script>
 import { reactive, toRefs, onBeforeMount, onMounted } from "vue"
-import defaultAvatar from "/@/assets/img/header/defaultAvatar.png"
+import defaultAvatar from "@/assets/img/header/defaultAvatar.png"
 import Weather from "./components/weather.vue"
 export default {
-	components: {
-		Weather,
-	},
-	setup() {
-		defaultAvatar
-		const state = reactive({
-			userName: "",
-			avatar: "",
-			currentDate: "",
-		})
-		const imgList = []
-		onBeforeMount(() => {
-			const pic = import.meta.globEager("/src/assets/img/workbench/slider/*")
-			for (const key in pic) {
-				imgList.push(pic[key])
-			}
-		})
-		onMounted(() => {
-			let userName = localStorage.getItem("username")
-			let avatar = localStorage.getItem("avatar")
-			state.userName = userName ? userName : ""
-			state.avatar = avatar ? avatar : defaultAvatar
-		})
-		return { ...toRefs(state), defaultAvatar, imgList }
-	},
+  components: {
+    Weather
+  },
+  setup() {
+    defaultAvatar
+    const state = reactive({
+      userName: "",
+      avatar: "",
+      currentDate: ""
+    })
+    const imgList = []
+    onBeforeMount(() => {
+      const pic = import.meta.globEager("/src/assets/img/workbench/slider/*")
+      for (const key in pic) {
+        imgList.push(pic[key])
+      }
+    })
+    onMounted(() => {
+      let userName = localStorage.getItem("username")
+      let avatar = localStorage.getItem("avatar")
+      state.userName = userName ? userName : ""
+      state.avatar = avatar ? avatar : defaultAvatar
+    })
+    return { ...toRefs(state), defaultAvatar, imgList }
+  }
 }
 </script>
 <style lang="scss" scoped>
 .workbench {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 .top,
 .center,
 .footer {
-	width: 100%;
-	border-radius: 10px;
+  width: 100%;
+  border-radius: 10px;
 }
 .bg-purple {
-	background: #aedadd;
+  background: #aedadd;
 }
 .top {
-	height: 250px;
-	margin-bottom: 10px;
-	.el-col {
-		height: 100%;
-		.grid-content {
-			height: 100%;
-			border-radius: 10px;
-		}
-	}
+  height: 250px;
+  margin-bottom: 10px;
+  .el-col {
+    height: 100%;
+    .grid-content {
+      height: 100%;
+      border-radius: 10px;
+    }
+  }
 }
 .center {
-	display: flex;
-	padding: 0;
-	height: 286px;
-	margin-bottom: 10px;
-	.center_right {
-		background: #fff;
-	}
-	.center_left {
-		margin-right: 10px;
-		width: calc(100% - 710px);
-		height: 100%;
-		background: #fff;
-		border-radius: 10px;
-		padding: 10px;
-		.center_left_top {
-			display: flex;
-			align-items: center;
-			height: 60px;
-			border-bottom: 1px dashed #ccc;
-			.el-avatar {
-				margin-right: 5px;
-			}
-		}
-	}
+  display: flex;
+  padding: 0;
+  height: 286px;
+  margin-bottom: 10px;
+  .center_right {
+    background: #fff;
+  }
+  .center_left {
+    margin-right: 10px;
+    width: calc(100% - 710px);
+    height: 100%;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    .center_left_top {
+      display: flex;
+      align-items: center;
+      height: 60px;
+      border-bottom: 1px dashed #ccc;
+      .el-avatar {
+        margin-right: 5px;
+      }
+    }
+  }
 }
 
 .carousel {
-	img {
-		width: 100%;
-		height: 100%;
-	}
+  img {
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>

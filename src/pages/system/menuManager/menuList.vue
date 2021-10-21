@@ -53,9 +53,9 @@
 <script>
 import { reactive, toRefs, onMounted, ref, unref } from "vue"
 import { useStore } from "vuex"
-import { menuApi } from "/@/request/api/index.js"
+import { menuApi } from "@/request/api/index.js"
 import { ElMessage } from "element-plus"
-import { makeTreeData } from "/@/utils/utils.js"
+import { makeTreeData } from "@/utils/utils.js"
 export default {
 	setup() {
 		// 登录逻辑

@@ -22,12 +22,12 @@ const routerList = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('/@/pages/special/login.vue'),
+    component: () => import('@/pages/special/login.vue'),
   },
   {
     path: '/register',
     name: 'register',
-    component: () => import('/@/pages/special/register.vue'),
+    component: () => import('@/pages/special/register.vue'),
   },
   {
     path: '/home',
@@ -36,7 +36,7 @@ const routerList = [
       title: '工作台'
     },
     redirect: '/workbench',
-    component: () => import('/@/pages/special/home.vue'),
+    component: () => import('@/pages/special/home.vue'),
     children: [...new Set(childrenRouter)]
   }
 ]

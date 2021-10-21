@@ -6,9 +6,9 @@
  */
 import { ElMessage } from 'element-plus';
 import axios from 'axios'
-import router from '/@/router/index'
+import router from '@/router/index'
 import { base } from './baseUrl'
-// import store from '/@/store/index.js'
+// import store from '@/store/index.js'
 // import Vue from 'vue'
 
 /**

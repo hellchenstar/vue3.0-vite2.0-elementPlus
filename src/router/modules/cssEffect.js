@@ -14,7 +14,7 @@ const cssEffect = [
       icon: 'helljihua',
       title: 'css特效'
     },
-    component: () => import('/@/pages/special/components/content.vue'),
+    component: () => import('@/pages/special/components/content.vue'),
     children: [
 
       {
@@ -23,7 +23,7 @@ const cssEffect = [
         meta: {
           title: '流星雨'
         },
-        component: () => import('/@/pages/cssEffect/cssEffect-1/cssEffect-1.vue')
+        component: () => import('@/pages/cssEffect/cssEffect-1/cssEffect-1.vue')
       },
 
     ],

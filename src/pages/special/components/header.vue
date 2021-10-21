@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-09-27 16:09:06
+ * @LastEditTime: 2021-10-21 16:10:53
  * @Description: file content
 -->
 <template>
@@ -42,7 +42,7 @@
 import { computed, onMounted, reactive, toRefs } from "vue"
 import { useRouter, useRoute } from "vue-router"
 import { useStore } from "vuex"
-import defaultAvatar from "/@/assets/img/header/defaultAvatar.png"
+import defaultAvatar from "@/assets/img/header/defaultAvatar.png"
 import UserSetting from "./userSetting.vue"
 export default {
 	components: {

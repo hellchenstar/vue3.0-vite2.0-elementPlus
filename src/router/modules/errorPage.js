@@ -4,9 +4,9 @@
  * @LastEditTime: 2021-09-27 16:10:32
  * @Description: file content
  */
-const errorIndex = () => import('/@/pages/errorPage/index.vue')
-const page403 = () => import('/@/pages/errorPage/403.vue')
-const page404 = () => import('/@/pages/errorPage/404.vue')
+const errorIndex = () => import('@/pages/errorPage/index.vue')
+const page403 = () => import('@/pages/errorPage/403.vue')
+const page404 = () => import('@/pages/errorPage/404.vue')
 const errorPageArr = [
 
   {

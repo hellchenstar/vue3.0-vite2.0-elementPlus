@@ -19,7 +19,7 @@
 	</div>
 </template>
 <script>
-import Calendar from "/@/components/calendar.vue"
+import Calendar from "@/components/calendar.vue"
 import { reactive, toRefs, onMounted } from "vue"
 export default {
 	components: {

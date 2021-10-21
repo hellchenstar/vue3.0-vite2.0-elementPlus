@@ -14,7 +14,7 @@ const fnComponents = [
       icon: 'helljihua',
       title: '功能组件'
     },
-    component: () => import('/@/pages/special/components/content.vue'),
+    component: () => import('@/pages/special/components/content.vue'),
     children: [
 
       {
@@ -23,7 +23,7 @@ const fnComponents = [
         meta: {
           title: '日历'
         },
-        component: () => import('/@/pages/fnComponents/calendar/calendar.vue')
+        component: () => import('@/pages/fnComponents/calendar/calendar.vue')
       },
       {
         path: '/editorList',
@@ -31,7 +31,7 @@ const fnComponents = [
         meta: {
           title: '富文本'
         },
-        component: () => import('/@/pages/fnComponents/editor/editorList.vue')
+        component: () => import('@/pages/fnComponents/editor/editorList.vue')
       },
       {
         path: '/markdownEditor',
@@ -39,7 +39,7 @@ const fnComponents = [
         meta: {
           title: 'markdown编辑器'
         },
-        component: () => import('/@/pages/fnComponents/markdown/markdownEditor.vue')
+        component: () => import('@/pages/fnComponents/markdown/markdownEditor.vue')
       }
     ],
   },

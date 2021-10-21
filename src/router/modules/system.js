@@ -16,7 +16,7 @@ const system = [
       icon: 'xitongshezhi',
       title: '系统设置'
     },
-    component: () => import('/@/pages/special/components/content.vue'),
+    component: () => import('@/pages/special/components/content.vue'),
     children: [
       {
         path: '/menuManager',
@@ -24,7 +24,7 @@ const system = [
         meta: {
           title: '菜单管理'
         },
-        component: () => import('/@/pages/system/menuManager/menuList.vue')
+        component: () => import('@/pages/system/menuManager/menuList.vue')
       }
 
     ],
