@@ -3,7 +3,7 @@
  * @Descripttion: 
  * @Date: 2021-09-27 15:53:37
  * @LastEditors: chenx
- * @LastEditTime: 2021-10-20 10:47:37
+ * @LastEditTime: 2021-10-21 14:31:35
  */
 /*
  * @Author: chenx
@@ -47,15 +47,15 @@ export default defineConfig({
     https: false,// 是否开启 https
     proxy: {
       // 远端服务
-      // '/api': {
-      //   target: 'http://139.129.101.158:21009',
-      //   changeOrigin: true,
-      // },
-      // 本地服务
       '/api': {
-        target: 'http://192.168.2.105:2888',
+        target: 'http://139.129.101.158:21009',
         changeOrigin: true,
       },
+      // 本地服务
+      // '/api': {
+      //   target: 'http://192.168.0.24:2888',
+      //   changeOrigin: true,
+      // },
     },
 
   },

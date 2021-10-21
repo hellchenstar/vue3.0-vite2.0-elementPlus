@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-10-20 15:09:34
+ * @LastEditTime: 2021-10-20 15:18:09
  * @Description: 登录
 -->
 <template>
@@ -95,7 +95,7 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background:url("/@/assets/img/login/bg1.jpeg") no-repeat;
+	background:url("/@/assets/img/login/bg2.jpeg") no-repeat;
 	background-size: 100% 100%;
 }
 .loginContent {

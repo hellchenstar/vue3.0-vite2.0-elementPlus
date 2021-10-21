@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-10-20 14:39:34
+ * @LastEditTime: 2021-10-20 16:35:20
  * @Description: file content
  */
 import { ElMessage } from 'element-plus';
@@ -189,6 +189,7 @@ instance.interceptors.response.use(
   error => {
     const { response } = error
     if (response) {
+      debugger
       // 请求已发出，但是不在2xx的范围
       errorHandle(response.status, response.data.message)
       //403返回的值在response.data.ElMessage
