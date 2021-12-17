@@ -23,3 +23,19 @@
 .icon {
 	margin-right: 5px;
 }
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+  display: none;
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #409EFF;
+  -webkit-box-shadow: inset 0 0 1px #409EFF;
+}

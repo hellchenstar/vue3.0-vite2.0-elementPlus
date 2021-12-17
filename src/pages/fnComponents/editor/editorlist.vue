@@ -1,27 +1,20 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-10-21 17:48:51
+ * @LastEditTime: 2021-10-22 11:12:20
  * @Description: file content
 -->
 <template>
   <div class="module">
-    <div>
-      <h3>
-        vue-quill-editor编辑器<a
-          href="https://www.kancloud.cn/liuwave/quill/1409423"
-          >https://www.kancloud.cn/liuwave/quill/1409423</a
-        >
+    <div class="container">
+      <h3 class="title">
+        vue-quill-editor编辑器
+        <a href="https://www.kancloud.cn/liuwave/quill/1409423">
+          https://www.kancloud.cn/liuwave/quill/1409423
+        </a>
       </h3>
-      <div>
-        <quill-editor
-          v-model="content"
-          ref="myQuillEditor"
-          @blur="onEditorBlur($event)"
-          @focus="onEditorFocus($event)"
-          @ready="onEditorReady($event)"
-        >
-        </quill-editor>
+      <div id="editor">
+        <QuillEditor  v-model="state.content" :options="options" />
       </div>
     </div>
   </div>
@@ -29,33 +22,76 @@
 
 <script>
 import { reactive } from "vue"
-// require styles
-import "quill/dist/quill.core.css"
-import "quill/dist/quill.snow.css"
-import "quill/dist/quill.bubble.css"
-import { quillEditor } from "vue-quill-editor"
+
+import { QuillEditor } from "@vueup/vue-quill"
+// 编辑器的主题文件
+import "@vueup/vue-quill/dist/vue-quill.snow.css"
+// import '@vueup/vue-quill/dist/vue-quill.bubble.css';
 
 export default {
   components: {
-    quillEditor
+    QuillEditor
   },
   setup() {
+    const toolbarOptions = [
+      ['bold', 'italic', 'underline', 'strike'],        //加粗，斜体，下划线，删除线
+      ['blockquote', 'code-block'],                     //引用，代码块
+
+      [{ 'header': 1 }, { 'header': 2 }],               // // 标题，键值对的形式；1、2表示字体大小
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],     //列表
+      [{ 'script': 'sub'}, { 'script': 'super' }],      // 上下标
+      [{ 'indent': '-1'}, { 'indent': '+1' }],          // 缩进
+      [{ 'direction': 'rtl' }],                         // 文本方向
+
+      [{ 'size': ['small', false, 'large', 'huge'] }],  //  字体大小
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],        //几级标题
+
+      [{ 'color': [] }, { 'background': [] }],          // 字体颜色，字体背景颜色
+      [{ 'font': [] }],                                 //字体
+      [{ 'align': [] }],                                //对齐方式
+
+      ['clean'],                                         // 清除字体样式
+      ['image','video'] //上传图片、上传视频
+    ];
+    const options = {
+      readOnly:false, // 是否只读，默认false
+      theme:"snow", // 主题 snow | bubble, 需要引入对应的样式
+      modules:{
+        // container: '#toolbar', // x选择toolbar的自定义容器
+        toolbar:toolbarOptions, //工具栏功能
+      },
+      // scrollingContainer:"#editor" // 滚动容器
+    }
     const state = reactive({
       content: ""
     })
-    const onEditorBlur = e => {
-      console.log(e)
-			state.content = "我有焦点了"
-    }
-    const onEditorFocus = e => {
-      console.log(e)
-			state.content = "失去焦点了"
-    }
-    const onEditorReady = e => {
-      console.log(e)
-			state.content = "准备好了"
-    }
-    return { state, onEditorBlur, onEditorFocus, onEditorReady }
+
+    return { state,options }
   }
 }
 </script>
+<style lang="scss" scoped>
+.container{
+  width: 100%;
+  height: 100%;
+}
+.title{
+  width: 100%;
+  height: 40px;
+  padding: 10px 0;
+  box-sizing: border-box;
+}
+#editor{
+  width: 100%;
+  min-height: 400px;
+  max-height: calc(100% - 100px);
+  // overflow-y: auto;
+  box-sizing: border-box;
+  .ql-container{
+    width: 100%;
+    height: calc(100% - 60px);
+    overflow-y: auto;
+  }
+}
+
+</style>

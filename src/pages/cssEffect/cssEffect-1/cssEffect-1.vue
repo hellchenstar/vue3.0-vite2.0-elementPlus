@@ -1,12 +1,12 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-10-21 16:10:45
+ * @LastEditTime: 2021-12-17 11:43:41
  * @Description: file content
 -->
 <template>
 	<div class="cssEffect-main">
-		<div ref="stars">
+		<div id="stars">
 			<div class="star" :style="{ top: `${randomDistance(500, -100)}px`, left: `${randomDistance(1300, 300)}px` }" v-for="item in 30" :key="item"></div>
 		</div>
 	</div>
@@ -20,7 +20,7 @@ export default {
 			list: [],
 		})
 		const setCssEffect = () => {
-			console.log(stars)
+			console.log('star',stars)
 		}
 		const randomDistance = (max, min) => {
 			let distance = Math.floor(Math.random() * (max - min + 1) + min)

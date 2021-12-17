@@ -7,6 +7,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@vueup/vue-quill": "^1.0.0-beta.7",
     "axios": "^0.21.1",
     "chinese-lunar": "^0.1.4",
     "echarts": "^5.1.1",
@@ -17,6 +18,7 @@
     "screenfull": "^5.1.0",
     "vue": "^3.0.5",
     "vue-echarts": "^6.0.0-rc.5",
+    "vue-quill-editor": "^3.0.6",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
   },
