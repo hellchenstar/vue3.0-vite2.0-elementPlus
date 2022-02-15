@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-09-27 16:09:51
+ * @LastEditTime: 2022-02-15 15:58:59
  * @Description: 路由文件
  */
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
@@ -9,9 +9,9 @@ import childrenRouter from './modules/index.js'
 import NProgress from 'NProgress'
 // 开启历史模式
 // vue2中使用 mode: history 实现
-// const routerHistory = createWebHistory();
+const routerHistory = createWebHistory();
 
-const routerHash = createWebHashHistory()
+// const routerHash = createWebHashHistory()
 
 const routerList = [
   {
@@ -44,9 +44,9 @@ const routerList = [
 // 创建路由
 const router = createRouter({
   // hostory
-  // history: routerHistory,
+  history: routerHistory,
   // hash
-  history: routerHash,
+  // history: routerHash,
   routes: routerList
 
 })

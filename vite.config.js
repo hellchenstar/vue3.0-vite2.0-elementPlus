@@ -3,7 +3,7 @@
  * @Descripttion: 
  * @Date: 2021-09-27 15:53:37
  * @LastEditors: chenx
- * @LastEditTime: 2021-11-29 12:10:59
+ * @LastEditTime: 2022-02-07 11:27:25
  */
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -40,15 +40,15 @@ export default defineConfig({
     https: false,// 是否开启 https
     proxy: {
       // 远端服务
-      '/api': {
-        target: 'http://139.129.101.158:21009',
-        changeOrigin: true,
-      },
-      // 本地服务
       // '/api': {
-      //   target: 'http://localhost:21009',
+      //   target: 'http://139.129.101.158:21009',
       //   changeOrigin: true,
       // },
+      // 本地服务
+      '/api': {
+        target: 'http://localhost:21009',
+        changeOrigin: true,
+      },
     },
     fs:{
       // 默认： false (将在后续版本中改为 true)
