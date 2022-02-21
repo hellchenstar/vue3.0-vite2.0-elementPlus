@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-02-21 21:30:13
+ * @LastEditTime: 2022-02-21 23:19:27
  * @Description: 登录
 -->
 <template>
@@ -66,7 +66,8 @@ export default {
 							router.push("home")
 						})
 						.catch((err) => {
-							state.loginLoading = false
+								state.loginLoading = false
+							
 							console.log(err);
 						})
 					//
