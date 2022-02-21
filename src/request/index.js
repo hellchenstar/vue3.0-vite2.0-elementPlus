@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-10-20 16:35:20
+ * @LastEditTime: 2022-02-21 21:30:32
  * @Description: file content
  */
 import { ElMessage } from 'element-plus';
@@ -187,21 +187,27 @@ instance.interceptors.response.use(
   },
   // 请求失败
   error => {
+    console.log(error);
     const { response } = error
     if (response) {
-      debugger
       // 请求已发出，但是不在2xx的范围
       errorHandle(response.status, response.data.message)
       //403返回的值在response.data.ElMessage
       return Promise.reject(response)
     } else {
-      // 处理断网的情况
+
+      // 处理电脑断网的情况
       // eg:请求超时或断网时，更新state的network状态
       // 关于断网组件中的刷新重新获取数据，会在断网组件中说明
       if (!window.navigator.onLine) {
+        // 断网情况
+        ElMessage.error('网络连接失败')
+        return Promise.reject(false)
         // store.commit("changeNetwork", false)
       } else {
-        return Promise.reject(response)
+        // 请求超时
+        ElMessage.error('请求超时,请稍后再试')
+        return Promise.reject(false)
       }
     }
   }
