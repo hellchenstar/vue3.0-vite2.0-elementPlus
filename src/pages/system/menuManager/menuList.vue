@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-09-27 16:08:53
+ * @LastEditTime: 2022-02-23 22:42:23
  * @Description: file content
 -->
 <template>
@@ -85,10 +85,10 @@ export default {
 				state.menuList = makeTreeData(res.data, null)
 			})
 		}
+		// 新增、编辑
 		const addOrEdit = (row, type) => {
 			state.infoDialog = true
 			if (row) {
-				console.log(row)
 				if (type === "add") {
 					state.title = "新增菜单"
 					state.showParentMenu = true
@@ -137,7 +137,6 @@ export default {
 		// 更新左侧菜单
 		const vuex = useStore()
 		const setIsReloadMenu = () => {
-			console.log("测试更新菜单")
 			vuex.commit("setIsReloadMenu", true)
 		}
 		const menuForm = ref(null)
@@ -162,7 +161,6 @@ export default {
 						})
 					//
 				} else {
-					console.log("error submit!!")
 					return false
 				}
 			})
