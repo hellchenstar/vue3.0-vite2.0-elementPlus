@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-09-27 16:10:37
+ * @LastEditTime: 2022-02-25 18:08:59
  * @Description: file content
  */
 const fnComponents = [
@@ -40,6 +40,14 @@ const fnComponents = [
           title: 'markdown编辑器'
         },
         component: () => import('@/pages/fnComponents/markdown/markdownEditor.vue')
+      },
+      {
+        path: '/pictureList',
+        name: 'pictureList',
+        meta: {
+          title: '瀑布流'
+        },
+        component: () => import('@/pages/fnComponents/pictureManager/pictureList.vue')
       }
     ],
   },

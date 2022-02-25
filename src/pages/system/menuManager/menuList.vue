@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-02-23 22:42:23
+ * @LastEditTime: 2022-02-25 17:11:42
  * @Description: file content
 -->
 <template>
@@ -105,6 +105,7 @@ export default {
 				} else {
 					state.title = "编辑菜单"
 					state.showParentMenu = false
+					state.iconDisabled = false
 					state.menuInfo = {
 						parentId: row.parentId,
 						id: row.id,
@@ -117,6 +118,7 @@ export default {
 			} else {
 				state.showParentMenu = false
 				state.iconDisabled = false
+				
 				state.urlDisabled = false
 				// 新增
 				state.title = "新增模块"
@@ -132,7 +134,7 @@ export default {
 		}
 		const closeDia = () => {
 			state.infoDialog = false
-			state.submitLoading = true
+			state.submitLoading = false
 		}
 		// 更新左侧菜单
 		const vuex = useStore()
