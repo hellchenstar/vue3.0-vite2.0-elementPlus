@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-09-27 16:10:32
+ * @LastEditTime: 2022-02-26 11:11:37
  * @Description: file content
  */
 const errorIndex = () => import('@/pages/errorPage/index.vue')
@@ -13,7 +13,6 @@ const errorPageArr = [
     path: '/errorIndex',
     name: 'errorIndex',
     meta: {
-      title: 'errorPage',
       icon: 'el-icon-error'
     },
     component: errorIndex,

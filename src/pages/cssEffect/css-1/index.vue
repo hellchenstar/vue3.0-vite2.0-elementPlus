@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-12-17 11:43:41
+ * @LastEditTime: 2022-02-26 14:28:12
  * @Description: file content
 -->
 <template>
@@ -47,10 +47,10 @@ export default {
 	background: linear-gradient(rgba(0, 108, 172, 1), rgba(0, 122, 195, 0.7));
 	#stars {
 		margin: 0 auto;
-		max-width: 1600px;
+		width: 100%;
 		position: fixed;
-		top: 0;
-		left: 0;
+		top: 60px;
+		left: 200px;
 		right: 0;
 		bottom: 0;
 		z-index: 2;

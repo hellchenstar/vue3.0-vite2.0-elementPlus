@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-02-25 18:08:59
+ * @LastEditTime: 2022-02-26 11:11:44
  * @Description: file content
  */
 const fnComponents = [
@@ -11,7 +11,6 @@ const fnComponents = [
     path: '/fnList',
     name: 'fnList',
     meta: {
-      icon: 'helljihua',
       title: '功能组件'
     },
     component: () => import('@/pages/special/components/content.vue'),
