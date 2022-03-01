@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-02-26 14:22:13
+ * @LastEditTime: 2022-03-01 11:55:10
  * @Description: file content
 -->
 <template>
@@ -17,6 +17,13 @@
     >
       <el-table-column prop="name" label="菜单名称"> </el-table-column>
       <el-table-column prop="url" label="菜单地址"> </el-table-column>
+      <el-table-column prop="isDel" label="禁用状态">
+        <template #default="scope">
+          <el-tag :type="scope.row.disabled ? 'success' : 'danger'">{{
+            scope.row.disabled ? '已启用' : '已禁用'
+          }}</el-tag>
+        </template>
+      </el-table-column>
       <el-table-column prop="icon" label="菜单图标">
         <template #default="scope">
           <i :class="`icon hell${scope.row.icon}`"> </i>
@@ -29,17 +36,24 @@
             @click="addOrEdit(scope.row, 'add')"
             type="primary"
             size="mini"
-            >新增菜单</el-button
           >
+            新增菜单
+          </el-button>
           <el-button
             type="primary"
             size="mini"
             @click="addOrEdit(scope.row, 'edit')"
-            >编辑</el-button
           >
-          <el-button type="danger" size="mini" @click="delMenu(scope.row.id)"
-            >删除</el-button
+            编辑
+          </el-button>
+          <el-button
+            :type="scope.row.disabled ? 'danger' : 'success'"
+            size="mini"
+            @click="changeMenuStatus(scope.row.disabled, scope.row.id)"
+            :loading="submitLoading"
           >
+            {{ scope.row.disabled ? '禁用' : '启用' }}
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -71,9 +85,9 @@
         </el-form-item>
         <el-form-item :label-width="formLabelWidth">
           <el-button @click="closeDia">取 消</el-button>
-          <el-button type="primary" @click="submit" :loading="submitLoading"
-            >确 定</el-button
-          >
+          <el-button type="primary" @click="submit" :loading="submitLoading">
+            确 定
+          </el-button>
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -106,6 +120,7 @@ export default {
       urlDisabled: false,
       showParentMenu: false,
       formLabelWidth: '100px',
+      init: true,
     })
     // 更新菜单
 
@@ -161,8 +176,12 @@ export default {
         }
       }
     }
-    const delMenu = (id) => {
-      menuApi.delMenu(id).then((res) => {
+    const changeMenuStatus = (val, id) => {
+      const params = {
+        id: id,
+        disabled: val ? 0 : 1,
+      }
+      menuApi.changeMenuStatus(params).then((res) => {
         if (res.code === 200) {
           ElMessage.success(res.msg)
           getMenuList()
@@ -214,7 +233,7 @@ export default {
       menuForm,
       getMenuList,
       addOrEdit,
-      delMenu,
+      changeMenuStatus,
       closeDia,
       submit,
     }

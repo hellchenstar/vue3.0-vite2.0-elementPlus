@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-02-26 14:21:20
+ * @LastEditTime: 2022-02-28 11:17:35
  * @Description: 菜单
  */
 import { base } from '../../baseUrl' // 导入接口域名列表
@@ -21,8 +21,8 @@ const menuApi = {
     return axios.post(`${base.dev.menu}/updateMenu`, params)
   },
   // 删除
-  delMenu(id) {
-    return axios.get(`${base.dev.menu}/delMenu?id=${id}`)
+  changeMenuStatus(data) {
+    return axios.post(`${base.dev.menu}/changeMenuStatus`,data)
   },
 
   // 其他接口…………
