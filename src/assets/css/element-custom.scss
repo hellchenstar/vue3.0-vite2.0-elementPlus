@@ -1,14 +1,14 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-19 17:08:42
+ * @LastEditTime: 2022-03-28 17:46:17
  * @Description: 自定义主题
  */
-@import "./variable.scss";
+@import './variable.scss';
 
 $--color-primary: $themeColor;
 
 /* 改变 icon 字体路径变量，必需 */
-$--font-path: "node_modules/element-plus/lib/theme-chalk/fonts";
+$--font-path: 'node_modules/element-plus/theme-chalk/icon.scss';
 
-@import "node_modules/element-plus/packages/theme-chalk/src/index";
+@import '/node_modules/element-plus/theme-chalk/index';

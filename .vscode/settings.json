@@ -1,0 +1,155 @@
+{
+  "workbench.colorTheme": "Monokai",
+  // 重新设定tabsize
+  "editor.tabSize": 2,
+  //  #去掉代码结尾的分号
+  "prettier.semi": false,
+  "prettier.tabWidth": 2,
+  //  #使用单引号替代双引号
+  "prettier.singleQuote": true,
+  "prettier.htmlWhitespaceSensitivity": "ignore",
+  //  #让函数(名)和后面的括号之间加个空格
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  // #让vue中的js按编辑器自带的ts格式进行格式化
+  "vetur.format.defaultFormatter.js": "none",
+  // "editor.formatOnSave": true, // #每次保存的时候自动格式化
+  // 自动修复
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+
+  //一定要在vutur.defaultFormatterOptions参数中设置，单独修改prettier扩展的设置是无法解决这个问题的，因为perttier默认忽略了vue文件（事实上从忽略列表移除vue也不能解决这个问题）
+  "vetur.format.defaultFormatterOptions": {
+    "prettier": {
+      "semi": false, // 格式化不加分号
+      "singleQuote": true // 格式化以单引号为主
+    },
+    "js-beautify-html": {
+      // force-aligned | force-expand-multiline
+      "wrap_attributes": "auto",
+      "end_with_newline": false
+    },
+    "prettyhtml": {
+      "printWidth": 100,
+      "singleQuote": false,
+      "wrapAttributes": false,
+      "sortAttributes": true
+    }
+  },
+
+  "git.confirmSync": false,
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "git.enableSmartCommit": true,
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "fileheader.customMade": {
+    "Author": "chenx",
+    "Descripttion": "",
+    "Date": "Do not edit",
+    "LastEditors": "chenx",
+    "LastEditTime": "Do not Edit"
+  },
+  //函数注释-快捷键ctrl+alt+t (window), ctrl+alt+t(mac)
+  "fileheader.cursorMode": {
+    "name": "",
+    // "test": "test font",
+    // "msg": "",
+    "param": "",
+    "return": ""
+  },
+  "fileheader.configObj": {
+    "createFileTime": true,
+    "language": {
+      "languagetest": {
+        "head": "/$$",
+        "middle": " $ @",
+        "end": " $/"
+      }
+    },
+    "autoAdd": true,
+    "autoAddLine": 100,
+    "autoAlready": true,
+    "annotationStr": {
+      "head": "/*",
+      "middle": " * @",
+      "end": " */",
+      "use": false
+    },
+    "headInsertLine": {
+      "php": 2,
+      "sh": 2
+    },
+    "beforeAnnotation": {
+      "文件后缀": "该文件后缀的头部注释之前添加某些内容"
+    },
+    "afterAnnotation": {
+      "文件后缀": "该文件后缀的头部注释之后添加某些内容"
+    },
+    "specialOptions": {
+      "特殊字段": "自定义比如LastEditTime/LastEditors"
+    },
+    "switch": {
+      "newlineAddAnnotation": true
+    },
+    "supportAutoLanguage": [],
+    "prohibitAutoAdd": ["json"],
+    "folderBlacklist": ["node_modules", "文件夹禁止自动添加头部注释"],
+    "prohibitItemAutoAdd": [
+      "项目的全称, 整个项目禁止自动添加头部注释, 可以使用快捷键添加"
+    ],
+    "moveCursor": true,
+    "dateFormat": "YYYY-MM-DD HH:mm:ss",
+    "atSymbol": ["@", "@"],
+    "atSymbolObj": {
+      "文件后缀": ["头部注释@符号", "函数注释@符号"]
+    },
+    "colon": [": ", ": "],
+    "colonObj": {
+      "文件后缀": ["头部注释冒号", "函数注释冒号"]
+    },
+    "filePathColon": "路径分隔符替换",
+    "showErrorMessage": false,
+    "writeLog": false,
+    "wideSame": false,
+    "wideNum": 13,
+    "functionWideNum": 0,
+    "CheckFileChange": false,
+    "createHeader": true,
+    "useWorker": false,
+    "designAddHead": false,
+    "headDesignName": "random",
+    "headDesign": false,
+    "cursorModeInternalAll": {},
+    "openFunctionParamsCheck": true,
+    "functionParamsShape": ["{", "}"],
+    "functionBlankSpaceAll": {},
+    "functionTypeSymbol": "*",
+    "typeParamOrder": "type param",
+    "customHasHeadEnd": {}
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "liveServer.settings.donotShowInfoMsg": true,
+  "workbench.startupEditor": "none",
+  "explorer.confirmDelete": false,
+  "bracket-pair-colorizer-2.depreciation-notice": false,
+  "bracketPairColorizer.depreciation-notice": false,
+  "git.autofetch": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true
+}

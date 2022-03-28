@@ -1,53 +1,54 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-10-21 16:11:05
+ * @LastEditTime: 2022-03-28 17:46:52
  * @Description: file content
 -->
 <template>
-	<div class="Content">
-		<Menu />
-		<el-container>
-			<el-header>
-				<Header />
-			</el-header>
-			<el-main>
-				<Container />
-			</el-main>
-		</el-container>
-	</div>
+  <div class="allContent">
+    <Menu />
+    <el-container>
+      <el-header>
+        <Header />
+      </el-header>
+      <el-main>
+        <Container />
+      </el-main>
+    </el-container>
+  </div>
 </template>
 <script>
-import Header from "./components/header.vue"
-import Container from "./components/content.vue"
-import Menu from "./components/menu.vue"
+import Header from './components/header.vue'
+import Container from './components/content.vue'
+import Menu from './components/menu.vue'
 
 export default {
-	components: {
-		Menu,
-		Header,
-		Container,
-	},
+  components: {
+    Menu,
+    Header,
+    Container,
+  },
 }
 </script>
 <style lang="scss" scoped>
-.Content {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	.el-container {
-		width: calc(100% - 220px);
-		height: 100%;
-		.el-header {
-			height: 50px !important;
-			background: #fff;
-		}
-		.el-main {
-			width: 100%;
-			padding: 5px;
-			background: #eee;
-			height: calc(100% - 50px);
-		}
-	}
+.allContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  .el-container {
+    width: calc(100% - 220px);
+    height: 100%;
+    .el-header {
+      height: 50px !important;
+      background: #fff;
+    }
+    .el-main {
+      width: 100%;
+      margin: 5px;
+      padding: 10px;
+      background: #fff;
+      height: calc(100% - 50px);
+    }
+  }
 }
 </style>

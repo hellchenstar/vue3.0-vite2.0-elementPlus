@@ -1,35 +1,19 @@
 /*
  * @Author: chenx
- * @Descripttion: 
- * @Date: 2021-04-13 10:05:44
+ * @Descripttion:
+ * @Date: 2022-03-14 10:51:53
  * @LastEditors: chenx
- * @LastEditTime: 2022-02-15 16:00:44
+ * @LastEditTime: 2022-03-25 17:19:57
  */
 import { createApp } from 'vue'
-import router from './router'
+import router from './router' //引入router组件
 import App from './App.vue'
-import element from "@/assets/js/element-components";
-import '@/assets/css/element-custom.scss'
-import 'element-plus/packages/theme-chalk/src/base.scss'
+import element from '@/assets/js/element-components' //这里我将element按需引入的组件分离出去了，便面main.js过大
+import '@/assets/css/element-custom.scss' //配合element组件该更自定义主题设置
 import '@/assets/css/common.scss'
-import 'nprogress/nprogress.css'
 import store from '@/vuex/index.js'
-// import mavonEditor from 'mavon-editor'
-// import 'mavon-editor/dist/css/index.css'
-
 const app = createApp(App)
-
 app.use(store)
 app.use(router)
-
-// 全局插件
-// app.use(mavonEditor) //markdown编辑器
-app.config.globalProperties.$ELEMENT = { size: 'small' }
-// 全局 错误处理
-app.config.errorHandler = (err, vm, info) => {
-  console.log(err)
-  console.log(vm)
-  console.log(info)
-}
-element(app);
+element(app)
 app.mount('#app')

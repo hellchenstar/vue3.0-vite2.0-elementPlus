@@ -1,12 +1,12 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-03-01 11:43:10
+ * @LastEditTime: 2022-03-28 18:03:25
  * @Description: element-ui按需加载分离（不写在main.js中）
  */
-import "dayjs/locale/zh-cn";
+import 'dayjs/locale/zh-cn'
 // import locale from "element-plus/lib/locale";
-import lang from "element-plus/lib/locale/lang/zh-cn";
+import lang from 'element-plus/lib/locale/lang/zh-cn'
 import {
   ElAvatar,
   ElCol,
@@ -20,7 +20,7 @@ import {
   ElMenu,
   ElMenuItem,
   ElMenuItemGroup,
-  ElSubmenu,
+  ElSubMenu,
   ElInput,
   ElForm,
   ElFormItem,
@@ -49,8 +49,8 @@ import {
   ElCarousel,
   ElCarouselItem,
   ElCalendar,
-  ElTag
-} from 'element-plus';
+  ElTag,
+} from 'element-plus'
 const components = [
   ElAvatar,
   ElCol,
@@ -63,7 +63,7 @@ const components = [
   ElMenu,
   ElMenuItem,
   ElMenuItemGroup,
-  ElSubmenu,
+  ElSubMenu,
   ElInput,
   ElForm,
   ElFormItem,
@@ -88,7 +88,7 @@ const components = [
   ElCarousel,
   ElCarouselItem,
   ElCalendar,
-  ElTag
+  ElTag,
 ]
 const plugins = [
   ElInfiniteScroll,
@@ -99,13 +99,12 @@ const plugins = [
 ]
 
 export default (app) => {
-
   // locale:lang,
-  components.forEach(component => {
-    app.component(component.name, component);
-  });
+  components.forEach((component) => {
+    app.component(component.name, component)
+  })
 
-  plugins.forEach(plugin => {
-    app.use(plugin);
-  });
-};
+  plugins.forEach((plugin) => {
+    app.use(plugin)
+  })
+}
