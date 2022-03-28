@@ -1,43 +1,45 @@
 /*
  * @Author: chenx
- * @Descripttion: 
- * @Date: 2021-09-27 15:53:37
+ * @Descripttion:
+ * @Date: 2022-03-14 10:51:53
  * @LastEditors: chenx
- * @LastEditTime: 2022-02-07 11:27:25
+ * @LastEditTime: 2022-03-25 17:04:58
  */
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import styleImport from 'vite-plugin-style-import'
-const path = require("path");
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import { createStyleImportPlugin } from 'vite-plugin-style-import';
+const path = require('path');
 // https://vitejs.dev/config/
 export default defineConfig({
-  base:'/',
+  base: '/',
   plugins: [
     vue(),
-    styleImport({
-      libs: [{
-        libraryName: 'element-plus',
-        resolveStyle: (name) => {
-          name = name.slice(3)
-          return `element-plus/packages/theme-chalk/src/${name}.scss`;
+    createStyleImportPlugin({
+      libs: [
+        {
+          libraryName: 'element-plus',
+          resolveStyle: (name) => {
+            name = name.slice(3);
+            return `element-plus/theme-chalk/src/${name}.scss`;
+          },
+          resolveComponent: (name) => {
+            return `element-plus/lib/components/${name}`;
+          },
         },
-        resolveComponent: (name) => {
-          return `element-plus/lib/${name}`;
-        },
-      }]
+      ],
     }),
   ],
   resolve: {
-    alias: [
-      { find: '@', replacement: path.resolve(__dirname, 'src') }
-    ],
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
   },
   server: {
     host: 'localhost',
     port: 3000,
     open: true,
-    strictPort: false,//如果端口占用，是退出，还是尝试其他端口
-    https: false,// 是否开启 https
+    strictPort: false, //如果端口占用，是退出，还是尝试其他端口
+    https: false, // 是否开启 https
     proxy: {
       // 远端服务
       // '/api': {
@@ -50,22 +52,22 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
-    fs:{
+    fs: {
       // 默认： false (将在后续版本中改为 true)
       // 限制为工作区 root 路径以外的文件的访问。
-      strict:false
-    }
+      strict: false,
+    },
   },
   build: {
-    assetsInlineLimit:0,
-    assetsDir:"assets",
+    assetsInlineLimit: 0,
+    assetsDir: 'assets',
     rollupOptions: {
       // external: ['vue', 'vuetify','element-plus'],
       output: {
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
-        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
-      }
-    }
-  }
-})
+        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
+      },
+    },
+  },
+});

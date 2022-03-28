@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-10-21 16:10:42
+ * @LastEditTime: 2022-03-14 12:13:18
  * @Description: file content
 -->
 <template>
@@ -82,7 +82,7 @@ import { onBeforeMount, reactive, toRefs } from "vue"
 import AMapLoader from "@amap/amap-jsapi-loader"
 import { weatherKey } from "@/utils/config.js"
 import chineseLunar from "chinese-lunar"
-import moment from "moment"
+import moment from "dayjs"
 export default {
 	setup() {
 		const mapInfo = reactive({
@@ -100,7 +100,7 @@ export default {
 				extensions: "all",
 				plugins: ["AMap.Weather"], //插件列表
 			})
-				.then((AMap) => {
+				.then(AMap => {
 					let weather = new AMap.Weather()
 					// 获取实时天气
 					weather.getLive("西安市", (err, data) => {
@@ -119,11 +119,11 @@ export default {
 					})
 				})
 
-				.catch((e) => {
+				.catch(e => {
 					console.log(e)
 				})
 		}
-		const getCurrentDay = (week) => {
+		const getCurrentDay = week => {
 			switch (week) {
 				case 1:
 					return "周一"

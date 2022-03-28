@@ -1,0 +1,4 @@
+// 根据自己需要可以自行添加
+/node_modules
+/dist
+*.html

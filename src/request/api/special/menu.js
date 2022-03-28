@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-04-19 17:09:23
+ * @LastEditTime: 2022-02-28 11:17:35
  * @Description: 菜单
  */
 import { base } from '../../baseUrl' // 导入接口域名列表
@@ -19,6 +19,10 @@ const menuApi = {
   // 编辑
   editMenu(params) {
     return axios.post(`${base.dev.menu}/updateMenu`, params)
+  },
+  // 删除
+  changeMenuStatus(data) {
+    return axios.post(`${base.dev.menu}/changeMenuStatus`,data)
   },
 
   // 其他接口…………

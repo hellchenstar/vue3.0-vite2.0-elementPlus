@@ -1,18 +1,18 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-10-21 16:11:02
+ * @LastEditTime: 2022-03-14 12:34:00
  * @Description: 菜单
 -->
 <template>
 	<el-menu router class="el-menu-vertical" :collapse="isCollapse" unique-opened :default-active="defaultActive">
 		<div class="logo">
 			<img src="../../../assets/img/logo/logo.jpg" alt="" />
-			<span class="sysName" v-if="!isCollapse"> Vite2.0 + Vue3.0 </span>
+			<span class="sysName" v-if="!isCollapse">Vite2.0 + Vue3.0</span>
 		</div>
 
 		<template v-for="(item, index) in menuList" :key="index">
-			<el-submenu :index="item.url" v-if="item.children.length">
+			<el-sub-menu :index="item.url" v-if="item.children.length">
 				<template #title>
 					<i :class="`icon hell${item.icon}`"></i>
 					<span>{{ item.name }}</span>
@@ -21,7 +21,7 @@
 				<el-menu-item v-for="(el, i) in item.children" :index="el.url" :key="i">
 					{{ el.name }}
 				</el-menu-item>
-			</el-submenu>
+			</el-sub-menu>
 
 			<el-menu-item :index="item.url" v-else>
 				<i :class="`icon hell${item.icon}`"></i>
@@ -61,7 +61,7 @@ export default {
 		})
 		watch(
 			isReloadMenu,
-			(val) => {
+			val => {
 				if (val) {
 					getMenuData()
 				}
@@ -69,7 +69,7 @@ export default {
 			{ lazy: true }
 		)
 		const getMenuData = () => {
-			menuApi.getMenuList().then((res) => {
+			menuApi.getMenuList().then(res => {
 				state.menuList = makeTreeData(res.data, null)
 				vuex.commit("setIsReloadMenu", false)
 			})

@@ -1,20 +1,12 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2021-10-21 16:10:49
+ * @LastEditTime: 2022-03-14 12:59:25
  * @Description: file content
 -->
 <template>
-	<div class="content">
-		<router-view></router-view>
-	</div>
+	<router-view></router-view>
 </template>
 <script>
 export default {}
 </script>
-<style lang="scss" scoped>
-.content {
-	width: 100%;
-	height: 100%;
-}
-</style>
