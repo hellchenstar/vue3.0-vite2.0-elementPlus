@@ -1,10 +1,10 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-02-21 21:30:32
+ * @LastEditTime: 2022-04-08 09:59:31
  * @Description: file content
  */
-import { ElMessage } from 'element-plus';
+import { ElMessage } from 'element-plus'
 import axios from 'axios'
 import router from '@/router/index'
 import { base } from './baseUrl'
@@ -19,12 +19,12 @@ const errorHandle = (status, message) => {
   // 状态码判断
   switch (status) {
     case 401:
-      ElMessage.error("用户令牌已失效,请重新登录")
+      ElMessage.error('用户令牌已失效,请重新登录')
       localStorage.clear()
       sessionStorage.clear()
-      router.push("login")
-    // getRefreshToken()
-    break
+      router.push('login')
+      // getRefreshToken()
+      break
     case 403:
       ElMessage.error(message)
       router.push('403')
@@ -49,10 +49,10 @@ function getRefreshToken() {
   let url = `${base.dev}/refreshtoken/Get?refresh_token=${refreshToken}`
   return axios
     .get(url)
-    .then(res => {
+    .then((res) => {
       return Promise.resolve(res.data)
     })
-    .catch(err => {
+    .catch((err) => {
       return Promise.reject(err)
     })
 }
@@ -72,7 +72,7 @@ let currentAjaxArr = []
 // 数组中的请求得到新的token之后自执行，用新的token去请求数据
 function onRefreshed(token) {
   // console.log('重新发送积攒的请求')
-  currentAjaxArr.map(cb => cb(token))
+  currentAjaxArr.map((cb) => cb(token))
 }
 // 将所有的请求都push到数组中
 function subscribeTokenRefresh(cb) {
@@ -82,7 +82,7 @@ function subscribeTokenRefresh(cb) {
 
 // 创建axios实例，超时时间为10秒
 let instance = axios.create({
-  timeout: 1000 * 20
+  timeout: 1000 * 20,
 })
 
 /**
@@ -94,7 +94,7 @@ instance.interceptors.request.use(
   // 但是即使token存在，也有可能token是过期的，所以在每次的请求头中携带token
   // 后台根据携带的token判断用户的登录情况，并返回给我们对应的状态码
   // 而后我们可以在响应拦截器中，根据状态码进行一些统一的操作。
-  config => {
+  (config) => {
     const token = localStorage.getItem('token')
     if (token) {
       // config.headers['X-token'] = token
@@ -104,6 +104,7 @@ instance.interceptors.request.use(
       } else {
         config.headers['Content-Type'] = 'multipart/form-data'
       }
+
       // 判断是否token过期
       // console.log('开始拦截')
       // if (isTokenExp() && config.url.indexOf('/refreshtoken/') === -1) {
@@ -166,18 +167,18 @@ instance.interceptors.request.use(
       // }
       return config
     } else {
-      // sessionStorage.clear()
-      // localStorage.clear()
-      // router.push('login')
+      sessionStorage.clear()
+      localStorage.clear()
+      router.push('login')
       return config
     }
   },
-  error => Promise.error(error)
+  (error) => Promise.error(error)
 )
 // 响应拦截器
 instance.interceptors.response.use(
   // 请求成功
-  res => {
+  (res) => {
     if (res.status === 200) {
       if (res.data.code !== 200) {
         ElMessage.error(res.data.msg)
@@ -186,8 +187,7 @@ instance.interceptors.response.use(
     }
   },
   // 请求失败
-  error => {
-    console.log(error);
+  (error) => {
     const { response } = error
     if (response) {
       // 请求已发出，但是不在2xx的范围
@@ -195,7 +195,6 @@ instance.interceptors.response.use(
       //403返回的值在response.data.ElMessage
       return Promise.reject(response)
     } else {
-
       // 处理电脑断网的情况
       // eg:请求超时或断网时，更新state的network状态
       // 关于断网组件中的刷新重新获取数据，会在断网组件中说明

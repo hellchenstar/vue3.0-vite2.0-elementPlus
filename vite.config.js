@@ -3,14 +3,14 @@
  * @Descripttion:
  * @Date: 2022-03-14 10:51:53
  * @LastEditors: chenx
- * @LastEditTime: 2022-03-25 17:04:58
+ * @LastEditTime: 2022-04-07 09:38:29
  */
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import { createStyleImportPlugin } from 'vite-plugin-style-import';
-const path = require('path');
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import { createStyleImportPlugin } from 'vite-plugin-style-import'
+const path = require('path')
 // https://vitejs.dev/config/
-export default defineConfig({
+const config = {
   base: '/',
   plugins: [
     vue(),
@@ -19,11 +19,11 @@ export default defineConfig({
         {
           libraryName: 'element-plus',
           resolveStyle: (name) => {
-            name = name.slice(3);
-            return `element-plus/theme-chalk/src/${name}.scss`;
+            name = name.slice(3)
+            return `element-plus/theme-chalk/src/${name}.scss`
           },
           resolveComponent: (name) => {
-            return `element-plus/lib/components/${name}`;
+            return `element-plus/lib/components/${name}`
           },
         },
       ],
@@ -70,4 +70,5 @@ export default defineConfig({
       },
     },
   },
-});
+}
+export default defineConfig(config)

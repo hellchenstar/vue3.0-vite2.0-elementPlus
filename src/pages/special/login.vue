@@ -1,44 +1,22 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-03-28 18:03:24
+ * @LastEditTime: 2022-04-06 16:33:51
  * @Description: 登录
 -->
 <template>
   <div class="login">
     <div class="loginContent">
-      <el-form
-        :model="loginInfo"
-        :rules="rules"
-        ref="loginForm"
-        label-width="60px"
-        class="demo-ruleForm"
-      >
+      <el-form :model="loginInfo" :rules="rules" ref="loginForm" label-width="60px" class="demo-ruleForm">
         <el-form-item label="账号" prop="account">
-          <el-input
-            v-model="loginInfo.account"
-            @keyup.enter="goLogin"
-          ></el-input>
+          <el-input v-model="loginInfo.account" @keyup.enter="goLogin"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input
-            v-model="loginInfo.password"
-            show-password
-            @keyup.enter="goLogin"
-          ></el-input>
+          <el-input v-model="loginInfo.password" show-password @keyup.enter="goLogin"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button
-            type="primary"
-            :loading="loginLoading"
-            @click="goLogin"
-            style="width: 45%"
-          >
-            登录
-          </el-button>
-          <el-button type="primary" @click="goRegister" style="width: 45%">
-            注册
-          </el-button>
+          <el-button type="primary" :loading="loginLoading" @click="goLogin" style="width: 45%">登录</el-button>
+          <el-button type="primary" @click="goRegister" style="width: 45%">注册</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -89,11 +67,9 @@ export default {
             })
             .catch((err) => {
               state.loginLoading = false
-              console.log(err)
             })
           //
         } else {
-          console.log('error submit!!')
           return false
         }
       })
