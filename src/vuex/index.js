@@ -10,9 +10,8 @@ import system from './modules/system.js'
 const store = createStore({
   modules: {
     special,
-    system
-  }
-
+    system,
+  },
 })
 
 export default store

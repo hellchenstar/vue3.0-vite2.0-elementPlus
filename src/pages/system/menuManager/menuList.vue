@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-04-13 10:04:35
+ * @LastEditTime: 2022-04-13 15:08:45
  * @Description: file content
 -->
 <template>
@@ -89,12 +89,13 @@ export default {
       formLabelWidth: '100px',
       init: true,
     })
-    // 更新菜单
+    // 获取菜单列表
 
     const getMenuList = () => {
       menuApi.getMenuList().then((res) => {
-        console.log('===', res)
-        state.menuList = makeTreeData(res.data, null)
+        if (res.code === 200) {
+          state.menuList = makeTreeData(res.data, null)
+        }
       })
     }
     // 新增、编辑
@@ -181,12 +182,16 @@ export default {
         if (valid) {
           menuApi[str](state.menuInfo)
             .then((res) => {
-              state.infoDialog = false
-              state.submitLoading = false
-              ElMessage.success(res.msg)
-              getMenuList()
-              // 更新左侧菜单
-              setIsReloadMenu()
+              if (res.code === 200) {
+                state.infoDialog = false
+                state.submitLoading = false
+                ElMessage.success(res.msg)
+                getMenuList()
+                // 更新左侧菜单
+                setIsReloadMenu()
+              } else {
+                ElMessage.err(res.msg)
+              }
             })
             .catch((err) => {
               state.infoDialog = false

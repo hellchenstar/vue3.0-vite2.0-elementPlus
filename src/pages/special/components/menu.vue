@@ -1,17 +1,11 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-03-28 18:03:23
+ * @LastEditTime: 2022-04-13 15:07:37
  * @Description: 菜单
 -->
 <template>
-  <el-menu
-    router
-    class="el-menu-vertical"
-    :collapse="isCollapse"
-    unique-opened
-    :default-active="defaultActive"
-  >
+  <el-menu router class="el-menu-vertical" :collapse="isCollapse" unique-opened :default-active="defaultActive">
     <div class="logo">
       <img src="../../../assets/img/logo/logo.jpg" alt="" />
       <span class="sysName" v-if="!isCollapse">Vite2.0 + Vue3.0</span>
@@ -76,8 +70,10 @@ export default {
     )
     const getMenuData = () => {
       menuApi.getMenuList().then((res) => {
-        state.menuList = makeTreeData(res.data, null)
-        vuex.commit('setIsReloadMenu', false)
+        if (res.code === 200) {
+          state.menuList = makeTreeData(res.data, null)
+          vuex.commit('setIsReloadMenu', false)
+        }
       })
     }
     onMounted(() => {
