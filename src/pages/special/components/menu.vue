@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-04-13 15:07:37
+ * @LastEditTime: 2022-04-13 19:34:02
  * @Description: 菜单
 -->
 <template>
@@ -70,10 +70,8 @@ export default {
     )
     const getMenuData = () => {
       menuApi.getMenuList().then((res) => {
-        if (res.code === 200) {
-          state.menuList = makeTreeData(res.data, null)
-          vuex.commit('setIsReloadMenu', false)
-        }
+        state.menuList = makeTreeData(res.data, null)
+        vuex.commit('setIsReloadMenu', false)
       })
     }
     onMounted(() => {

@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-04-13 15:08:45
+ * @LastEditTime: 2022-04-13 19:34:08
  * @Description: file content
 -->
 <template>
@@ -63,7 +63,6 @@
 import { reactive, toRefs, onMounted, ref, unref } from 'vue'
 import { useStore } from 'vuex'
 import { menuApi } from '@/request/api/index.js'
-import { ElMessage } from 'element-plus'
 import { makeTreeData } from '@/utils/utils.js'
 export default {
   setup() {
@@ -93,9 +92,7 @@ export default {
 
     const getMenuList = () => {
       menuApi.getMenuList().then((res) => {
-        if (res.code === 200) {
-          state.menuList = makeTreeData(res.data, null)
-        }
+        state.menuList = makeTreeData(res.data, null)
       })
     }
     // 新增、编辑
@@ -156,12 +153,10 @@ export default {
         disabled: val ? 0 : 1,
       }
       menuApi.changeMenuStatus(params).then((res) => {
-        if (res.code === 200) {
-          ElMessage.success(res.msg)
-          getMenuList()
-          // 更新左侧菜单
-          setIsReloadMenu()
-        }
+        ElMessage.success(res.msg)
+        getMenuList()
+        // 更新左侧菜单
+        setIsReloadMenu()
       })
     }
     const closeDia = () => {
@@ -182,16 +177,12 @@ export default {
         if (valid) {
           menuApi[str](state.menuInfo)
             .then((res) => {
-              if (res.code === 200) {
-                state.infoDialog = false
-                state.submitLoading = false
-                ElMessage.success(res.msg)
-                getMenuList()
-                // 更新左侧菜单
-                setIsReloadMenu()
-              } else {
-                ElMessage.err(res.msg)
-              }
+              state.infoDialog = false
+              state.submitLoading = false
+              ElMessage.success(res.msg)
+              getMenuList()
+              // 更新左侧菜单
+              setIsReloadMenu()
             })
             .catch((err) => {
               state.infoDialog = false

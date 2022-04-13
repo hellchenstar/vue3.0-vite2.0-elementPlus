@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-02-15 15:58:59
+ * @LastEditTime: 2022-04-13 20:39:53
  * @Description: 路由文件
  */
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
@@ -9,14 +9,14 @@ import childrenRouter from './modules/index.js'
 import NProgress from 'NProgress'
 // 开启历史模式
 // vue2中使用 mode: history 实现
-const routerHistory = createWebHistory();
+const routerHistory = createWebHistory()
 
 // const routerHash = createWebHashHistory()
 
 const routerList = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/home',
   },
 
   {
@@ -33,12 +33,12 @@ const routerList = [
     path: '/home',
     name: 'home',
     meta: {
-      title: '工作台'
+      title: '工作台',
     },
     redirect: '/workbench',
     component: () => import('@/pages/special/home.vue'),
-    children: [...new Set(childrenRouter)]
-  }
+    children: [...new Set(childrenRouter)],
+  },
 ]
 
 // 创建路由
@@ -47,18 +47,15 @@ const router = createRouter({
   history: routerHistory,
   // hash
   // history: routerHash,
-  routes: routerList
-
+  routes: routerList,
 })
-
 
 router.beforeEach((to, from) => {
   NProgress.start()
-});
+})
 
 router.afterEach(() => {
   NProgress.done()
-});
-
+})
 
 export default router

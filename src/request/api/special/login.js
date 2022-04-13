@@ -1,21 +1,20 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-04-02 10:35:05
+ * @LastEditTime: 2022-04-13 18:26:57
  * @Description: file content
  */
 
 import { base } from '../../baseUrl' // 导入接口域名列表
 import axios from '../../index' // 导入http中创建的axios实例
-
 const login = {
   // 登录,获取token
   loginSub(params) {
-    return axios.post(`${base.dev.root}/login`, params)
+    return axios.post(`${base.dev.accounts}/login`, params)
   },
   // 注册
   register(params) {
-    return axios.post(`${base.dev.root}/register`, params)
+    return axios.post(`${base.dev.users}/register`, params)
   },
 
   // 其他接口…………

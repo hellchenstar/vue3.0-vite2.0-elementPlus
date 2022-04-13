@@ -1,25 +1,17 @@
+<!--
+ * @Author: chenx
+ * @Descripttion: 
+ * @Date: 2022-03-28 17:41:50
+ * @LastEditors: chenx
+ * @LastEditTime: 2022-04-13 19:17:21
+-->
 <template>
-	<router-view></router-view>
+  <router-view></router-view>
 </template>
 <style lang="scss">
 #app {
-	width: 100%;
-	height: 100%;
-	background: #eee;
-}
-</style>
-<style>
-* {
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
-}
-html,
-body {
-	width: 100%;
-	height: 100%;
-	padding: 0;
-	margin: 0;
-	overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background: #eee;
 }
 </style>
