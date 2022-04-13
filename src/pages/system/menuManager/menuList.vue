@@ -1,20 +1,15 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-03-28 18:03:22
+ * @LastEditTime: 2022-04-13 10:04:35
  * @Description: file content
 -->
 <template>
   <div class="module">
     <div class="module_header">
-      <el-button type="primary" @click="addOrEdit">新增模块</el-button>
+      <el-button type="primary" @click="addOrEdit()">新增模块</el-button>
     </div>
-    <el-table
-      :data="menuList"
-      style="width: 100%; margin-bottom: 20px"
-      row-key="url"
-      border
-    >
+    <el-table :data="menuList" style="width: 100%; margin-bottom: 20px" row-key="url" border>
       <el-table-column prop="name" label="菜单名称"></el-table-column>
       <el-table-column prop="url" label="菜单地址"></el-table-column>
       <el-table-column prop="isDel" label="禁用状态">
@@ -31,27 +26,9 @@
       </el-table-column>
       <el-table-column label="操作">
         <template #default="scope">
-          <el-button
-            v-if="scope.row.level === 1"
-            @click="addOrEdit(scope.row, 'add')"
-            type="primary"
-            size="small"
-          >
-            新增菜单
-          </el-button>
-          <el-button
-            type="primary"
-            size="small"
-            @click="addOrEdit(scope.row, 'edit')"
-          >
-            编辑
-          </el-button>
-          <el-button
-            :type="scope.row.disabled ? 'danger' : 'success'"
-            size="small"
-            @click="changeMenuStatus(scope.row.disabled, scope.row.id)"
-            :loading="submitLoading"
-          >
+          <el-button v-if="scope.row.level === 1" @click="addOrEdit(scope.row, 'add')" type="primary" size="small">新增菜单</el-button>
+          <el-button type="primary" size="small" @click="addOrEdit(scope.row, 'edit')">编辑</el-button>
+          <el-button :type="scope.row.disabled ? 'danger' : 'success'" size="small" @click="changeMenuStatus(scope.row.disabled, scope.row.id)" :loading="submitLoading">
             {{ scope.row.disabled ? '禁用' : '启用' }}
           </el-button>
         </template>
@@ -60,18 +37,9 @@
 
     <el-dialog :title="title" v-model="infoDialog">
       <el-form :model="menuInfo" ref="menuForm">
-        <el-form-item
-          label="父级菜单"
-          :label-width="formLabelWidth"
-          v-if="showParentMenu"
-        >
+        <el-form-item label="父级菜单" :label-width="formLabelWidth" v-if="showParentMenu">
           <el-select v-model="menuInfo.parentId" placeholder="请选择父级菜单">
-            <el-option
-              v-for="item in menuList"
-              :key="item.url"
-              :label="item.name"
-              :value="item.id"
-            ></el-option>
+            <el-option v-for="item in menuList" :key="item.url" :label="item.name" :value="item.id"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="菜单名称" :label-width="formLabelWidth">
@@ -85,9 +53,7 @@
         </el-form-item>
         <el-form-item :label-width="formLabelWidth">
           <el-button @click="closeDia">取 消</el-button>
-          <el-button type="primary" @click="submit" :loading="submitLoading">
-            确 定
-          </el-button>
+          <el-button type="primary" @click="submit" :loading="submitLoading">确 定</el-button>
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -127,6 +93,7 @@ export default {
 
     const getMenuList = () => {
       menuApi.getMenuList().then((res) => {
+        console.log('===', res)
         state.menuList = makeTreeData(res.data, null)
       })
     }
