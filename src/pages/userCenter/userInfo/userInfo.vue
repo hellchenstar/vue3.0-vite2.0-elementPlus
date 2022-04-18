@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-04-18 11:28:19
+ * @LastEditTime: 2022-04-18 18:43:35
  * @Description: 个人资料
 -->
 <template>
@@ -39,10 +39,10 @@
           <div class="title">我的项目</div>
           <div v-for="(item, index) in user.info.project" :key="index" class="proItem">
             <div class="proItemTitle">
-              <span>{{ item.name }}</span>
+              <span>{{ item.projectName }}</span>
               <span class="proItemTime">{{ item.startTime }} - {{ item.endTime }}</span>
             </div>
-            <div class="proItemCon">{{ item.describe }}</div>
+            <div class="proItemCon">{{ item.projectDescribe }}</div>
           </div>
         </div>
       </div>
@@ -67,7 +67,6 @@ const getUserInfo = () => {
   })
 }
 const editUserInfo = () => {
-  console.log(user.info)
   router.push({
     name: 'editUserInfo',
     query: {

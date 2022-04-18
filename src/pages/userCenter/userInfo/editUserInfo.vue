@@ -3,7 +3,7 @@
  * @Descripttion: 
  * @Date: 2022-04-13 15:34:16
  * @LastEditors: chenx
- * @LastEditTime: 2022-04-18 13:26:53
+ * @LastEditTime: 2022-04-18 18:52:56
 -->
 <template>
   <div class="">
@@ -53,38 +53,40 @@
         </el-col>
         <el-col :span="16">
           <div class="title">我的项目</div>
-          <div v-for="(item, index) in user.info.project" class="proItem">
-            <el-row>
-              <el-col :span="24">
-                <el-form-item label="项目名称：" label-width="140px" :prop="`project.${index}.name`" :rules="[{ required: true, message: '请输入项目名称', trigger: 'blur' }]">
-                  <el-input v-model="item.name" />
-                </el-form-item>
-              </el-col>
-              <el-col :span="24">
-                <el-row>
-                  <el-col :span="24">
-                    <el-row justify="start">
-                      <el-form-item label="项目起止时间：" label-width="140px" :prop="`project.${index}.startTime`" :rules="[{ required: true, validator: validateTime, trigger: 'change' }]">
-                        <el-date-picker v-model="item.startTime" type="date" value-format="YYYY-MM-DD" />
-                      </el-form-item>
-                      <span style="margin: 0 10px">-</span>
-                      <el-form-item label-width="0" :prop="`project.${index}.endTime`" :rules="[{ required: true, validator: validateTime, trigger: 'change' }]">
-                        <el-date-picker v-model="item.endTime" type="date" value-format="YYYY-MM-DD" />
-                      </el-form-item>
-                    </el-row>
-                  </el-col>
-                </el-row>
-              </el-col>
-              <el-col :span="24">
-                <el-form-item label="项目描述：" label-width="140px" :prop="`project.${index}.describe`" :rules="[{ required: true, message: '请输入项目描述', trigger: 'blur' }]">
-                  <el-input v-model="item.describe" type="textarea" />
-                </el-form-item>
-              </el-col>
-            </el-row>
-            <el-row justify="end">
-              <el-button type="danger" @click="delProItem(index)">删除该项目</el-button>
-            </el-row>
-          </div>
+          <template v-for="(item, index) in user.info.project">
+            <div class="proItem" v-if="item.disabled">
+              <el-row>
+                <el-col :span="24">
+                  <el-form-item label="项目名称：" label-width="140px" :prop="`project.${index}.projectName`" :rules="[{ required: true, message: '请输入项目名称', trigger: 'blur' }]">
+                    <el-input v-model="item.projectName" />
+                  </el-form-item>
+                </el-col>
+                <el-col :span="24">
+                  <el-row>
+                    <el-col :span="24">
+                      <el-row justify="start">
+                        <el-form-item label="项目起止时间：" label-width="140px" :prop="`project.${index}.startTime`" :rules="[{ required: true, validator: validateTime, trigger: 'change' }]">
+                          <el-date-picker v-model="item.startTime" type="date" value-format="YYYY-MM-DD" />
+                        </el-form-item>
+                        <span style="margin: 0 10px">-</span>
+                        <el-form-item label-width="0" :prop="`project.${index}.endTime`" :rules="[{ required: true, validator: validateTime, trigger: 'change' }]">
+                          <el-date-picker v-model="item.endTime" type="date" value-format="YYYY-MM-DD" />
+                        </el-form-item>
+                      </el-row>
+                    </el-col>
+                  </el-row>
+                </el-col>
+                <el-col :span="24">
+                  <el-form-item label="项目描述：" label-width="140px" :prop="`project.${index}.projectDescribe`" :rules="[{ required: true, message: '请输入项目描述', trigger: 'blur' }]">
+                    <el-input v-model="item.projectDescribe" type="textarea" />
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <el-row justify="end">
+                <el-button type="danger" @click="delProItem(item)">删除该项目</el-button>
+              </el-row>
+            </div>
+          </template>
           <el-button type="primary" @click="addProItem">添加项目</el-button>
         </el-col>
       </el-row>
@@ -94,9 +96,11 @@
 
 <script setup>
 import { reactive, ref, unref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { users } from '@/request/api/index.js'
+import { ElMessage } from 'element-plus'
 const route = useRoute()
+const router = useRouter()
 const labelPosition = ref('right')
 
 // 表单信息
@@ -161,24 +165,27 @@ const addProItem = () => {
     name: '',
     startTime: '',
     endTime: '',
-    describle: '',
+    userDescribe: '',
+    disabled: 1,
+    userId: route.query.id,
   }
   user.info.project.push(obj)
 }
 // 删除项目
-const delProItem = (i) => {
-  user.info.project.splice(i, 1)
+const delProItem = (item) => {
+  item.disabled = 0
 }
 // 提交
 const userInfoForm = ref(null) //需要根据ref实例化一个form实例
 
 const submit = () => {
   const formEl = unref(userInfoForm)
-  console.log(formEl)
-
   formEl.validate((valid) => {
     if (valid) {
-      console.log('提交成功')
+      users.updateUserInfo(user.info).then((res) => {
+        ElMessage.success('更新成功')
+        router.push('userInfo')
+      })
     } else {
       return false
     }
