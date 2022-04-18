@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-04-14 10:38:56
+ * @LastEditTime: 2022-04-18 11:28:19
  * @Description: 个人资料
 -->
 <template>
@@ -15,7 +15,7 @@
             </el-avatar>
             <div>
               <div class="userTag">
-                <span class="tags">{{ user.info.name }}</span>
+                <span class="tags">{{ user.info.userName }}</span>
                 <span class="tags">{{ user.info.gender ? '男' : '女' }}</span>
                 <span class="tags">{{ user.info.birthday }}</span>
               </div>
@@ -24,7 +24,7 @@
                 <el-tag v-for="(item, index) in user.info.tags" :key="index" class="tags">{{ item }}</el-tag>
               </div>
               <div class="userTag">
-                <span class="tags">{{ user.info.describe }}</span>
+                <span class="tags">{{ user.info.userDescribe }}</span>
               </div>
             </div>
           </el-row>
@@ -35,7 +35,16 @@
       </el-row>
 
       <div class="right">
-        <div class="content">我的项目</div>
+        <div class="content">
+          <div class="title">我的项目</div>
+          <div v-for="(item, index) in user.info.project" :key="index" class="proItem">
+            <div class="proItemTitle">
+              <span>{{ item.name }}</span>
+              <span class="proItemTime">{{ item.startTime }} - {{ item.endTime }}</span>
+            </div>
+            <div class="proItemCon">{{ item.describe }}</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -109,7 +118,33 @@ onMounted(() => {
       padding: 20px;
       width: 100%;
       height: calc(100% - 60px);
-      background: chocolate;
+      .proItem {
+        padding: 10px;
+        border: 1px solid #ccc;
+        box-shadow: 5px 5px 5px #cccccc;
+        margin-bottom: 20px;
+        color: #666666;
+        .proItemTitle {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px dashed #ccc;
+          padding-bottom: 10px;
+          .proItemName {
+            font-size: 24px;
+          }
+          .proItemTime {
+            font-size: 12px;
+            text-indent: 14px;
+          }
+        }
+
+        .proItemCon {
+          font-size: 14px;
+          text-indent: 28px;
+          padding-top: 10px;
+        }
+      }
     }
   }
 }

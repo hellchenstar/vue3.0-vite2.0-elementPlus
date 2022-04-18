@@ -3,7 +3,7 @@
  * @Descripttion: 
  * @Date: 2022-04-13 15:34:16
  * @LastEditors: chenx
- * @LastEditTime: 2022-04-14 17:40:16
+ * @LastEditTime: 2022-04-18 10:34:29
 -->
 <template>
   <div>
@@ -20,7 +20,7 @@
             </el-avatar>
           </el-form-item>
           <el-form-item label="姓名：">
-            <el-input v-model="user.info.name" />
+            <el-input v-model="user.info.userName" />
           </el-form-item>
           <el-form-item label="性别：">
             <el-select v-model="user.info.gender" style="width: 100%">
@@ -32,7 +32,7 @@
             <el-date-picker v-model="user.info.birthday" type="date" @change="changeTime" value-format="YYYY-MM-DD" style="width: 100%" />
           </el-form-item>
           <el-form-item label="个人简介：">
-            <el-input v-model="user.info.describe" :rows="4" type="textarea" />
+            <el-input v-model="user.info.userDescribe" :rows="4" type="textarea" />
           </el-form-item>
           <el-form-item label="个人标签：">
             <el-input v-model="appendTag">
@@ -80,12 +80,13 @@ const labelPosition = ref('right')
 // 当前登录人的信息
 const user = reactive({
   info: {
-    username: '',
+    userName: '',
     gender: 1,
     birthday: '',
     userId: '',
     tag: [],
-    describe: '',
+    userDescribe: '',
+    project: [],
   },
 })
 let appendTag = ref('')
@@ -95,9 +96,9 @@ const getUserInfo = () => {
   //
   let id = route.query.id
   users.getUserInfo(id).then((res) => {
-    console.log(res)
     user.info = res.data
     user.info.tags = user.info.tags ? user.info.tags.split(',') : []
+    console.log(user.info)
   })
 }
 const closeTag = (index) => {
@@ -116,16 +117,6 @@ onMounted(() => {
 })
 </script>
 <style lang="scss" scoped>
-.title {
-  width: 100%;
-  margin-bottom: 10px;
-  color: dodgerblue;
-  &::before {
-    content: '';
-    border-left: 5px solid dodgerblue;
-    margin-right: 10px;
-  }
-}
 .tagItem {
   margin: 5px;
 }
