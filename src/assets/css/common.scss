@@ -47,7 +47,7 @@ body {
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background: #409eff;
-  -webkit-box-shadow: inset 0 0 1px #409eff;
+  box-shadow: inset 0 0 1px #409eff;
 }
 .title {
   width: 100%;
