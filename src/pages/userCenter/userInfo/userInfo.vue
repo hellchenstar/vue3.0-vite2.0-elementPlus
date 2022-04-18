@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-04-13 20:41:11
+ * @LastEditTime: 2022-04-14 10:38:56
  * @Description: 个人资料
 -->
 <template>
@@ -30,7 +30,6 @@
           </el-row>
         </el-col>
         <el-col :span="4">
-          <div></div>
           <el-button @click="editUserInfo">编辑资料</el-button>
         </el-col>
       </el-row>

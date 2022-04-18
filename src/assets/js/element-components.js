@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-03-28 18:03:25
+ * @LastEditTime: 2022-04-14 16:10:35
  * @Description: element-ui按需加载分离（不写在main.js中）
  */
 import 'dayjs/locale/zh-cn'
@@ -50,6 +50,10 @@ import {
   ElCarouselItem,
   ElCalendar,
   ElTag,
+  ElPageHeader,
+  ElDatePicker,
+  ElUpload,
+  ElIcon,
 } from 'element-plus'
 const components = [
   ElAvatar,
@@ -89,14 +93,12 @@ const components = [
   ElCarouselItem,
   ElCalendar,
   ElTag,
+  ElPageHeader,
+  ElDatePicker,
+  ElUpload,
+  ElIcon,
 ]
-const plugins = [
-  ElInfiniteScroll,
-  ElLoading,
-  ElMessage,
-  ElMessageBox,
-  ElNotification,
-]
+const plugins = [ElInfiniteScroll, ElLoading, ElMessage, ElMessageBox, ElNotification]
 
 export default (app) => {
   // locale:lang,
