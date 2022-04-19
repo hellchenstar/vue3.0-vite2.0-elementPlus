@@ -3,7 +3,7 @@
  * @Descripttion: 
  * @Date: 2022-04-13 15:34:16
  * @LastEditors: chenx
- * @LastEditTime: 2022-04-18 18:52:56
+ * @LastEditTime: 2022-04-19 18:30:12
 -->
 <template>
   <div class="">
@@ -17,7 +17,7 @@
           <div class="title">编辑个人信息</div>
           <el-form-item>
             <el-avatar :size="120" :src="user.info.avatar" @error="errorHandler" class="avatar">
-              <el-upload action="#" list-type="picture" :auto-upload="false">
+              <el-upload action="" :http-request="uploadAvatar" list-type="picture" :before-upload="beforeUpload" accept="png,jpeg,jpg,gif" :auto-upload="false">
                 <i class="icon hellxiangji"></i>
               </el-upload>
               <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
@@ -159,7 +159,7 @@ const addTag = (val) => {
   user.info.tags.push(val)
 }
 
-// 项目部分逻辑 ======================================================================================================
+// 项目 ======================================================================================================
 const addProItem = () => {
   let obj = {
     name: '',
@@ -175,7 +175,14 @@ const addProItem = () => {
 const delProItem = (item) => {
   item.disabled = 0
 }
-// 提交
+// 文件上传逻辑======================================================================================================
+const beforeUpload = (file) => {
+  console.log(file)
+}
+const uploadAvatar = (data) => {
+  console.log(data)
+}
+// 提交 ======================================================================================================
 const userInfoForm = ref(null) //需要根据ref实例化一个form实例
 
 const submit = () => {
