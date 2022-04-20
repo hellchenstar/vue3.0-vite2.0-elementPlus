@@ -3,9 +3,9 @@
  * @Descripttion:
  * @Date: 2022-04-19 18:20:11
  * @LastEditors: chenx
- * @LastEditTime: 2022-04-19 18:21:37
+ * @LastEditTime: 2022-04-20 10:06:12
  */
-import { base } from '../../baseUrl' // 导入接口域名列表
+import { base } from '../../baseURL' // 导入接口域名列表
 import axios from '../../index' // 导入http中创建的axios实例
 const fileUpload = {
   // 登录,获取token

@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-04-08 16:52:25
+ * @LastEditTime: 2022-04-20 10:26:09
  * @Description: file content
  */
 import { ElMessage } from 'element-plus'
@@ -99,7 +99,7 @@ instance.interceptors.request.use(
     if (token) {
       // config.headers['X-token'] = token
       config.headers.Authorization = token
-      if (config.url.indexOf('file/UploadFile') === -1) {
+      if (config.url.indexOf('api/upload') === -1) {
         config.headers['Content-Type'] = 'application/json'
       } else {
         config.headers['Content-Type'] = 'multipart/form-data'

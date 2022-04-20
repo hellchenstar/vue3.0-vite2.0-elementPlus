@@ -3,7 +3,7 @@
  * @Descripttion: 
  * @Date: 2022-04-13 15:34:16
  * @LastEditors: chenx
- * @LastEditTime: 2022-04-19 18:30:12
+ * @LastEditTime: 2022-04-20 18:19:16
 -->
 <template>
   <div class="">
@@ -16,12 +16,11 @@
         <el-col :span="8">
           <div class="title">编辑个人信息</div>
           <el-form-item>
-            <el-avatar :size="120" :src="user.info.avatar" @error="errorHandler" class="avatar">
-              <el-upload action="" :http-request="uploadAvatar" list-type="picture" :before-upload="beforeUpload" accept="png,jpeg,jpg,gif" :auto-upload="false">
-                <i class="icon hellxiangji"></i>
-              </el-upload>
-              <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
-            </el-avatar>
+            <el-upload class="avatar-uploader" :action="`${base.upload.img}`" :show-file-list="false" :on-success="uploadSuccess" :headers="base.uploadHeader" :before-upload="beforeUpload">
+              <el-avatar class="avatar" :size="60" :src="`${host}${user.info.avatar}`" @error="errorHandler">
+                <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
+              </el-avatar>
+            </el-upload>
           </el-form-item>
           <el-form-item label="姓名：" prop="userName">
             <el-input v-model="user.info.userName" />
@@ -99,6 +98,8 @@ import { reactive, ref, unref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { users } from '@/request/api/index.js'
 import { ElMessage } from 'element-plus'
+
+import { base } from '@/request/baseURL'
 const route = useRoute()
 const router = useRouter()
 const labelPosition = ref('right')
@@ -177,11 +178,21 @@ const delProItem = (item) => {
 }
 // 文件上传逻辑======================================================================================================
 const beforeUpload = (file) => {
-  console.log(file)
+  const verificat = file.type === 'image/jpeg' || 'image/jpg' || 'image/png' || 'image/gif'
+  const isLtSize = file.size / 1024 / 1024 < 2
+  if (!verificat) {
+    ElMessage.error('文件格式不正确')
+  }
+  if (!isLtSize) {
+    ElMessage.error('文件大小不能超过2MB')
+  }
+  return verificat && isLtSize
 }
-const uploadAvatar = (data) => {
-  console.log(data)
+let host = 'http://127.0.0.1:21009/'
+const uploadSuccess = (res) => {
+  user.info.avatar = res.data.url
 }
+
 // 提交 ======================================================================================================
 const userInfoForm = ref(null) //需要根据ref实例化一个form实例
 
@@ -227,35 +238,35 @@ onMounted(() => {
   background-color: dodgerblue;
   color: #fff;
 }
-
-.avatar {
+.avatar-uploader {
   width: 120px;
   height: 120px;
-  border: 1px dashed #999;
   border-radius: 50%;
+  cursor: pointer;
   position: relative;
+  overflow: hidden;
   &:hover {
-    :deep(.el-upload) {
-      display: block;
-    }
+    background: #999999;
+    opacity: 0.8;
+    color: #fff;
   }
   :deep(.el-upload) {
     width: 100%;
     height: 100%;
+  }
+  .hellxiangji {
+    font-size: 40px;
+  }
+  .avatar {
+    width: 120px;
+    height: 120px;
+    display: block;
+    border: 1px dashed #999;
     border-radius: 50%;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    opacity: 0.8;
-    background: #333333;
-    display: none;
-    line-height: 120px;
-    .hellxiangji {
-      color: #fff;
-      font-size: 40px;
-    }
+    position: relative;
   }
 }
+
 .proItem {
   padding: 10px;
   border: 1px solid #ccc;
