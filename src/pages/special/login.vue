@@ -1,7 +1,7 @@
 <!--
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-04-13 19:32:45
+ * @LastEditTime: 2022-04-21 11:19:13
  * @Description: 登录
 -->
 <template>
@@ -60,7 +60,6 @@ export default {
             .then((res) => {
               state.loginLoading = false
               localStorage.setItem('username', res.data.username)
-              localStorage.setItem('avatar', res.data.avatar)
               localStorage.setItem('token', res.data.token)
               localStorage.setItem('userId', res.data.id)
               router.push('home')

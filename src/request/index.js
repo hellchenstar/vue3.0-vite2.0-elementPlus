@@ -1,7 +1,7 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-04-20 10:26:09
+ * @LastEditTime: 2022-04-21 10:10:24
  * @Description: file content
  */
 import { ElMessage } from 'element-plus'
@@ -9,7 +9,6 @@ import axios from 'axios'
 import router from '@/router/index'
 import { base } from './baseUrl'
 // import store from '@/store/index.js'
-// import Vue from 'vue'
 
 /**
  * 请求失败后的错误统一处理
@@ -97,7 +96,6 @@ instance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token')
     if (token) {
-      // config.headers['X-token'] = token
       config.headers.Authorization = token
       if (config.url.indexOf('api/upload') === -1) {
         config.headers['Content-Type'] = 'application/json'

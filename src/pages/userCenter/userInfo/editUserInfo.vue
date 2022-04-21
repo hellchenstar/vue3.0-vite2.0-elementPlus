@@ -3,7 +3,7 @@
  * @Descripttion: 
  * @Date: 2022-04-13 15:34:16
  * @LastEditors: chenx
- * @LastEditTime: 2022-04-20 18:19:16
+ * @LastEditTime: 2022-04-21 10:45:23
 -->
 <template>
   <div class="">
@@ -17,7 +17,7 @@
           <div class="title">编辑个人信息</div>
           <el-form-item>
             <el-upload class="avatar-uploader" :action="`${base.upload.img}`" :show-file-list="false" :on-success="uploadSuccess" :headers="base.uploadHeader" :before-upload="beforeUpload">
-              <el-avatar class="avatar" :size="60" :src="`${host}${user.info.avatar}`" @error="errorHandler">
+              <el-avatar class="avatar" :size="60" :src="`${base.host}${user.info.avatar}`" @error="errorHandler">
                 <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
               </el-avatar>
             </el-upload>
@@ -96,6 +96,7 @@
 <script setup>
 import { reactive, ref, unref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 import { users } from '@/request/api/index.js'
 import { ElMessage } from 'element-plus'
 
@@ -103,7 +104,7 @@ import { base } from '@/request/baseURL'
 const route = useRoute()
 const router = useRouter()
 const labelPosition = ref('right')
-
+const vuex = useStore()
 // 表单信息
 const user = reactive({
   info: {
@@ -188,7 +189,6 @@ const beforeUpload = (file) => {
   }
   return verificat && isLtSize
 }
-let host = 'http://127.0.0.1:21009/'
 const uploadSuccess = (res) => {
   user.info.avatar = res.data.url
 }
@@ -202,6 +202,7 @@ const submit = () => {
     if (valid) {
       users.updateUserInfo(user.info).then((res) => {
         ElMessage.success('更新成功')
+        vuex.commit('updateUserInfo', res.data.avatar)
         router.push('userInfo')
       })
     } else {

@@ -1,11 +1,12 @@
 /*
  * @Author: chenx
  * @CreatedDate: Do not edit
- * @LastEditTime: 2022-04-20 10:27:06
+ * @LastEditTime: 2022-04-21 10:06:39
  * @Description: file content
  */
 // 处理多接口多域名的问题
 const base = {
+  host: 'http://127.0.0.1:21009/',
   dev: {
     accounts: '/api/accounts',
     users: '/api/users',
@@ -14,6 +15,7 @@ const base = {
   upload: {
     img: '/api/upload/img',
   },
+
   uploadHeader: {
     Authorization: localStorage.getItem('token'),
   },
