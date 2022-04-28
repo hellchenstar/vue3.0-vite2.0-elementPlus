@@ -3,35 +3,31 @@
  * @Descripttion:
  * @Date: 2022-03-14 10:51:53
  * @LastEditors: chenx
- * @LastEditTime: 2022-04-18 14:42:54
+ * @LastEditTime: 2022-04-22 18:30:14
  */
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { createStyleImportPlugin } from 'vite-plugin-style-import'
+
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 const path = require('path')
 // https://vitejs.dev/config/
 const config = {
-  base: '/',
+  base: './',
   plugins: [
     vue(),
-    createStyleImportPlugin({
-      libs: [
-        {
-          libraryName: 'element-plus',
-          resolveStyle: (name) => {
-            name = name.slice(3)
-            return `element-plus/theme-chalk/src/${name}.scss`
-          },
-          resolveComponent: (name) => {
-            return `element-plus/lib/components/${name}`
-          },
-        },
-      ],
+    AutoImport({
+      resolvers: [ElementPlusResolver()],
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()],
     }),
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      vue: 'https://esm.sh/vue@3.2.33',
+      '@': path.resolve(__dirname, '/src'),
     },
   },
   server: {
@@ -48,7 +44,7 @@ const config = {
       // },
       // 本地服务
       '/api': {
-        target: 'http://localhost:21009',
+        target: 'http://127.0.0.1:21009/',
         changeOrigin: true,
       },
     },
@@ -59,15 +55,16 @@ const config = {
     },
   },
   build: {
+    target: 'es2015',
     assetsInlineLimit: 0,
     assetsDir: 'assets',
     rollupOptions: {
-      // external: ['vue', 'vuetify','element-plus'],
-      output: {
-        chunkFileNames: 'assets/js/[name]-[hash].js',
-        entryFileNames: 'assets/js/[name]-[hash].js',
-        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
-      },
+      external: ['vue', 'vuetify', 'element-plus'],
+      // output: {
+      //   chunkFileNames: 'assets/js/[name]-[hash].js',
+      //   entryFileNames: 'assets/js/[name]-[hash].js',
+      //   assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
+      // },
     },
   },
 }
