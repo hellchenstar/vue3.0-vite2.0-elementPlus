@@ -1,4 +1,16 @@
+/*
+ * @Author: chenx
+ * @Descripttion: 
+ * @Date: 2022-03-28 18:01:05
+ * @LastEditors: chenx
+ * @LastEditTime: 2022-04-28 16:42:49
+ */
 // 根据自己需要可以自行添加
-/node_modules
-/dist
+*.sh
+node_modules
+*.md
+dist
 *.html
+/public
+*.woff
+*.ttf

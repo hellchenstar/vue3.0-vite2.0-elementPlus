@@ -3,16 +3,19 @@
  * @Descripttion:
  * @Date: 2022-03-25 16:33:01
  * @LastEditors: chenx
- * @LastEditTime: 2022-03-25 17:18:00
+ * @LastEditTime: 2022-04-28 16:46:04
  */
-module.exports = {
-  extends: ['plugin:vue/vue3-essential', 'airbnb-base'],
+const { defineConfig } = require('eslint-define-config')
+module.exports = defineConfig({
+  root: true, // 指定为根配置，防止有上级的 eslint 继续向上查找配置文件
+  extends: ['plugin:vue/vue3-essential', 'airbnb-base', 'prettier'],
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: 'module',
   },
-  plugins: ['vue'],
+  plugins: ['vue', 'prettier'],
   rules: {
+    'prettier/prettier': 'error',
     // 自己配置的规则
     'import/no-absolute-path': [0], // 关闭不能使用绝对路径导入模块
     'no-console': process.env.NODE_ENV === 'production' ? 1 : 'off',
@@ -76,4 +79,4 @@ module.exports = {
       },
     },
   ],
-};
+})

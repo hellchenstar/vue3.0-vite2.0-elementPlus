@@ -3,7 +3,7 @@
  * @Descripttion:
  * @Date: 2022-03-14 10:51:53
  * @LastEditors: chenx
- * @LastEditTime: 2022-04-22 18:30:14
+ * @LastEditTime: 2022-04-28 17:58:31
  */
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -11,14 +11,26 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+
 const path = require('path')
 // https://vitejs.dev/config/
 const config = {
   base: './',
   plugins: [
     vue(),
+
     AutoImport({
       resolvers: [ElementPlusResolver()],
+      dts: false,
+      imports: [
+        'vue',
+        'vue-router',
+        {
+          axios: [
+            ['default', 'axios'], // import { default as axios } from 'axios',
+          ],
+        },
+      ], // 配置这个可以忽略.vue文件中需要手动引入ref,reactive等vue自带api,这里会处理成自动引入
     }),
     Components({
       resolvers: [ElementPlusResolver()],
@@ -26,8 +38,12 @@ const config = {
   ],
   resolve: {
     alias: {
-      vue: 'https://esm.sh/vue@3.2.33',
-      '@': path.resolve(__dirname, '/src'),
+      //配置别名
+      '@': path.resolve(__dirname, 'src'),
+      vue: 'https://cdn.jsdelivr.net/npm/vue@next/+esm',
+      axios: 'https://cdn.jsdelivr.net/npm/axios@next/+esm',
+      'vue-router': 'https://cdn.jsdelivr.net/npm/vue-router@next/+esm',
+      'element-plus': 'https://cdn.jsdelivr.net/npm/element-plus',
     },
   },
   server: {
@@ -48,23 +64,24 @@ const config = {
         changeOrigin: true,
       },
     },
-    fs: {
-      // 默认： false (将在后续版本中改为 true)
-      // 限制为工作区 root 路径以外的文件的访问。
-      strict: false,
-    },
   },
   build: {
-    target: 'es2015',
-    assetsInlineLimit: 0,
+    //浏览器兼容性  "esnext"|"modules"
+    target: 'modules',
+    //指定输出路径
+    outDir: 'dist',
+    //生成静态资源的存放路径
+    // assetsDir: "assets",
     assetsDir: 'assets',
+    //@rollup/plugin-commonjs 插件的选项
+    commonjsOptions: {},
+    //自定义底层的 Rollup 打包配置
     rollupOptions: {
-      external: ['vue', 'vuetify', 'element-plus'],
-      // output: {
-      //   chunkFileNames: 'assets/js/[name]-[hash].js',
-      //   entryFileNames: 'assets/js/[name]-[hash].js',
-      //   assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
-      // },
+      output: {
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
+      },
     },
   },
 }
