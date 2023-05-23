@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "esnext",  // 遵循esnext版本
+    "useDefineForClassFields": true,
+    "module": "esnext",  // 打包模块类型ESNext
+    "moduleResolution": "node",  // 按照node模块来解析
+    "strict": true,  // 严格模式
+    "jsx": "preserve",  // jsx 不转
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,  // 支持es6,commonjs模块
+    "lib": ["esnext", "dom"],  // 编译时用的库
+    "paths": {
+      "~/*": ["src/*"]
+    },
+    "skipLibCheck": true  // 跳过类库检测
+  },
+  "vueCompilerOptions": {
+    "target": 3,
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+}

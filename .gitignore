@@ -1,17 +1,14 @@
+.vite-ssg-temp
+
 node_modules
 .DS_Store
 dist
 dist-ssr
 *.local
 
-# local env files
-.env.local
-.env.*.local
-# Editor directories and files
-.idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-*.zip
+# lock
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
+*.log

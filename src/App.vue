@@ -1,25 +1,22 @@
 <template>
-	<router-view></router-view>
+  <el-config-provider namespace="ep">
+    <BaseHeader />
+    <div class="flex main-container">
+      <BaseSide />
+      <div w="full" py="4">
+        <HelloWorld msg="Hello Vue 3 + Element Plus + Vite" />
+      </div>
+    </div>
+  </el-config-provider>
 </template>
-<style lang="scss">
-#app {
-	width: 100%;
-	height: 100%;
-	background: #eee;
-}
-</style>
+
 <style>
-* {
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
+#app {
+  text-align: center;
+  color: var(--ep-text-color-primary);
 }
-html,
-body {
-	width: 100%;
-	height: 100%;
-	padding: 0;
-	margin: 0;
-	overflow: hidden;
+
+.main-container {
+  height: calc(100vh - var(--ep-menu-item-height) - 3px);
 }
 </style>
