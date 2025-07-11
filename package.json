@@ -2,6 +2,7 @@
   "name": "my-vue3",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -9,30 +10,28 @@
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
-    "axios": "^0.26.1",
+    "axios": "^1.6.7",
     "chinese-lunar": "^0.1.4",
-    "dayjs": "^1.10.8",
-    "element-plus": "^2.1.1",
-    "i": "^0.3.7",
-    "md-editor-v3": "^1.11.1",
-    "npm": "^8.5.4",
+    "dayjs": "^1.11.10",
+    "element-plus": "^2.5.6",
+    "md-editor-v3": "^4.12.0",
     "nprogress": "^0.2.0",
-    "quill": "1.3.6",
-    "vue": "^3.2.25",
-    "vue-router": "4",
-    "vuex": "^4.0.2",
-    "yarn": "^1.22.17",
-    "screenfull": "^6.0.1",
-    "vite-plugin-style-import": "^2.0.0"
+    "quill": "^1.3.7",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0",
+    "vuex": "^4.1.0",
+    "screenfull": "^6.0.2"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.2.0",
-    "eslint": "^8.11.0",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-vue": "^8.5.0",
-    "vite": "^2.8.0",
-    "sass": "^1.49.9",
-    "consola": "^2.15.3"
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-vue": "^9.21.1",
+    "sass": "^1.71.1",
+    "consola": "^3.2.3",
+    "vite": "^5.1.4",
+    "unplugin-auto-import": "^0.17.5",
+    "unplugin-vue-components": "^0.26.0"
   }
 }

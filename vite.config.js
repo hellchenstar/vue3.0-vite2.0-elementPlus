@@ -3,42 +3,38 @@
  * @Descripttion:
  * @Date: 2022-03-14 10:51:53
  * @LastEditors: chenx
- * @LastEditTime: 2022-04-07 09:38:29
+ * @LastEditTime: 2024-02-27 11:15:56
  */
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { createStyleImportPlugin } from 'vite-plugin-style-import'
-const path = require('path')
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { resolve } from 'path'
+
 // https://vitejs.dev/config/
 const config = {
   base: '/',
   plugins: [
     vue(),
-    createStyleImportPlugin({
-      libs: [
-        {
-          libraryName: 'element-plus',
-          resolveStyle: (name) => {
-            name = name.slice(3)
-            return `element-plus/theme-chalk/src/${name}.scss`
-          },
-          resolveComponent: (name) => {
-            return `element-plus/lib/components/${name}`
-          },
-        },
-      ],
+    AutoImport({
+      resolvers: [ElementPlusResolver()],
+      imports: ['vue', 'vue-router', 'vuex'],
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()],
     }),
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': resolve(__dirname, './src'),
     },
   },
   server: {
-    host: 'localhost',
-    port: 3000,
+    host: '0.0.0.0',
+    port: 5000,
     open: true,
-    strictPort: false, //如果端口占用，是退出，还是尝试其他端口
+    strictPort: false, // 如果端口占用，是退出，还是尝试其他端口
     https: false, // 是否开启 https
     proxy: {
       // 远端服务
@@ -56,6 +52,9 @@ const config = {
       // 默认： false (将在后续版本中改为 true)
       // 限制为工作区 root 路径以外的文件的访问。
       strict: false,
+    },
+    headers: {
+      'Access-Control-Allow-Origin': '*',
     },
   },
   build: {

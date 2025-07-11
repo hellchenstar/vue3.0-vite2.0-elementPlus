@@ -1,27 +1,27 @@
-@import "./variable.scss";
+@use './variable.scss' as vars;
 
 // 顶部进度条颜色
 #nprogress .bar {
-	background: $themeColor !important; //自定义颜色
+  background: vars.$themeColor !important; //自定义颜色
 }
 // 模块容器统一设置
 .module {
-	width: 100%;
-	height: 100%;
-	background: #fff;
-	padding: 5px;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  padding: 5px;
 }
 
 .module_header {
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	margin: 5px 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 5px 10px;
 }
 
 // 所有图标设置
 .icon {
-	margin-right: 5px;
+  margin-right: 5px;
 }
 
 /* 设置滚动条的样式 */
@@ -36,6 +36,6 @@
 /* 滚动条滑块 */
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background: #409EFF;
-  -webkit-box-shadow: inset 0 0 1px #409EFF;
+  background: #409eff;
+  -webkit-box-shadow: inset 0 0 1px #409eff;
 }
