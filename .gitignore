@@ -15,4 +15,4 @@ dist-ssr
 *.sln
 *.sw?
 *.zip
-.pnpm-store
+.pnpm-store/**
