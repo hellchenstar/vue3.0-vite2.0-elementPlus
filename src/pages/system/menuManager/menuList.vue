@@ -7,7 +7,7 @@
 <template>
   <div class="module">
     <div class="module_header">
-      <el-button type="primary" @click="addOrEdit">新增模块</el-button>
+      <el-button type="primary" @click="addOrEdit()">新增模块</el-button>
     </div>
     <el-table
       :data="menuList"
@@ -15,8 +15,8 @@
       row-key="url"
       border
     >
-      <el-table-column prop="name" label="菜单名称"></el-table-column>
-      <el-table-column prop="url" label="菜单地址"></el-table-column>
+      <el-table-column prop="name" label="菜单名称" />
+      <el-table-column prop="url" label="菜单地址" />
       <el-table-column prop="isDel" label="禁用状态">
         <template #default="scope">
           <el-tag :type="scope.row.disabled ? 'success' : 'danger'">
@@ -26,16 +26,16 @@
       </el-table-column>
       <el-table-column prop="icon" label="菜单图标">
         <template #default="scope">
-          <i :class="`icon hell${scope.row.icon}`"></i>
+          <i :class="`icon hell${scope.row.icon}`" />
         </template>
       </el-table-column>
       <el-table-column label="操作">
         <template #default="scope">
           <el-button
             v-if="scope.row.level === 1"
-            @click="addOrEdit(scope.row, 'add')"
             type="primary"
             size="small"
+            @click="addOrEdit(scope.row, 'add')"
           >
             新增菜单
           </el-button>
@@ -49,8 +49,8 @@
           <el-button
             :type="scope.row.disabled ? 'danger' : 'success'"
             size="small"
-            @click="changeMenuStatus(scope.row.disabled, scope.row.id)"
             :loading="submitLoading"
+            @click="changeMenuStatus(scope.row.disabled, scope.row.id)"
           >
             {{ scope.row.disabled ? '禁用' : '启用' }}
           </el-button>
@@ -58,12 +58,12 @@
       </el-table-column>
     </el-table>
 
-    <el-dialog :title="title" v-model="infoDialog">
-      <el-form :model="menuInfo" ref="menuForm">
+    <el-dialog v-model="infoDialog" :title="title">
+      <el-form ref="menuFormRef" :model="menuInfo">
         <el-form-item
+          v-if="showParentMenu"
           label="父级菜单"
           :label-width="formLabelWidth"
-          v-if="showParentMenu"
         >
           <el-select v-model="menuInfo.parentId" placeholder="请选择父级菜单">
             <el-option
@@ -71,21 +71,21 @@
               :key="item.url"
               :label="item.name"
               :value="item.id"
-            ></el-option>
+            />
           </el-select>
         </el-form-item>
         <el-form-item label="菜单名称" :label-width="formLabelWidth">
-          <el-input v-model="menuInfo.name"></el-input>
+          <el-input v-model="menuInfo.name" />
         </el-form-item>
         <el-form-item label="菜单地址" :label-width="formLabelWidth">
-          <el-input v-model="menuInfo.url" :disabled="urlDisabled"></el-input>
+          <el-input v-model="menuInfo.url" :disabled="urlDisabled" />
         </el-form-item>
         <el-form-item label="菜单图标" :label-width="formLabelWidth">
-          <el-input v-model="menuInfo.icon" :disabled="iconDisabled"></el-input>
+          <el-input v-model="menuInfo.icon" :disabled="iconDisabled" />
         </el-form-item>
         <el-form-item :label-width="formLabelWidth">
           <el-button @click="closeDia">取 消</el-button>
-          <el-button type="primary" @click="submit" :loading="submitLoading">
+          <el-button type="primary" :loading="submitLoading" @click="submit">
             确 定
           </el-button>
         </el-form-item>
@@ -93,157 +93,140 @@
     </el-dialog>
   </div>
 </template>
-<script>
-import { reactive, toRefs, onMounted, ref, unref } from 'vue'
+
+<script setup>
+import { reactive, ref, unref, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { menuApi } from '@/request/api/index.js'
 import { ElMessage } from 'element-plus'
 import { makeTreeData } from '@/utils/utils.js'
-export default {
-  setup() {
-    // 登录逻辑
 
-    const state = reactive({
-      menuList: [],
-      title: '',
-      infoDialog: false,
-      menuInfo: {
+const store = useStore()
+const menuFormRef = ref(null)
+
+const menuList = ref([])
+const title = ref('')
+const infoDialog = ref(false)
+const menuInfo = reactive({
+  id: '',
+  parentId: '',
+  name: '',
+  url: '',
+  icon: '',
+  level: 1,
+  disabled: 1,
+})
+const submitLoading = ref(false)
+const iconDisabled = ref(false)
+const urlDisabled = ref(false)
+const showParentMenu = ref(false)
+const formLabelWidth = '100px'
+
+function getMenuList() {
+  menuApi.getMenuList().then((res) => {
+    menuList.value = makeTreeData(res.data, null)
+  })
+}
+
+function setIsReloadMenu() {
+  store.commit('setIsReloadMenu', true)
+}
+
+function addOrEdit(row, type) {
+  infoDialog.value = true
+  if (row) {
+    if (type === 'add') {
+      title.value = '新增菜单'
+      showParentMenu.value = true
+      iconDisabled.value = true
+      urlDisabled.value = false
+      Object.assign(menuInfo, {
+        parentId: row.id,
         id: '',
-        parentId: '',
         name: '',
         url: '',
         icon: '',
-        level: 1,
+        level: 2,
         disabled: 1,
-      },
-      submitLoading: false,
-      iconDisabled: false,
-      urlDisabled: false,
-      showParentMenu: false,
-      formLabelWidth: '100px',
-      init: true,
-    })
-    // 更新菜单
-
-    const getMenuList = () => {
-      menuApi.getMenuList().then((res) => {
-        state.menuList = makeTreeData(res.data, null)
+      })
+    } else {
+      title.value = '编辑菜单'
+      showParentMenu.value = false
+      urlDisabled.value = false
+      iconDisabled.value = !!row.parentId
+      Object.assign(menuInfo, {
+        parentId: row.parentId,
+        id: row.id,
+        name: row.name,
+        url: row.url,
+        icon: row.icon,
+        level: row.level,
+        disabled: row.disabled,
       })
     }
-    // 新增、编辑
-    const addOrEdit = (row, type) => {
-      state.infoDialog = true
-      if (row) {
-        if (type === 'add') {
-          state.title = '新增菜单'
-          state.showParentMenu = true
-          state.iconDisabled = true
-          state.urlDisabled = false
-          state.menuInfo = {
-            parentId: row.id,
-            id: '',
-            name: '',
-            url: '',
-            icon: '',
-            level: 2,
-            disabled: 1,
-          }
-        } else {
-          state.title = '编辑菜单'
-          state.showParentMenu = false
-          state.urlDisabled = false
-          if (row.parentId) {
-            state.iconDisabled = true
-          }
-          state.menuInfo = {
-            parentId: row.parentId,
-            id: row.id,
-            name: row.name,
-            url: row.url,
-            icon: row.icon,
-            level: row.level,
-            disabled: row.disabled,
-          }
-        }
-      } else {
-        state.showParentMenu = false
-        state.iconDisabled = false
-        state.urlDisabled = false
-        // 新增
-        state.title = '新增模块'
-        state.menuInfo = {
-          id: '',
-          parentId: '',
-          name: '',
-          url: '',
-          icon: '',
-          level: 1,
-          disabled: 1,
-        }
-      }
+  } else {
+    showParentMenu.value = false
+    iconDisabled.value = false
+    urlDisabled.value = false
+    title.value = '新增模块'
+    Object.assign(menuInfo, {
+      id: '',
+      parentId: '',
+      name: '',
+      url: '',
+      icon: '',
+      level: 1,
+      disabled: 1,
+    })
+  }
+}
+
+function changeMenuStatus(val, id) {
+  menuApi.changeMenuStatus({ id, disabled: val ? 0 : 1 }).then((res) => {
+    if (res.code === 200) {
+      ElMessage.success(res.msg)
+      getMenuList()
+      setIsReloadMenu()
     }
-    const changeMenuStatus = (val, id) => {
-      const params = {
-        id: id,
-        disabled: val ? 0 : 1,
-      }
-      menuApi.changeMenuStatus(params).then((res) => {
-        if (res.code === 200) {
+  })
+}
+
+function closeDia() {
+  infoDialog.value = false
+  submitLoading.value = false
+}
+
+function submit() {
+  const str = menuInfo.id ? 'editMenu' : 'addMenu'
+  submitLoading.value = true
+  const form = unref(menuFormRef)
+  form?.validate((valid) => {
+    if (valid) {
+      menuApi[str](menuInfo)
+        .then((res) => {
+          infoDialog.value = false
+          submitLoading.value = false
           ElMessage.success(res.msg)
           getMenuList()
-          // 更新左侧菜单
           setIsReloadMenu()
-        }
-      })
+        })
+        .catch(() => {
+          infoDialog.value = false
+          submitLoading.value = false
+        })
+    } else {
+      submitLoading.value = false
     }
-    const closeDia = () => {
-      state.infoDialog = false
-      state.submitLoading = false
-    }
-    // 更新左侧菜单
-    const vuex = useStore()
-    const setIsReloadMenu = () => {
-      vuex.commit('setIsReloadMenu', true)
-    }
-    const menuForm = ref(null)
-    const submit = () => {
-      let str = state.menuInfo.id ? 'editMenu' : 'addMenu'
-      state.submitLoading = true
-      const form = unref(menuForm)
-      form.validate((valid) => {
-        if (valid) {
-          menuApi[str](state.menuInfo)
-            .then((res) => {
-              state.infoDialog = false
-              state.submitLoading = false
-              ElMessage.success(res.msg)
-              getMenuList()
-              // 更新左侧菜单
-              setIsReloadMenu()
-            })
-            .catch((err) => {
-              state.infoDialog = false
-              state.submitLoading = false
-            })
-          //
-        } else {
-          return false
-        }
-      })
-    }
-    onMounted(() => {
-      getMenuList()
-    })
-    return {
-      ...toRefs(state),
-      menuForm,
-      getMenuList,
-      addOrEdit,
-      changeMenuStatus,
-      closeDia,
-      submit,
-    }
-  },
+  })
 }
+
+onMounted(() => {
+  getMenuList()
+})
 </script>
-sty
+
+<style lang="scss" scoped>
+.module_header {
+  margin-bottom: 10px;
+}
+</style>

@@ -5,52 +5,52 @@
  * @Description: file content
 -->
 <template>
-	<div class="content">
-		<div class="fullscreen">
-			<span style="margin-right: 20px">是否全屏</span>
-			<el-switch v-model="isFull" @change="changeIsFull"> </el-switch>
-		</div>
-	</div>
+  <div class="content">
+    <div class="fullscreen">
+      <span style="margin-right: 20px">是否全屏</span>
+      <el-switch v-model="isFull" @change="changeIsFull" />
+    </div>
+  </div>
 </template>
-<script>
-import { reactive, toRefs } from "vue"
-import screenfull from "screenfull"
-export default {
-	setup() {
-		const setInfo = reactive({
-			isFull: screenfull.isFullscreen,
-		})
-		const handleScreenfull = () => {
-			if (!screenfull.isEnabled) {
-				this.$message({
-					message: "浏览器不支持全屏！",
-					type: "warning",
-				})
-				return false
-			}
-			screenfull.toggle()
-		}
-		// 窗口变化的时候获取全屏状态
-		window.onresize = () => {
-			setInfo.isFull = screenfull.isFullscreen
-		}
-		// 改变全屏状态
-		const changeIsFull = (val) => {
-			if (val) {
-				handleScreenfull()
-			} else {
-				screenfull.exit()
-			}
-		}
-		return {
-			...toRefs(setInfo),
-			changeIsFull,
-		}
-	},
+
+<script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+import { ElMessage } from 'element-plus'
+import screenfull from 'screenfull'
+
+const isFull = ref(screenfull.isFullscreen)
+
+function handleScreenfull() {
+  if (!screenfull.isEnabled) {
+    ElMessage.warning('浏览器不支持全屏！')
+    return false
+  }
+  screenfull.toggle()
 }
+
+function changeIsFull(val) {
+  if (val) {
+    handleScreenfull()
+  } else {
+    screenfull.exit()
+  }
+}
+
+function updateFullState() {
+  isFull.value = screenfull.isFullscreen
+}
+
+onMounted(() => {
+  window.addEventListener('resize', updateFullState)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateFullState)
+})
 </script>
+
 <style lang="scss" scoped>
 .content {
-	padding: 0 10px;
+  padding: 0 10px;
 }
 </style>

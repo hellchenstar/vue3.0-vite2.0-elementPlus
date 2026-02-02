@@ -17,20 +17,20 @@
     "md-editor-v3": "^4.12.0",
     "nprogress": "^0.2.0",
     "quill": "^1.3.7",
-    "vue": "^3.4.21",
-    "vue-router": "^4.3.0",
+    "vue": "^3.5.13",
+    "vue-router": "^4.4.5",
     "vuex": "^4.1.0",
     "screenfull": "^6.0.2"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.0.4",
+    "@vitejs/plugin-vue": "^5.2.1",
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-vue": "^9.21.1",
     "sass": "^1.71.1",
     "consola": "^3.2.3",
-    "vite": "^5.1.4",
+    "vite": "^6.0.3",
     "unplugin-auto-import": "^0.17.5",
     "unplugin-vue-components": "^0.26.0"
   }

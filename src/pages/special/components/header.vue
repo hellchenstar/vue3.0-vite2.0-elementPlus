@@ -19,8 +19,8 @@
       </el-breadcrumb>
     </div>
     <div class="userCenter">
-      <el-avatar :size="35" class="avatar" :src="avatar">
-        <img :src="defaultAvatar" />
+      <el-avatar :size="35" class="avatar" :src="avatar || defaultAvatar">
+        <img :src="defaultAvatar" alt="" />
       </el-avatar>
       <el-dropdown @command="handleCommand">
         <span class="el-dropdown-link">
@@ -47,7 +47,7 @@
   </div>
 </template>
 <script setup>
-import { computed, onMounted, reactive, toRefs } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import defaultAvatar from '@/assets/img/header/defaultAvatar.png'
@@ -55,24 +55,26 @@ import UserSetting from './userSetting.vue'
 
 const router = useRouter()
 const route = useRoute()
-const vuex = useStore()
-// reactive将数据变为响应式
-// 个人信息===================================================
-const userInfo = reactive({
-  userName: '',
-  avatar: '',
-  defaultAvatar,
-  drawer: false,
-})
-const isCollapse = computed(() => {
-  return vuex.state.special.isCollapse
-})
+const store = useStore()
 
-const setMenuStatus = () => {
-  vuex.commit('setIsCollapse', !userInfo.isCollapse)
+const userName = ref('')
+const avatar = ref('')
+const drawer = ref(false)
+
+const isCollapse = computed(() => store.state.special.isCollapse)
+
+const routeList = computed(() => route.matched.filter((_, index) => index !== 0))
+
+function setMenuStatus() {
+  store.commit('setIsCollapse', !isCollapse.value)
 }
-const getUserInfo = () => {}
-const handleCommand = command => {
+
+function getUserInfo() {
+  userName.value = localStorage.getItem('username') || ''
+  avatar.value = localStorage.getItem('avatar') || ''
+}
+
+function handleCommand(command) {
   if (command === 'userInfo') {
     router.push(command)
   } else {
@@ -81,27 +83,13 @@ const handleCommand = command => {
   }
 }
 
-// 个性化设置 ==============================================
-
-const setting = reactive({
-  drawer: false,
-})
-const openSetting = () => {
-  setting.drawer = true
-}
-const handleClose = () => {
-  setting.drawer = false
+function openSetting() {
+  drawer.value = true
 }
 
-// 面包屑 ==============================================
-const navInfo = reactive({
-  routeList: computed(() => {
-    let arr = route.matched.filter((el, index) => {
-      return index !== 0
-    })
-    return arr
-  }),
-})
+function handleClose() {
+  drawer.value = false
+}
 
 onMounted(() => {
   getUserInfo()

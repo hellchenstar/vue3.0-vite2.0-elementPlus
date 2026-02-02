@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
+const config = require("./chunks/config.cjs");
+const zh_CN = config.staticTextDefault["zh-CN"];
+const en_US = config.staticTextDefault["en-US"];
+exports.allFooter = config.allFooter;
+exports.allToolbar = config.allToolbar;
+exports.config = config.config;
+exports.editorExtensionsAttrs = config.editorExtensionsAttrs;
+exports.iconfontClassUrl = config.iconfontClassUrl;
+exports.iconfontSvgUrl = config.iconfontSvgUrl;
+exports.en_US = en_US;
+exports.zh_CN = zh_CN;

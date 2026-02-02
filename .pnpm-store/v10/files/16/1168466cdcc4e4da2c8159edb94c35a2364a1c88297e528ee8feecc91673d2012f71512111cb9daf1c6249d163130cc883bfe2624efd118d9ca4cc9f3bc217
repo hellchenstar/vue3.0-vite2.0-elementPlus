@@ -1,0 +1,64 @@
+import type { Component, ExtractPublicPropTypes } from 'vue';
+import type TimelineItem from './timeline-item.vue';
+export interface TimelineItemProps {
+    /**
+     * @description timestamp content
+     */
+    timestamp?: string;
+    /**
+     * @description whether to show timestamp
+     */
+    hideTimestamp?: boolean;
+    /**
+     * @description whether vertically centered
+     */
+    center?: boolean;
+    /**
+     * @description position of timestamp
+     */
+    placement?: 'top' | 'bottom';
+    /**
+     * @description node type
+     */
+    type?: 'primary' | 'success' | 'warning' | 'danger' | 'info' | '';
+    /**
+     * @description background color of node
+     */
+    color?: string;
+    /**
+     * @description node size
+     */
+    size?: 'normal' | 'large';
+    /**
+     * @description icon component
+     */
+    icon?: string | Component;
+    /**
+     * @description icon is hollow
+     */
+    hollow?: boolean;
+}
+/**
+ * @deprecated Removed after 3.0.0, Use `TimelineItemProps` instead.
+ */
+export declare const timelineItemProps: {
+    readonly timestamp: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, "", boolean>;
+    readonly hideTimestamp: BooleanConstructor;
+    readonly center: BooleanConstructor;
+    readonly placement: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "top" | "bottom", unknown, "bottom", boolean>;
+    readonly type: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "primary" | "success" | "warning" | "info" | "danger", unknown, "", boolean>;
+    readonly color: import("element-plus/es/utils").EpPropFinalized<StringConstructor, unknown, unknown, "", boolean>;
+    readonly size: import("element-plus/es/utils").EpPropFinalized<StringConstructor, "large" | "normal", unknown, "normal", boolean>;
+    readonly icon: {
+        readonly type: import("vue").PropType<import("element-plus/es/utils").EpPropMergeType<(new (...args: any[]) => (string | Component) & {}) | (() => string | Component) | ((new (...args: any[]) => (string | Component) & {}) | (() => string | Component))[], unknown, unknown>>;
+        readonly required: false;
+        readonly validator: ((val: unknown) => boolean) | undefined;
+        __epPropKey: true;
+    };
+    readonly hollow: BooleanConstructor;
+};
+/**
+ * @deprecated Removed after 3.0.0, Use `TimelineItemProps` instead.
+ */
+export type TimelineItemPropsPublic = ExtractPublicPropTypes<typeof timelineItemProps>;
+export type TimelineItemInstance = InstanceType<typeof TimelineItem> & unknown;

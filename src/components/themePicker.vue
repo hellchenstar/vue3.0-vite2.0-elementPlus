@@ -4,3 +4,9 @@
  * @LastEditTime: 2021-04-21 10:43:02
  * @Description: 主题换色
 -->
+<template>
+  <div class="theme-picker" />
+</template>
+
+<script setup>
+</script>

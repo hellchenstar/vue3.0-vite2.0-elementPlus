@@ -1,0 +1,23 @@
+import { Extension } from '@codemirror/state';
+import { HighlightStyle } from '@codemirror/language';
+export declare const color: {
+    chalky: string;
+    coral: string;
+    cyan: string;
+    invalid: string;
+    ivory: string;
+    stone: string;
+    malibu: string;
+    sage: string;
+    whiskey: string;
+    violet: string;
+    darkBackground: string;
+    highlightBackground: string;
+    background: string;
+    tooltipBackground: string;
+    selection: string;
+    cursor: string;
+};
+export declare const oneLightTheme: Extension;
+export declare const oneLightHighlightStyle: HighlightStyle;
+export declare const oneLight: Extension;

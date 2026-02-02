@@ -1,0 +1,33 @@
+import { PropType, ExtractPropTypes } from 'vue';
+declare const _default: import("vue").DefineComponent<{
+    visible: {
+        type: PropType<boolean>;
+        default: boolean;
+    };
+    onCancel: {
+        type: PropType<() => void>;
+        default: () => void;
+    };
+    onOk: {
+        type: PropType<(data?: any) => void>;
+        default: () => void;
+    };
+}, () => import("vue/jsx-runtime").JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<ExtractPropTypes<{
+    visible: {
+        type: PropType<boolean>;
+        default: boolean;
+    };
+    onCancel: {
+        type: PropType<() => void>;
+        default: () => void;
+    };
+    onOk: {
+        type: PropType<(data?: any) => void>;
+        default: () => void;
+    };
+}>>, {
+    visible: boolean;
+    onCancel: () => void;
+    onOk: (data?: any) => void;
+}, {}>;
+export default _default;

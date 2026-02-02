@@ -6,15 +6,13 @@
 -->
 <template>
   <div class="errPage-container">
-    <el-button icon="el-icon-arrow-left" type="primary" @click="goback">
+    <el-button type="primary" @click="goback">
       返回
     </el-button>
     <el-row>
       <el-col :span="12">
-        <h1 class="text-jumbo text-ginormous">
-          Oops!
-        </h1>
-        gif来源<a href="https://zh.airbnb.com/" target="_blank">airbnb</a> 页面
+        <h1 class="text-jumbo text-ginormous">Oops!</h1>
+        gif来源<a href="https://zh.airbnb.com/" target="_blank" rel="noopener">airbnb</a> 页面
         <h2>你跑错页面了</h2>
         <h6>仔细检查一下页面地址</h6>
       </el-col>
@@ -30,20 +28,14 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { useRouter } from 'vue-router'
 import errGif from '@/assets/img/errImg/401.gif'
-export default {
-  name: 'page404',
-  data() {
-    return {
-      errGif: errGif
-    }
-  },
-  methods: {
-    goback() {
-      this.$router.go(-1)
-    }
-  }
+
+const router = useRouter()
+
+function goback() {
+  router.go(-1)
 }
 </script>
 

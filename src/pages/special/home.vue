@@ -17,19 +17,13 @@
     </el-container>
   </div>
 </template>
-<script>
+
+<script setup>
 import Header from './components/header.vue'
 import Container from './components/content.vue'
 import Menu from './components/menu.vue'
-
-export default {
-  components: {
-    Menu,
-    Header,
-    Container,
-  },
-}
 </script>
+
 <style lang="scss" scoped>
 .allContent {
   width: 100%;

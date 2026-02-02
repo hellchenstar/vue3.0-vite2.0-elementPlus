@@ -76,96 +76,85 @@
 	</div>
 </template>
 
-<script>
-import { onBeforeMount, reactive, toRefs } from "vue"
+<script setup>
+import { onBeforeMount, reactive, ref } from 'vue'
+import { weatherKey } from '@/utils/config.js'
+import chineseLunar from 'chinese-lunar'
+import dayjs from 'dayjs'
 
-import AMapLoader from "@amap/amap-jsapi-loader"
-import { weatherKey } from "@/utils/config.js"
-import chineseLunar from "chinese-lunar"
-import moment from "dayjs"
-export default {
-	setup() {
-		const mapInfo = reactive({
-			map: "",
-			currentDate: "",
-			weatherInfo: {
-				weather: "",
-				forecasts: [],
-			},
-		})
-		const initAmap = () => {
-			AMapLoader.load({
-				key: weatherKey, // 申请好的Web端开发者Key，首次调用 load 时必填
-				version: "2.0", // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
-				extensions: "all",
-				plugins: ["AMap.Weather"], //插件列表
-			})
-				.then(AMap => {
-					let weather = new AMap.Weather()
-					// 获取实时天气
-					weather.getLive("西安市", (err, data) => {
-						if (!err) {
-							mapInfo.weatherInfo.msg = ""
-							mapInfo.weatherInfo = data
-						} else {
-							mapInfo.weatherInfo.msg = "获取天气信息失败,请稍后再试"
-						}
-					})
-					// 获取未来4天天气预报
-					weather.getForecast("西安市", (err, data) => {
-						if (!err) {
-							mapInfo.weatherInfo.forecasts = data.forecasts
-						}
-					})
-				})
-
-				.catch(e => {
-					console.log(e)
-				})
-		}
-		const getCurrentDay = week => {
-			switch (week) {
-				case 1:
-					return "周一"
-				case 2:
-					return "周二"
-				case 3:
-					return "周三"
-				case 4:
-					return "周四"
-				case 5:
-					return "周五"
-				case 6:
-					return "周六"
-				case 7:
-					return "周日"
-			}
-		}
-		onBeforeMount(() => {
-			window.WIDGET = {
-				CONFIG: {
-					layout: "1",
-					width: "450",
-					height: "150",
-					background: "1",
-					dataColor: "FFFFFF",
-					key: "373cce0854064c2c9b54132775106d84",
-				},
-			}
-			initAmap()
-			// 设置农历  时间
-			let curDate = chineseLunar.solarToLunar(new Date())
-			let dayName = chineseLunar.dayName(curDate.day - 1)
-			let monthName = chineseLunar.monthName(curDate.month)
-			mapInfo.currentDate = `${moment().format("YYYY-MM-YY")} 农历${monthName}${dayName}`
-		})
-		return {
-			...toRefs(mapInfo),
-			initAmap,
-			getCurrentDay,
-		}
-	},
+function loadAMapLoader() {
+  if (typeof window !== 'undefined' && window.AMapLoader) return Promise.resolve(window.AMapLoader)
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script')
+    s.src = 'https://cdn.jsdelivr.net/npm/@amap/amap-jsapi-loader@1.0.1/dist/index.js'
+    s.async = true
+    s.onload = () => resolve(window.AMapLoader || window.AMap || { load: () => Promise.reject(new Error('AMapLoader not found')) })
+    s.onerror = reject
+    document.head.appendChild(s)
+  })
 }
+
+const currentDate = ref('')
+const weatherInfo = reactive({
+  weather: '',
+  temperature: '',
+  windDirection: '',
+  windPower: '',
+  humidity: '',
+  forecasts: [],
+})
+
+function getCurrentDay(week) {
+  const map = { 1: '周一', 2: '周二', 3: '周三', 4: '周四', 5: '周五', 6: '周六', 7: '周日' }
+  return map[week] || ''
+}
+
+function initAmap() {
+  loadAMapLoader().then((AMapLoader) => {
+    AMapLoader.load({
+      key: weatherKey,
+      version: '2.0',
+      extensions: 'all',
+      plugins: ['AMap.Weather'],
+    })
+      .then((AMap) => {
+        const weather = new AMap.Weather()
+        weather.getLive('西安市', (err, data) => {
+          if (!err && data) {
+            weatherInfo.weather = data.weather ?? ''
+            weatherInfo.temperature = data.temperature ?? ''
+            weatherInfo.windDirection = data.windDirection ?? ''
+            weatherInfo.windPower = data.windPower ?? ''
+            weatherInfo.humidity = data.humidity ?? ''
+          } else {
+            weatherInfo.weather = '获取天气信息失败,请稍后再试'
+          }
+        })
+        weather.getForecast('西安市', (err, data) => {
+          if (!err && data) weatherInfo.forecasts = data.forecasts || []
+        })
+      })
+      .catch((e) => console.log(e))
+  })
+}
+
+onBeforeMount(() => {
+  window.WIDGET = {
+    CONFIG: {
+      layout: '1',
+      width: '450',
+      height: '150',
+      background: '1',
+      dataColor: 'FFFFFF',
+      key: '373cce0854064c2c9b54132775106d84',
+    },
+  }
+  initAmap()
+  const curDate = chineseLunar.solarToLunar(new Date())
+  const dayName = chineseLunar.dayName(curDate.day - 1)
+  const monthName = chineseLunar.monthName(curDate.month)
+  currentDate.value = `${dayjs().format('YYYY-MM-DD')} 农历${monthName}${dayName}`
+})
 </script>
 <style lang="scss" scoped>
 .weatherContainer {

@@ -14,6 +14,13 @@ import { resolve } from 'path'
 // https://vitejs.dev/config/
 const config = {
   base: '/',
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+      },
+    },
+  },
   plugins: [
     vue(),
     AutoImport({

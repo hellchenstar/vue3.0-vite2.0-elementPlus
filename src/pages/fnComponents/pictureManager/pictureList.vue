@@ -5,5 +5,8 @@
  * @Description: 照片管理
 -->
 <template>
-	<div>照片瀑布流</div>
+  <div>照片瀑布流</div>
 </template>
+
+<script setup>
+</script>
