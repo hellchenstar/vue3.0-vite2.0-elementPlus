@@ -74,6 +74,7 @@ export default {
 	background: #fff;
 	display: flex;
 	justify-content: center;
+
 	.form {
 		width: 600px;
 		margin: 50px 100px;

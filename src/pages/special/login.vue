@@ -45,7 +45,7 @@
   </div>
 </template>
 <script setup>
-import { reactive, toRefs, onMounted, ref, unref } from 'vue'
+import { reactive, ref, unref } from 'vue'
 import { useRouter } from 'vue-router'
 import { login } from '@/request/api/index.js'
 import loginBg from '@/assets/img/login/bg2.jpeg'
@@ -53,11 +53,11 @@ import loginBg from '@/assets/img/login/bg2.jpeg'
 const router = useRouter()
 
 const loginInfo = reactive({
-  account: 'admin',
-  password: '123456',
+  account: '',
+  password: '',
   role: 1,
 })
-let loginLoading = ref(false)
+const loginLoading = ref(false)
 const rules = reactive({
   account: [{ required: true, message: '请输入账号', trigger: 'blur' }],
   password: [
@@ -71,20 +71,33 @@ const rules = reactive({
   ],
 })
 
-// 登录逻辑
 const loginForm = ref(null)
 const goLogin = () => {
   loginLoading.value = true
   const form = unref(loginForm)
-  form.validate(valid => {
-    router.push('home')
-    // 这里可以恢复你的登录逻辑
+  form.validate((valid) => {
+    if (valid) {
+      login
+        .loginSub(loginInfo)
+        .then((res) => {
+          loginLoading.value = false
+          localStorage.setItem('username', res.data.username)
+          localStorage.setItem('avatar', res.data.avatar)
+          localStorage.setItem('token', res.data.token)
+          localStorage.setItem('userId', res.data.id)
+          router.push('home')
+        })
+        .catch(() => {
+          loginLoading.value = false
+        })
+    } else {
+      loginLoading.value = false
+    }
   })
 }
 const goRegister = () => {
   router.push('register')
 }
-onMounted(() => {})
 </script>
 
 <style lang="scss" scoped>
@@ -96,6 +109,7 @@ onMounted(() => {})
   align-items: center;
   background-size: 100% 100%;
 }
+
 .loginContent {
   width: 500px;
   height: 300px;
@@ -108,6 +122,7 @@ onMounted(() => {})
   background: rgba(255, 255, 255, 0.3);
   box-shadow: 3px 3px 6px 3px rgba(0, 0, 0, 0.3);
   overflow: hidden;
+
   &::before {
     content: '';
     position: absolute;
